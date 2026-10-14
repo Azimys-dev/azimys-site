@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Azimys, l'ERP modulable des ateliers aéronautiques et des industries de pointe : un magasin toujours inclus, et les modules dont vous avez besoin : outillage étalonné, commandes, achats, DST et OF, BL, CoC, EASA Form 1, facturation.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect x='1' y='1' width='32' height='32' rx='7' fill='%23145a6e'/%3E%3Ccircle cx='17' cy='17' r='10' fill='none' stroke='%23fff' stroke-width='1.6' opacity='.45'/%3E%3Cg transform='rotate(35 17 17)'%3E%3Cpath d='M17 6l4 11h-8z' fill='%23fff'/%3E%3Cpath d='M17 28l-4-11h8z' fill='%23f3f5f4' opacity='.8'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="canonical" href="https://azimys.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Azimys">
+<meta property="og:title" content="Azimys, l'ERP modulable des ateliers aéronautiques">
+<meta property="og:description" content="Azimys, l'ERP modulable des ateliers aéronautiques et des industries de pointe : un magasin toujours inclus, et les modules dont vous avez besoin : outillage étalonné, commandes, achats, DST et OF, BL, CoC, EASA Form 1, facturation.">
+<meta property="og:url" content="https://azimys.com/">
+<meta property="og:image" content="https://azimys.com/assets/azimys-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Azimys</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  /* Layout: single-column sales page on a cool workshop paper. One bold element: the fanned labels in the hero.
+     Deliberately single light theme, every color set explicitly. */
+  :root {
+    --paper: #f3f5f4;
+    --surface: #ffffff;
+    --ink: #142028;
+    --muted: #55626b;
+    --line: #d5dcdf;
+    --petrol: #145a6e;
+    --petrol-deep: #0d3f4e;
+    --petrol-soft: #dcebef;
+    --ok: #2a7a46; --ok-soft: #e0f0e5;
+    --warn: #9a5b0b; --warn-soft: #fbedd6;
+    --bad: #b42318; --bad-soft: #fbe3df;
+    --on-dark: #e8eff1;
+    --on-dark-muted: #a9bcc3;
+    --font-ui: "Barlow", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-ui); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.05; letter-spacing: .005em; text-wrap: balance; color: var(--ink); }
+  a { color: var(--petrol); }
+  :focus-visible { outline: 3px solid var(--petrol); outline-offset: 3px; }
+  .wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: 0 1.3rem; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 1rem/1 var(--font-ui); text-decoration: none; cursor: pointer; white-space: nowrap; }
+  .btn:hover { border-color: var(--ink); }
+  .btn-main { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .btn-main:hover { background: var(--petrol-deep); border-color: var(--petrol-deep); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* Header */
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(243, 245, 244, .96); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 66px; }
+  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
+  .logo svg { width: 34px; height: 24px; }
+  .logo b { font-family: var(--font-display); font-size: 1.75rem; line-height: 1; letter-spacing: .01em; }
+  .nav { display: flex; align-items: center; gap: 1.6rem; }
+  .nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .98rem; }
+  .nav a:not(.btn):hover { color: var(--petrol); }
+  .nav .btn { min-height: 42px; }
+
+  /* Product name, same pattern as in the apps: brand in ink, product word in petrol */
+  .wrap .eyebrow { display: flex; align-items: center; gap: .55rem; font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; line-height: 1; margin-bottom: 1rem; color: var(--ink); }
+  .wrap .eyebrow svg { width: 30px; height: 21px; flex: none; }
+  .wrap .eyebrow span { color: var(--petrol); font-weight: 600; }
+
+  /* Hero */
+  .hero { padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero h1 { font-size: clamp(2.6rem, 6.2vw, 4.9rem); max-width: 14ch; margin-bottom: 1.4rem; }
+  .hero .lead { font-size: clamp(1.05rem, 1.6vw, 1.22rem); color: var(--muted); max-width: 54ch; margin-bottom: 2rem; }
+  .hero .lead b { color: var(--ink); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .proof { margin-top: 1.5rem; font-size: .95rem; color: var(--muted); }
+  .proof a { font-weight: 600; }
+
+  .stack { position: relative; height: 540px; }
+  .tag { position: absolute; width: min(330px, 86%); background: var(--surface); border: 2px solid var(--tone); border-radius: 10px; overflow: hidden; box-shadow: 0 30px 50px -30px rgba(20, 32, 40, .55); }
+  .tag-band { position: relative; background: var(--tone); color: #fff; padding: .8rem 1rem .85rem 2.9rem; }
+  .tag-band::before { content: ""; position: absolute; left: 1rem; top: 50%; width: 15px; height: 15px; margin-top: -7.5px; border-radius: 50%; background: var(--surface); }
+  .tag-band b { display: block; font-family: var(--font-display); font-size: 1.65rem; line-height: 1.05; }
+  .tag-band span { display: block; font-size: .9rem; font-weight: 600; opacity: .92; }
+  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad) 0 16px, #8f1c13 16px 26px); }
+  .tag dl { display: grid; grid-template-columns: auto 1fr; padding: .3rem 1rem .55rem; font-size: .92rem; }
+  .tag dt, .tag dd { padding: .4rem 0; border-bottom: 1px dashed var(--line); }
+  .tag dt { color: var(--muted); padding-right: 1rem; }
+  .tag dd { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tag dt:nth-last-child(2), .tag dd:last-child { border-bottom: 0; }
+  .t-ok { --tone: var(--ok); } .t-warn { --tone: var(--warn); } .t-bad { --tone: var(--bad); }
+  .tag.a { left: 0; top: 40px; transform: rotate(-5deg); z-index: 1; }
+  .tag.b { right: 0; top: 0; transform: rotate(4deg); z-index: 2; }
+  .tag.c { left: 12%; top: 190px; transform: rotate(-1.5deg); z-index: 3; }
+  .tag { animation: drop .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .tag.b { animation-delay: .12s; } .tag.c { animation-delay: .24s; }
+  @keyframes drop { from { opacity: 0; translate: 0 -18px; } to { opacity: 1; translate: 0 0; } }
+  .qr-card { position: absolute; right: 0; bottom: 0; z-index: 4; display: flex; gap: .8rem; align-items: center; width: 280px; padding: .75rem; background: var(--ink); color: var(--on-dark); border-radius: 10px; font-size: .88rem; line-height: 1.35; box-shadow: 0 30px 50px -30px rgba(20, 32, 40, .7); }
+  .qr-card .qr { width: 86px; height: 86px; flex: none; background: #fff; border-radius: 4px; padding: 3px; }
+  .qr-card .qr svg { width: 100%; height: 100%; display: block; }
+  .qr-card b { color: #fff; }
+
+  /* Modules: the base and the modules to add, one card each */
+  .mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .mod { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem 1.25rem 1.3rem; }
+  .mod h3 { font-size: 1.4rem; margin-bottom: .35rem; display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+  .mod h3 small { font-family: var(--font-ui); font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .mod p { color: var(--muted); font-size: .97rem; }
+  .mod.base { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .mod.base h3, .mod.base h3 small { color: #fff; }
+  .mod.base p { color: rgba(255, 255, 255, .86); }
+
+  /* QR codes: a phone that has just scanned a label */
+  .scans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
+  .scan { margin: 0; display: flex; flex-direction: column; }
+  .scan .phone { flex: 1; display: flex; flex-direction: column; width: 100%; }
+  .scan .screen { flex: 1; }
+  .scan figcaption { margin-top: 1rem; text-align: center; }
+  .scan figcaption b { display: block; font-family: var(--font-display); font-size: 1.45rem; color: #fff; }
+  .scan figcaption span { color: var(--on-dark-muted); font-size: .95rem; }
+  .phone { max-width: 290px; margin-inline: auto; background: #0b1418; border: 1px solid #2c3f4b; border-radius: 34px; padding: 12px; box-shadow: 0 34px 60px -34px rgba(0, 0, 0, .8); }
+  .screen { background: var(--paper); color: var(--ink); border-radius: 24px; padding: 14px 12px 16px; min-height: 300px; }
+  .screen .bar { display: flex; align-items: center; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 12px; }
+  .screen .bar b { display: flex; align-items: center; gap: .35rem; font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); }
+  .screen .bar svg { width: 22px; height: 16px; }
+  .screen .tag { position: static; width: 100%; animation: none; box-shadow: none; }
+  .screen .tag-band b { font-size: 1.4rem; }
+  .screen .tag dl { font-size: .86rem; }
+  .t-acc { --tone: var(--petrol); } .t-off { --tone: #69737a; }
+  .legend-head { margin-top: clamp(3rem, 6vw, 4.5rem); max-width: 62ch; }
+  .legend-head h3 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: .5rem; }
+  .legend-head p { color: var(--on-dark-muted); }
+  .statuses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; padding: 0; list-style: none; }
+  .statuses .tag { position: static; width: auto; animation: none; box-shadow: none; border-color: var(--tone); }
+  .statuses .tag-band { height: 100%; }
+  .scans-note { margin-top: clamp(2rem, 4vw, 2.75rem); color: var(--on-dark-muted); text-align: center; }
+
+  /* Sections */
+  section.band { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+  .band.white { background: var(--surface); border-block: 1px solid var(--line); }
+  .band.dark { background: var(--ink); color: var(--on-dark); }
+  .band.dark h2, .band.dark h3 { color: #fff; }
+  .head { max-width: 62ch; margin-bottom: clamp(2rem, 5vw, 3.25rem); }
+  .head h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: .9rem; }
+  .head p { color: var(--muted); font-size: 1.1rem; }
+  .head .cta { margin-top: 1.4rem; }
+  .band.dark .head p { color: var(--on-dark-muted); }
+
+  /* Problem */
+  .pains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+  .pain { border-top: 3px solid var(--bad); padding-top: 1.1rem; }
+  .pain h3 { font-size: 1.45rem; margin-bottom: .5rem; }
+  .pain p { color: var(--muted); }
+  .sheet { margin-top: 2.5rem; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  .sheet table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .9rem; font-variant-numeric: tabular-nums; }
+  .sheet th, .sheet td { border: 1px solid #e3e8ea; padding: .4rem .6rem; text-align: left; white-space: nowrap; }
+  .sheet th { background: #eef2f3; color: var(--muted); font-weight: 600; }
+  .sheet td:first-child, .sheet th:first-child { background: #eef2f3; color: var(--muted); width: 2.5rem; text-align: center; }
+  .sheet .late { background: var(--bad-soft); color: var(--bad); font-weight: 700; }
+  .sheet-cap { font-size: .88rem; color: var(--muted); padding: .55rem .75rem; border-top: 1px solid var(--line); }
+
+  /* Features */
+  .feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+  .feature:first-of-type { border-top: 0; padding-top: 0; }
+  .feature:nth-of-type(even) .f-text { order: 2; }
+  .f-text h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: .75rem; }
+  .f-text p { color: var(--muted); margin-bottom: .75rem; max-width: 52ch; }
+  .f-text ul { display: grid; gap: .35rem; }
+  .f-text li { padding-left: 1.4rem; position: relative; }
+  .f-text li::before { content: ""; position: absolute; left: 0; top: .62em; width: .7rem; height: 2px; background: var(--petrol); }
+  .ui { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; display: grid; gap: .6rem; font-size: .93rem; }
+  .ui-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem .75rem; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .65rem .8rem; }
+  .ui-row.off { opacity: .8; }
+  .ui-row .sw { position: relative; width: 2.4rem; height: 1.4rem; border-radius: 999px; background: var(--line); }
+  .ui-row .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: calc(1.4rem - 6px); height: calc(1.4rem - 6px); border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
+  .ui-row .sw.on { background: var(--petrol); }
+  .ui-row .sw.on::after { transform: translateX(1rem); }
+  .ui-presets { display: flex; flex-wrap: wrap; gap: .4rem; font-size: .84rem; font-weight: 600; }
+  .ui-presets span { padding: .25rem .65rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--muted); }
+  .ui-presets span.on { border-color: var(--petrol); color: var(--petrol); background: var(--petrol-soft); }
+  .ui-row .why { grid-column: 1 / -1; color: var(--bad); font-weight: 600; font-size: .86rem; }
+  .ui-row .sub { grid-column: 1 / -1; color: var(--muted); font-size: .86rem; }
+  .r { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; margin-right: .4rem; font-variant-numeric: tabular-nums; }
+  .pill { display: inline-flex; align-items: center; gap: .4rem; padding: .15rem .6rem; border-radius: 999px; background: var(--tone-soft); color: var(--tone); font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .p-ok { --tone: var(--ok); --tone-soft: var(--ok-soft); } .p-warn { --tone: var(--warn); --tone-soft: var(--warn-soft); } .p-bad { --tone: var(--bad); --tone-soft: var(--bad-soft); } .p-acc { --tone: var(--petrol); --tone-soft: var(--petrol-soft); }
+  .note-bad { background: var(--bad-soft); border-radius: 8px; padding: .7rem .85rem; }
+  .note-bad b { color: var(--bad); }
+  .month { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+  .month:last-child { border-bottom: 0; }
+  .month b { font-family: var(--font-display); font-size: 1.12rem; }
+  .month span { color: var(--muted); font-size: .88rem; grid-column: 1; }
+  .month em { font-style: normal; font-weight: 700; grid-column: 2; grid-row: 1 / span 2; align-self: center; font-variant-numeric: tabular-nums; }
+  .ui-total { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--ink); }
+  .ui-total strong { font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+  .more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem 2rem; margin-top: clamp(2rem, 4vw, 3rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+  .more h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+  .more p { color: var(--muted); font-size: .97rem; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; counter-reset: s; }
+  .step { counter-increment: s; }
+  .step::before { content: counter(s); display: block; font-family: var(--font-display); font-weight: 700; font-size: 3.4rem; line-height: 1; color: var(--petrol); margin-bottom: .6rem; }
+  .step h3 { font-size: 1.45rem; margin-bottom: .45rem; }
+  .step p { color: var(--muted); }
+
+  /* Compliance */
+  .comply { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .quote { border-left: 3px solid var(--petrol-soft); padding-left: 1.25rem; font-size: 1.15rem; color: var(--on-dark); }
+  .rules { width: 100%; border-collapse: collapse; margin-top: 1.75rem; font-size: .97rem; }
+  .rules th, .rules td { text-align: left; padding: .6rem .75rem .6rem 0; border-bottom: 1px solid #2c3f4b; vertical-align: top; }
+  .rules th { color: var(--on-dark-muted); font-weight: 600; font-size: .88rem; }
+  .rules td:first-child { color: #fff; font-weight: 600; width: 38%; }
+  .rules td { color: var(--on-dark); }
+  .checks { display: grid; gap: .7rem; }
+  .checks li { padding-left: 1.8rem; position: relative; color: var(--on-dark); }
+  .checks li::before { content: ""; position: absolute; left: 0; top: .35em; width: 1rem; height: .55rem; border-left: 2.5px solid #7fc9da; border-bottom: 2.5px solid #7fc9da; transform: rotate(-45deg); }
+  .checks .sep { padding: .6rem 0 0; color: var(--on-dark-muted); font-size: .88rem; font-weight: 600; }
+  .checks .sep::before { display: none; }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; }
+  .plan { padding: 1.75rem 1.5rem; display: grid; gap: .9rem; align-content: start; border-left: 1px solid var(--line); }
+  .plan:first-child { border-left: 0; }
+  .plan.hl { background: #f7fbfc; box-shadow: inset 0 4px 0 var(--petrol); }
+  .plan h3 { font-size: 1.6rem; }
+  .plan .price { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .plan .price small { font-family: var(--font-ui); font-size: .95rem; font-weight: 500; color: var(--muted); }
+  .plan p { color: var(--muted); font-size: .97rem; }
+  .plan ul { display: grid; gap: .4rem; font-size: .97rem; }
+  .plan li { padding-left: 1.4rem; position: relative; }
+  .plan li::before { content: ""; position: absolute; left: 0; top: .62em; width: .7rem; height: 2px; background: var(--petrol); }
+  .plan .btn { justify-self: start; margin-top: .25rem; }
+  .addon { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2rem; align-items: center; margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .addon .eyebrow.eyebrow { margin-bottom: .45rem; font-size: 1.45rem; }
+  .addon p { color: var(--muted); font-size: .97rem; max-width: 60ch; }
+  .addon .addon-price { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--ink); }
+  .addon .addon-price small { display: block; font-family: var(--font-ui); font-size: .9rem; font-weight: 500; color: var(--muted); }
+  .fine { margin-top: 1rem; font-size: .9rem; color: var(--muted); }
+  .pilot { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; margin-bottom: 1rem; padding: 1.2rem 1.5rem; background: #f7fbfc; border: 1px solid var(--line); border-radius: 12px; box-shadow: inset 4px 0 0 var(--petrol); }
+  .pilot p { color: var(--muted); max-width: 70ch; min-width: 0; }
+  .pilot b { color: var(--ink); }
+  .plan .badge { justify-self: start; margin-bottom: -.35rem; padding: .2rem .6rem; border-radius: 999px; background: var(--petrol); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .02em; }
+  .plan .save { margin-top: -.45rem; color: var(--petrol); font-size: .88rem; font-weight: 600; }
+  .carte { margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: grid; gap: 1rem; }
+  .carte-head { display: flex; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; flex-wrap: wrap; }
+  .carte-head h3 { font-size: 1.6rem; }
+  .carte-head p { color: var(--muted); font-size: .95rem; }
+  .carte-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
+  .carte-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--line); }
+  .carte-list li span { min-width: 0; }
+  .carte-list b { display: block; font-weight: 600; }
+  .carte-list small { display: block; color: var(--muted); font-size: .86rem; line-height: 1.35; }
+  .carte-list em { font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .carte-list li.base { grid-column: 1 / -1; background: #f7fbfc; margin-inline: -.75rem; padding-inline: .75rem; border-radius: 8px; border-top: 0; }
+
+  /* FAQ */
+  .faq { max-width: 820px; display: grid; }
+  .faq details { border-top: 1px solid var(--line); }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; padding: 1.05rem 2rem 1.05rem 0; position: relative; font-weight: 600; font-size: 1.08rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: ""; position: absolute; right: .3rem; top: 1.4rem; width: .6rem; height: .6rem; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(-135deg); top: 1.7rem; }
+  .faq details p { padding-bottom: 1.1rem; color: var(--muted); max-width: 68ch; }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .contact h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: .9rem; }
+  .contact p { color: var(--on-dark-muted); font-size: 1.1rem; max-width: 52ch; }
+  .card { background: #1d2c36; border: 1px solid #2c3f4b; border-radius: 12px; padding: 1.5rem; display: grid; gap: 1rem; }
+  .card label { font-size: .9rem; color: var(--on-dark-muted); }
+  .mail { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+  .mail code { font-family: var(--font-ui); font-size: 1.15rem; font-weight: 600; color: #fff; user-select: all; overflow-wrap: anywhere; }
+  .mail .todo { color: #f5c26b; font-style: italic; font-weight: 500; }
+  .card .btn { background: transparent; color: #fff; border-color: #4a6170; }
+  .card .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+
+  footer { padding-block: 2rem; font-size: .9rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 2rem; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+
+  .toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); transform: translate(-50%, 16px); opacity: 0; pointer-events: none; z-index: 50; background: var(--ink); color: #fff; padding: .7rem 1rem; border-radius: 8px; font-weight: 600; transition: opacity .2s, transform .2s; max-width: calc(100% - 32px); }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 980px) {
+    .nav a:not(.btn) { display: none; }
+    .hero .wrap, .feature, .comply, .contact { grid-template-columns: 1fr; }
+    .feature:nth-of-type(even) .f-text { order: 0; }
+    .stack { height: 400px; max-width: 520px; width: 100%; margin-inline: auto; }
+    .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .scans { grid-template-columns: 1fr; gap: 2.5rem; }
+    .statuses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .plans { grid-template-columns: 1fr; }
+    .plan { border-left: 0; border-top: 1px solid var(--line); }
+    .plan:first-child { border-top: 0; }
+    .addon { grid-template-columns: 1fr; }
+    .addon .btn { justify-self: start; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .pains, .steps, .more, .mods, .statuses, .carte-list { grid-template-columns: 1fr; }
+    .stack { height: 380px; }
+    .tag { width: 82%; }
+    .tag.c { left: 6%; top: 175px; }
+    .qr-card { display: none; }
+    .cta .btn { flex: 1 1 auto; }
+    .rules { font-size: .9rem; }
+    .rules th, .rules td { padding-right: .5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 34 24">
+      <rect x="1" y="1" width="32" height="22" rx="4" fill="#145a6e"/>
+      <circle cx="17" cy="12" r="7.6" fill="none" stroke="#fff" stroke-width="1.3" opacity=".45"/>
+      <g transform="rotate(35 17 12)"><path d="M17 3.6l3.1 8.4h-6.2z" fill="#fff"/><path d="M17 20.4l-3.1-8.4h6.2z" fill="#f3f5f4" opacity=".8"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Azimys, haut de page">
+      <svg aria-hidden="true"><use href="#mark"/></svg>
+      <b>Azimys</b>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#modules">Modules</a>
+      <a href="#outillage">Outillage</a>
+      <a href="#commandes">Commandes</a>
+      <a href="#demarrage">Démarrage</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#questions">Questions</a>
+      <a class="btn btn-main" href="#contact">Atelier pilote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <div>
+        <h1 id="h1">L'ERP modulable des ateliers aéronautiques.</h1>
+        <p class="lead">Pour la maintenance Part 145, la production Part 21G et toutes les industries de pointe où chaque pièce doit être tracée. Vous activez seulement les modules dont vous avez besoin : <b>magasin, outillage étalonné, commandes, atelier, certificats, facturation, personnel</b>. Vous en ajoutez quand votre activité grandit. Sur ordinateur et sur téléphone, sans Excel.</p>
+        <div class="cta">
+          <a class="btn btn-main" href="demo.html" target="_blank" rel="noopener">Essayer la démo</a>
+          <a class="btn" href="#modules">Voir les modules</a>
+        </div>
+        <p class="proof">Pensé pour les exigences Part 145, Part 21 et EN 9100. <a href="#tarifs">Atelier pilote : trois mois offerts.</a></p>
+      </div>
+      <div class="stack" aria-label="Exemples d'étiquettes affichées par Azimys">
+        <div class="tag b t-warn" aria-hidden="true">
+          <div class="tag-band"><b>À certifier</b><span>Livré, Form 1 et CoC à émettre</span></div>
+          <dl><dt>Commande</dt><dd>CC-26-0118</dd><dt>BL</dt><dd>BL-26-0201</dd><dt>S/N</dt><dd>0033</dd></dl>
+        </div>
+        <div class="tag a t-ok" aria-hidden="true">
+          <div class="tag-band"><b>Étalonné</b><span>Utilisable</span></div>
+          <dl><dt>Valide jusqu'au</dt><dd>16/03</dd><dt>Certificat</dt><dd>PV-2603-11</dd><dt>N° d'identification</dt><dd>CD-003</dd></dl>
+        </div>
+        <div class="tag c t-bad" aria-hidden="true">
+          <div class="tag-band hatch"><b>Quarantaine</b><span>Ne pas utiliser</span></div>
+          <dl><dt>Motif</dt><dd>Non conforme le 06/10</dd><dt>Dossiers à réexaminer</dt><dd>3</dd><dt>N° d'identification</dt><dd>DY-001</dd></dl>
+        </div>
+        <div class="qr-card" id="qr-card" hidden>
+          <div class="qr" id="qr"></div>
+          <p><b>Scannez avec votre téléphone</b> : la démo d'Azimys s'ouvre directement, comme avec les étiquettes collées sur vos outils.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white" aria-labelledby="pb">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="pb">Ce que le tableur ne fait pas.</h2>
+        <p>La plupart des ateliers suivent leurs outils étalonnés dans un fichier Excel et tapent leurs BL, leurs certificats et leurs factures dans des modèles Word. Les dates sont notées, les numéros recopiés, mais rien ne prévient et rien ne relie.</p>
+      </div>
+      <div class="pains">
+        <div class="pain"><h3>L'échéance passe sans bruit</h3><p>Une case devient rouge dans un fichier que personne n'a ouvert cette semaine. La clé dynamométrique continue de servir.</p></div>
+        <div class="pain"><h3>Le même n° de série tapé quatre fois</h3><p>Sur l'OF, le BL, l'EASA Form 1 et la facture. Une faute de frappe, et la traçabilité ne tient plus. On le découvre en audit, ou chez le client.</p></div>
+        <div class="pain"><h3>« Sur quels dossiers a-t-il servi ? »</h3><p>Quand un outil revient non conforme ou qu'un lot pose problème, il faut retrouver les travaux et les pièces livrées concernés. Sans traçabilité, personne ne peut répondre.</p></div>
+      </div>
+      <div class="sheet" aria-hidden="true">
+        <table>
+          <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><b>N°</b></td><td><b>Désignation</b></td><td><b>Dernier étalonnage</b></td><td><b>Échéance</b></td><td><b>Emplacement</b></td></tr>
+            <tr><td>12</td><td>CD-001</td><td>Clé dynamométrique 1–5 N·m</td><td>19/09/2025</td><td class="late">19/09/2026</td><td>Atelier</td></tr>
+            <tr><td>13</td><td>CD-002</td><td>Clé dynamométrique 5–25 N·m</td><td>28/10/2025</td><td>28/10/2026</td><td>Atelier</td></tr>
+            <tr><td>14</td><td>TS-001</td><td>Tournevis dynamométrique 0,4–2 N·m</td><td>29/08/2025</td><td class="late">29/08/2026</td><td>Électrique</td></tr>
+          </tbody>
+        </table>
+        <p class="sheet-cap">Deux échéances dépassées, une cellule rouge chacune. Personne n'a été prévenu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="modules" aria-labelledby="md">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="md">Seulement les modules dont vous avez besoin.</h2>
+        <p>Chaque entreprise active les modules qui correspondent à son activité : le magasin, l'outillage étalonné ou le personnel s'utilisent seuls ou ensemble. Les menus, les documents et les exports s'adaptent, et chaque module se facture à part : vous ne payez que ce que vous utilisez.</p>
+      </div>
+      <div class="mods">
+        <div class="mod"><h3>Magasin<small>Module</small></h3><p>Articles et stock, lots et n° de série, dates de péremption avec alertes, emplacements, inventaire, quarantaine et étiquettes QR. Requis pour les commandes et les achats.</p></div>
+        <div class="mod"><h3>Outillage étalonné<small>Module</small></h3><p>Échéances et alertes, sorties par dossier, envois chez le prestataire, analyse d'impact quand un outil revient non conforme.</p></div>
+        <div class="mod"><h3>Commandes clients<small>Module</small></h3><p>Ventes de pièces et réparations d'équipements : la base de vos documents de travail.</p></div>
+        <div class="mod"><h3>Achats<small>Module</small></h3><p>Les manquants calculés à partir du stock et des nomenclatures, transférés en commandes fournisseurs, réceptionnés sur certificat.</p></div>
+        <div class="mod"><h3>Atelier<small>Module</small></h3><p>Dossiers de suivi de travaux et ordres de fabrication, signés opération par opération, avec le visa et les heures.</p></div>
+        <div class="mod"><h3>Bons de livraison<small>Module</small></h3><p>Édités par Azimys avec les lots et les n° de série, si vous ne les faites pas déjà ailleurs.</p></div>
+        <div class="mod"><h3>Certificats de conformité<small>Module</small></h3><p>Le CoC émis à partir de la livraison, signé par une personne habilitée.</p></div>
+        <div class="mod"><h3>EASA Form 1<small>Module</small></h3><p>Production ou maintenance, en anglais et en français, pour les organismes agréés.</p></div>
+        <div class="mod"><h3>Facturation<small>Module</small></h3><p>Factures, avoirs, échéances et journal des ventes. Sans ce module, vos livraisons s'exportent vers votre logiciel actuel.</p></div>
+        <div class="mod"><h3>Planning du personnel<small>Module</small></h3><p>Présences, congés payés, RTT, arrêts et absences sur un calendrier, avec les demandes à valider et le solde de congés de chacun.</p></div>
+        <div class="mod"><h3>Matrice de compétences<small>Module</small></h3><p>Le niveau de chaque personne sur chaque savoir-faire, et les compétences tenues par une seule personne.</p></div>
+        <div class="mod"><h3>Formations<small>Module</small></h3><p>Les formations suivies et leur date de validité, avec une alerte avant expiration, comme pour un outil.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" id="qr-codes" aria-labelledby="qrh">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="qrh">Un QR code, et vous savez.</h2>
+        <p>Chaque outil, chaque lot de produits, chaque pièce a son étiquette. Un technicien la scanne avec son téléphone et voit aussitôt où elle en est : utilisable ou non, périmée ou non, livrée ou encore en atelier. Sans ouvrir de fichier, sans chercher.</p>
+      </div>
+      <div class="scans">
+        <figure class="scan">
+          <div class="phone" aria-hidden="true"><div class="screen">
+            <div class="bar"><b><svg aria-hidden="true"><use href="#mark"/></svg>Azimys</b><span>Scanné à 09:42</span></div>
+            <div class="tag t-bad"><div class="tag-band"><b>Échéance dépassée</b><span>Ne pas utiliser</span></div><dl><dt>Outil</dt><dd>CD-001</dd><dt>Type</dt><dd>Clé 1–5 N·m</dd><dt>Échéance</dt><dd>19/09/2026</dd><dt>À faire</dt><dd>Étalonnage</dd></dl></div>
+          </div></div>
+          <figcaption><b>Un outil</b><span>Peut-il servir aujourd'hui ?</span></figcaption>
+        </figure>
+        <figure class="scan">
+          <div class="phone" aria-hidden="true"><div class="screen">
+            <div class="bar"><b><svg aria-hidden="true"><use href="#mark"/></svg>Azimys</b><span>Scanné à 10:15</span></div>
+            <div class="tag t-warn"><div class="tag-band"><b>Périme bientôt</b><span>À utiliser en premier</span></div><dl><dt>Produit</dt><dd>Mastic MAS-001</dd><dt>Lot</dt><dd>P25-0212</dd><dt>Périme le</dt><dd>25/10/2026</dd><dt>Emplacement</dt><dd>Armoire B2</dd></dl></div>
+          </div></div>
+          <figcaption><b>Un produit</b><span>Quel lot prendre en premier ?</span></figcaption>
+        </figure>
+        <figure class="scan">
+          <div class="phone" aria-hidden="true"><div class="screen">
+            <div class="bar"><b><svg aria-hidden="true"><use href="#mark"/></svg>Azimys</b><span>Scanné à 14:08</span></div>
+            <div class="tag t-ok"><div class="tag-band"><b>Livrée</b><span>Certifiée</span></div><dl><dt>Pièce</dt><dd>PF-2201</dd><dt>N° de série</dt><dd>0033</dd><dt>Fabrication</dt><dd>OF-26-0027</dd><dt>Certificat</dt><dd>COC-26-0103</dd></dl></div>
+          </div></div>
+          <figcaption><b>Une pièce</b><span>D'où vient-elle, où est-elle partie ?</span></figcaption>
+        </figure>
+      </div>
+      <div class="legend-head"><h3>Les couleurs parlent d'elles-mêmes.</h3><p>Les mêmes statuts partout : sur l'étiquette scannée, dans le logiciel et sur l'écran d'accueil.</p></div>
+      <ul class="statuses">
+        <li class="tag t-ok"><div class="tag-band"><b>Utilisable</b><span>Étalonné, en stock, conforme</span></div></li>
+        <li class="tag t-warn"><div class="tag-band"><b>Bientôt</b><span>Échéance proche, péremption proche, à certifier</span></div></li>
+        <li class="tag t-bad"><div class="tag-band"><b>Périmé</b><span>Échéance dépassée, lot périmé, à rebuter</span></div></li>
+        <li class="tag t-bad"><div class="tag-band hatch"><b>Quarantaine</b><span>Non conforme, ne pas utiliser</span></div></li>
+        <li class="tag t-acc"><div class="tag-band"><b>En cours</b><span>Chez le prestataire, sorti sur un dossier, en atelier</span></div></li>
+        <li class="tag t-off"><div class="tag-band"><b>Réformé</b><span>Rebuté, retiré du service</span></div></li>
+      </ul>
+      <p class="scans-note">Les étiquettes s'impriment sur une imprimante de bureau et se collent sur l'outil, le bac ou le sachet.</p>
+    </div>
+  </section>
+
+  <section class="band" id="outillage" aria-labelledby="fn">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#mark"/></svg>Module <span>Outillage étalonné</span></p>
+        <h2 id="fn">Tout le cycle de vie de vos outils étalonnés, au même endroit.</h2>
+        <p>Du registre à l'audit, Azimys fait le travail que le fichier Excel laisse à la mémoire de chacun.</p>
+        <div class="cta"><a class="btn" href="demo.html" target="_blank" rel="noopener">Essayer la démo</a></div>
+      </div>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Un outil périmé ne peut plus sortir.</h3>
+          <p>Chaque sortie est enregistrée avec le n° de dossier, de DST ou d'OF et l'équipement concerné. Azimys refuse la sortie d'un outil périmé, en quarantaine ou chez le prestataire, et dit pourquoi.</p>
+          <ul><li>Sortie et retour en quelques secondes, depuis un téléphone</li><li>Un choc signalé au retour met l'outil en quarantaine</li><li>Tous les outils utilisés sur un dossier, retrouvés en une recherche</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-row off"><span><span class="r">CD-001</span>Clé dynamométrique 1–5 N·m</span><span class="pill p-bad">Périmé</span><span class="why">Étalonnage périmé depuis le 19/09 : sortie refusée</span></div>
+          <div class="ui-row"><span><span class="r">MU-001</span>Multimètre numérique</span><span class="pill p-ok">Valide</span><span class="sub">Disponible</span></div>
+          <div class="ui-row"><span><span class="r">CD-003</span>Clé dynamométrique 20–100 N·m</span><span class="pill p-acc">Sorti</span><span class="sub">Par JM depuis 2 h, dossier DST-26-0014</span></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Non conforme ? La liste des travaux à revoir est prête.</h3>
+          <p>Quand un étalonnage revient non conforme, Azimys met l'outil en quarantaine et liste les dossiers sur lesquels il a servi depuis son dernier étalonnage conforme. Vous exportez la liste, vous la traitez, vous la clôturez.</p>
+          <ul><li>Analyse d'impact automatique</li><li>Suivi jusqu'à la clôture, avec visa</li><li>Export pour votre dossier qualité</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="note-bad"><b>DY-001 non conforme le 06/10.</b> Il a servi sur 3 dossiers depuis son dernier étalonnage conforme du 13/01.</div>
+          <div class="ui-row"><span><b>Dossier OF-26-0027</b></span><span class="sub">Support incubateur S/N 0033, sorti le 18/09 par SL</span></div>
+          <div class="ui-row"><span><b>Dossier OT-2606-102</b></span><span class="sub">Civière médicale S/N 0211, sorti le 09/06 par JM</span></div>
+          <div class="ui-row"><span><b>Dossier OT-2603-044</b></span><span class="sub">Civière médicale S/N 0148, sorti le 18/03 par CR</span></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Le planning et le budget des 12 prochains mois.</h3>
+          <p>Les étalonnages à prévoir mois par mois, avec leur coût. Cochez les outils, Azimys prépare l'envoi chez le prestataire et le bon d'envoi à imprimer, puis suit les retours.</p>
+          <ul><li>Alerte avant échéance, au délai que vous choisissez</li><li>Envois groupés et bons d'envoi numérotés</li><li>Budget annuel d'étalonnage chiffré</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-total"><span>À prévoir sur 12 mois</span><strong class="num">1 513 €</strong></div>
+          <div class="month"><b>Novembre</b><span>2 outils, dont MG-001 Mégohmmètre</span><em>175 €</em></div>
+          <div class="month"><b>Décembre</b><span>TH-001 Thermo-hygromètre</span><em>65 €</em></div>
+          <div class="month"><b>Février</b><span>MU-001 Multimètre numérique</span><em>115 €</em></div>
+        </div>
+      </article>
+
+      <div class="more">
+        <div><h3>Étiquettes QR</h3><p>Collées sur les outils, elles ouvrent leur fiche depuis n'importe quel téléphone : on voit tout de suite si l'outil est utilisable.</p></div>
+        <div><h3>Prolongation encadrée</h3><p>Une prolongation exceptionnelle reste limitée à 10&nbsp;% de la période, avec analyse de risque et visa.</p></div>
+        <div><h3>Import de votre Excel</h3><p>Votre registre actuel est repris en une fois. Azimys reconnaît vos colonnes et vous les fait vérifier.</p></div>
+        <div><h3>Journal d'audit</h3><p>Chaque opération est datée et visée : étalonnages, sorties, retours, envois, quarantaines, prolongations.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white" id="commandes" aria-labelledby="gs">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#mark"/></svg>Modules <span>Commandes, atelier, certificats, facturation</span></p>
+        <h2 id="gs">De la commande à la facture, sans ressaisie.</h2>
+        <p>Pour les ateliers qui vendent des pièces fabriquées et réparent les équipements de leurs clients. Chaque commande se transfère en achat s'il manque des pièces, en DST ou en OF quand tout est là, puis en BL, en CoC et en EASA Form 1, et enfin en facture. Vous n'activez que les étapes dont vous avez besoin.</p>
+        <div class="cta"><a class="btn" href="demo.html" target="_blank" rel="noopener">Essayer la démo</a></div>
+      </div>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Chaque commande sait où elle en est.</h3>
+          <p>Azimys calcule les manquants à partir du stock et des nomenclatures, composant par composant. Un clic transfère les manquants en commande fournisseur ; à la réception, la commande passe d'elle-même en « prête pour l'OF » ou « prête pour le DST ».</p>
+          <ul><li>CoC, EASA Form 1, ou les deux, choisis dès la commande</li><li>Achats groupés par fournisseur, réception sur certificat</li><li>Toutes les commandes en un coup d'œil : à lancer, à livrer, à certifier, à facturer</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-row"><span><span class="r">CC-26-0128</span>Support incubateur néonatal</span><span class="pill p-bad">Manquants</span><span class="sub">Platine PL-2201 à commander pour fabriquer</span></div>
+          <div class="ui-row"><span><span class="r">CC-26-0127</span>6 câbles seat-to-seat</span><span class="pill p-acc">Prêt pour OF</span><span class="sub">Composants en stock</span></div>
+          <div class="ui-row"><span><span class="r">CC-26-0115</span>Civière médicale S/N 0211</span><span class="pill p-warn">DST en cours</span><span class="sub">4 opérations signées sur 8</span></div>
+          <div class="ui-row"><span><span class="r">CC-26-0126</span>2 câbles livrés</span><span class="pill p-warn">À certifier</span><span class="sub">CoC à émettre sur BL-26-0202</span></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>DST et OF visés opération par opération.</h3>
+          <p>Le dossier de suivi de travaux d'une réparation Part 145 reprend ses dix rubriques, de la réception du produit à l'émission de l'APRS. L'ordre de fabrication Part 21G sort les composants du stock lot par lot et s'imprime en fiche suiveuse. Le contrôle final se signe en dernier, par une personne habilitée.</p>
+          <ul><li>Visa, date et heures pour chaque opération</li><li>Pièces posées, CN/AD/SB, non-conformités, pièces détruites</li><li>N° de série attribués à la clôture de l'OF</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-row"><span><b>10</b> Préparation des composants</span><span class="pill p-ok">NR, 12/10</span></div>
+          <div class="ui-row"><span><b>20</b> Fabrication et assemblage</span><span class="pill p-ok">NR, 12/10</span></div>
+          <div class="ui-row"><span><b>50</b> Contrôle FOD</span><span class="pill p-ok">SL, 13/10</span></div>
+          <div class="ui-row"><span><b>60</b> Contrôle final</span><span class="pill p-warn">À signer</span><span class="sub">Personne habilitée Part 21G</span></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>BL, CoC, EASA Form 1 et facture, prêts à imprimer.</h3>
+          <p>Les numéros de série et de lot passent tout seuls de l'OF au BL, au certificat et à la facture. Le Form 1 est bilingue, bloc 13 en production, bloc 14 en maintenance, signé par la personne habilitée. Chaque document se retrouve par son numéro, le client, un P/N ou un n° de série.</p>
+          <ul><li>Factures numérotées avec les mentions légales, avoirs</li><li>TVA ou exonérations : UE, export, compagnies aériennes</li><li>Relances des factures en retard, journal des ventes pour le comptable</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-total"><span>À encaisser</span><strong class="num">9 065 €</strong></div>
+          <div class="month"><b>F1-26-0044 EASA Form 1</b><span>PF-2201 S/N 0033, NEW, signé SL</span><em>21G</em></div>
+          <div class="month"><b>COC-26-0103 Certificat de conformité</b><span>BL-26-0201</span><em>CoC</em></div>
+          <div class="month"><b>FA-2026-0043 Facture</b><span>Échéance 20/11, exonérée 262 II</span><em>8 400 €</em></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Seulement ce que vous utilisez.</h3>
+          <p>Chaque entreprise active ses modules : outillage étalonné, commandes, bons de livraison, achats, atelier avec DST et OF, certificats de conformité, EASA Form 1, facturation. Un atelier qui facture avec son logiciel comptable coupe la facturation et exporte ses livraisons. Un négociant de pièces se passe de l'atelier. Les menus, l'accueil, les étapes des commandes et les documents s'adaptent.</p>
+          <ul><li>Un seul module ou tous : le magasin, l'outillage étalonné ou le personnel fonctionnent aussi seuls</li><li>Un module s'active ou se coupe à tout moment, sans perte de données</li><li>Un modèle de BL, de CoC ou de facture propre à votre entreprise, sur demande</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-presets"><span>Tout</span><span class="on">Atelier de maintenance</span><span>Négoce de pièces</span></div>
+          <div class="ui-row"><span><b>Outillage étalonné</b></span><span class="sw on"></span><span class="sub">Échéances, sorties par dossier, planning</span></div>
+          <div class="ui-row off"><span><b>Achats</b></span><span class="sw"></span><span class="sub">Les manquants restent visibles, l'achat se fait ailleurs</span></div>
+          <div class="ui-row"><span><b>Atelier : DST et OF</b></span><span class="sw on"></span><span class="sub">Opérations visées, heures, contrôle final</span></div>
+          <div class="ui-row off"><span><b>Certificats de conformité</b></span><span class="sw"></span></div>
+          <div class="ui-row"><span><b>EASA Form 1</b></span><span class="sw on"></span></div>
+          <div class="ui-row"><span><b>Facturation</b></span><span class="sw on"></span><span class="sub">Ou l'export des livraisons vers votre logiciel</span></div>
+        </div>
+      </article>
+
+      <div class="more">
+        <div><h3>Traçabilité lot et S/N</h3><p>De la réception fournisseur, avec son certificat, jusqu'au client : chaque lot et chaque n° de série se retrouve en une recherche.</p></div>
+        <div><h3>Atelier</h3><p>Ce qui peut être lancé, ce qui attend des pièces, ce qui est en cours : DST et OF sur un seul écran.</p></div>
+        <div><h3>Vos documents à votre image</h3><p>Votre logo, vos agréments, votre code CAGE et vos mentions légales sur le BL, les certificats et les factures. Un modèle propre à votre entreprise sur demande.</p></div>
+        <div><h3>Facture électronique</h3><p>Réception obligatoire depuis le 1er septembre 2026. L'émission par plateforme agréée, obligatoire pour les PME au 1er septembre 2027, est prévue.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="demarrage" aria-labelledby="dm">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="dm">Opérationnel en une journée.</h2>
+        <p>Rien à installer. Azimys s'ouvre dans le navigateur, sur ordinateur comme sur téléphone.</p>
+      </div>
+      <ol class="steps">
+        <li class="step"><h3>Choisissez vos modules et reprenez vos fichiers</h3><p>Votre registre d'outillage, en Excel ou CSV, est repris tel quel : numéros, désignations, périodicités, dates. Vos articles, vos stocks et vos clients sont repris avec vous.</p></li>
+        <li class="step"><h3>Collez les étiquettes</h3><p>Imprimez les étiquettes QR des outils, des lots et des pièces, puis collez-les. Chaque étiquette ouvre sa fiche, avec son état.</p></li>
+        <li class="step"><h3>Suivez au quotidien</h3><p>Échéances d'étalonnage, sorties, péremptions, quarantaines, commandes, DST, OF, livraisons et factures, selon vos modules. Azimys vous prévient de ce qui arrive.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band dark" aria-labelledby="cf">
+    <div class="wrap comply">
+      <div>
+        <div class="head" style="margin-bottom:1.5rem">
+          <h2 id="cf">Pensé pour l'audit.</h2>
+          <p>Azimys tient les enregistrements qu'un auditeur vous demande sur l'outillage, les travaux et les certificats, et vous les sort en un clic.</p>
+        </div>
+        <p class="quote">Quel que soit l'agrément, les règles sont les mêmes : l'outillage est étalonné selon une norme reconnue, à une fréquence qui garantit son exactitude ; les pièces sont acceptées sur certificat et restent traçables ; chaque travail est documenté et remis avec un certificat signé par une personne habilitée ; les enregistrements sont conservés.</p>
+        <table class="rules">
+          <thead><tr><th scope="col">Votre activité</th><th scope="col">Outillage</th><th scope="col">Travaux et certificats</th></tr></thead>
+          <tbody>
+            <tr><td>Maintenance, Part 145</td><td>145.A.40</td><td>145.A.42, 145.A.50, 145.A.55</td></tr>
+            <tr><td>Production, Part 21 sous-partie G</td><td>21.A.139</td><td>21.A.139, 21.A.163, 21.A.165</td></tr>
+            <tr><td>Conception, Part 21 sous-partie J</td><td>Moyens de mesure et d'essai des démonstrations de conformité</td><td>—</td></tr>
+            <tr><td>Maintenance, Part-CAO</td><td>CAO.A.050</td><td>Formulaire 1-MF/CAO/145</td></tr>
+            <tr><td>Qualité, EN 9100 et ISO 9001</td><td>§&nbsp;7.1.5</td><td>§&nbsp;8.4 et §&nbsp;8.5.2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="checks">
+        <li>Registre à jour, avec la validité de chaque outil</li>
+        <li>Historique complet des étalonnages et des certificats</li>
+        <li>Traçabilité des sorties par dossier de travaux</li>
+        <li>Analyse d'impact des non-conformités</li>
+        <li>Prolongations exceptionnelles encadrées : 10&nbsp;% de la période au plus, analyse de risque et visa</li>
+        <li>Lots acceptés sur certificat de conformité, quarantaine sinon</li>
+        <li>Péremptions surveillées, inventaires datés et visés, écarts tracés</li>
+        <li>Formations du personnel à jour, alertes avant expiration, compétences évaluées et datées</li>
+        <li>DST et OF visés opération par opération, contrôle final par une personne habilitée</li>
+        <li>CoC et EASA Form 1 signés par le personnel habilité, liés au BL et aux n° de série</li>
+        <li>Traçabilité lot et n° de série, du fournisseur au client</li>
+        <li>Journal daté et visé de toutes les opérations</li>
+        <li>Exports Excel prêts à remettre à l'auditeur</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="tarifs" aria-labelledby="tf">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="tf">Un prix par atelier, pas par utilisateur.</h2>
+        <p>Techniciens, magasin, qualité, bureau : toute l'équipe utilise Azimys sans coût par personne. Sans engagement, vous ajoutez ou coupez un module d'un mois sur l'autre.</p>
+      </div>
+      <div class="pilot">
+        <p><b>Atelier pilote : 3 mois offerts.</b> Tous les modules, la reprise de vos fichiers faite avec vous et un échange régulier sur vos besoins, pour les premiers ateliers qui construisent Azimys avec nous.</p>
+        <a class="btn btn-main" href="#contact">Devenir atelier pilote</a>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Magasin et outillage</h3>
+          <p class="price">59 € <small>HT par mois</small></p>
+          <p class="save">68 € à la carte : 9 € d'économie par mois</p>
+          <p>Pour tenir le stock et l'outillage étalonné, sans Excel.</p>
+          <ul><li>Stock par lot et n° de série, péremptions, emplacements, inventaire</li><li>Outillage : échéances, sorties par dossier, planning, analyse d'impact</li><li>Étiquettes QR, journal d'audit et exports Excel</li></ul>
+          <a class="btn" href="#contact">Nous contacter</a>
+        </div>
+        <div class="plan hl">
+          <p class="badge">Pour les ateliers Part 145</p>
+          <h3>Atelier de maintenance</h3>
+          <p class="price">149 € <small>HT par mois</small></p>
+          <p class="save">183 € à la carte : 34 € d'économie par mois</p>
+          <p>Pour réparer les équipements de vos clients, de la commande à la facture.</p>
+          <ul><li>Tout ce que contient Magasin et outillage</li><li>Commandes, bons de livraison et DST signés opération par opération</li><li>EASA Form 1 et facturation</li></ul>
+          <a class="btn btn-main" href="#contact">Nous contacter</a>
+        </div>
+        <div class="plan">
+          <h3>Tout Azimys</h3>
+          <p class="price">199 € <small>HT par mois</small></p>
+          <p class="save">258 € à la carte : 59 € d'économie par mois</p>
+          <p>Pour un atelier qui répare, fabrique et vend des pièces, et gère son équipe.</p>
+          <ul><li>Tous les modules, sans exception</li><li>Achats des manquants, OF Part 21G, CoC et EASA Form 1</li><li>Planning du personnel, compétences et formations</li></ul>
+          <a class="btn" href="#contact">Nous contacter</a>
+        </div>
+      </div>
+      <div class="carte">
+        <div class="carte-head"><h3>À la carte</h3><p>Seulement les modules dont vous avez besoin. Prix HT par mois.</p></div>
+        <ul class="carte-list"><li><span><b>Magasin</b><small>Stock par lot et n° de série, péremptions, inventaire ; requis pour les commandes et les achats</small></span><em>39 €</em></li><li><span><b>Outillage étalonné</b><small>Échéances, sorties par dossier, planning, analyse d'impact</small></span><em>29 €</em></li><li><span><b>Commandes clients</b><small>Ventes et réparations, réservation du stock</small></span><em>29 €</em></li><li><span><b>Bons de livraison</b><small>Avec les lots et les n° de série</small></span><em>9 €</em></li><li><span><b>Achats</b><small>Manquants, commandes fournisseurs, réception sur certificat</small></span><em>19 €</em></li><li><span><b>Atelier : DST et OF</b><small>Opérations visées, heures, contrôle final</small></span><em>39 €</em></li><li><span><b>Certificats de conformité</b><small>Signés par une personne habilitée</small></span><em>9 €</em></li><li><span><b>EASA Form 1</b><small>Production et maintenance, bilingue</small></span><em>19 €</em></li><li><span><b>Facturation</b><small>Factures, avoirs, relances, journal des ventes</small></span><em>19 €</em></li><li><span><b>Planning du personnel</b><small>Congés, absences, demandes à valider</small></span><em>19 €</em></li><li><span><b>Matrice de compétences</b><small>Niveaux par personne, compétences fragiles</small></span><em>9 €</em></li><li><span><b>Formations</b><small>Validités et alertes avant expiration</small></span><em>19 €</em></li></ul>
+      </div>
+      <div class="addon">
+        <div>
+          <p class="eyebrow"><svg aria-hidden="true"><use href="#mark"/></svg>Sur <span>devis</span></p>
+          <p>Plusieurs sites, plus de 500 outils suivis, un modèle de document imposé par un client ou par votre manuel, une liaison avec votre logiciel comptable, une reprise de données importante : nous chiffrons votre besoin avec vous.</p>
+        </div>
+        <a class="btn" href="#contact">Demander un devis</a>
+      </div>
+      <p class="fine">Prix hors taxes, par site et par mois, utilisateurs illimités, jusqu'à 500 outils suivis. Deux mois offerts en paiement annuel.</p>
+    </div>
+  </section>
+
+  <section class="band white" id="questions" aria-labelledby="qs">
+    <div class="wrap">
+      <div class="head"><h2 id="qs">Questions fréquentes.</h2></div>
+      <div class="faq">
+        <details><summary>Faut-il installer quelque chose ?</summary><p>Non. Azimys s'ouvre dans le navigateur, sur ordinateur, tablette ou téléphone. Les étiquettes QR s'impriment sur une imprimante de bureau.</p></details>
+        <details><summary>Faut-il prendre tous les modules ?</summary><p>Non. Vous prenez seulement ce qui vous sert : le magasin, l'outillage étalonné, les commandes, les bons de livraison, les achats, l'atelier (DST et OF), les certificats de conformité, l'EASA Form 1, la facturation, le planning du personnel, la matrice de compétences ou les formations selon votre activité, et vous en changez à tout moment sans perdre de données. Seules les commandes et les achats demandent le magasin.</p></details>
+        <details><summary>Le prix dépend-il du nombre d'utilisateurs ?</summary><p>Non. Le prix est par atelier : chaque technicien, le magasin, la qualité et le bureau ont leur propre accès, sans supplément. Vous payez le magasin et les modules que vous utilisez, et vous pouvez en changer d'un mois sur l'autre.</p></details>
+        <details><summary>Nous facturons déjà avec un autre logiciel. Est-ce gênant ?</summary><p>Non. Sans le module Facturation, vos livraisons s'exportent pour votre logiciel actuel. De même, sans le module Bons de livraison, la livraison est enregistrée sans document imprimé, si vous faites vos BL ailleurs.</p></details>
+        <details><summary>Nos certificats ont une présentation particulière. Est-ce possible ?</summary><p>Votre logo, vos coordonnées, vos agréments et vos mentions sont repris automatiquement sur chaque document. Si votre CoC, votre BL ou votre facture doit suivre un modèle précis, imposé par un client ou par votre manuel, nous le mettons en place pour votre entreprise, sur devis.</p></details>
+        <details><summary>Peut-on reprendre nos fichiers Excel actuels ?</summary><p>Oui. Vous importez votre registre d'outillage en Excel ou CSV : Azimys reconnaît les colonnes usuelles et vous montre un aperçu avant d'importer. Ce qui existe déjà est mis à jour, pas dupliqué. Vos articles, vos stocks et vos clients sont repris avec vous au démarrage.</p></details>
+        <details><summary>Qui peut modifier les données ?</summary><p>Chaque personne a son accès. Les techniciens enregistrent sorties, retours et opérations, le magasin enregistre les réceptions, seules les personnes habilitées signent les certificats. Chaque opération est enregistrée avec la date et le visa de la personne.</p></details>
+        <details><summary>Et si un outil est trouvé non conforme ?</summary><p>Vous enregistrez le résultat : l'outil passe en quarantaine et Azimys liste les dossiers sur lesquels il a servi depuis son dernier étalonnage conforme. Vous exportez la liste pour votre dossier qualité.</p></details>
+        <details><summary>Et un lot reçu sans certificat ?</summary><p>Il reste en quarantaine jusqu'à son acceptation : Azimys ne le propose ni pour un OF, ni pour un DST, ni pour une livraison. Un lot périmé n'est pas proposé non plus.</p></details>
+        <details><summary>L'EASA Form 1 d'Azimys est-il utilisable tel quel ?</summary><p>Il reprend la mise en page du formulaire 1-MF/CAO/145, en anglais et en français, et se signe à la main par la personne habilitée. Faites valider sa présentation dans votre manuel d'organisme (MOE ou POE) avant de l'utiliser.</p></details>
+        <details><summary>Nos données sont-elles récupérables ?</summary><p>Oui, à tout moment : les exports Excel contiennent le stock et les lots, le registre, l'historique des étalonnages, les sorties, les commandes, les DST et OF, les livraisons, les certificats, les factures et le journal complet.</p></details>
+        <details><summary>Combien de temps pour démarrer ?</summary><p>Le temps de choisir vos modules, d'importer vos fichiers et de coller les étiquettes. Pour les ateliers pilotes, nous faisons la reprise avec vous.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" id="contact" aria-labelledby="ct">
+    <div class="wrap contact">
+      <div>
+        <h2 id="ct">Devenez atelier pilote.</h2>
+        <p>Nous ouvrons Azimys à quelques organismes aéronautiques pendant trois mois, gratuitement, en échange de leurs retours. Écrivez-nous en quelques mots : votre activité et vos agréments, les modules qui vous intéressent, le nombre d'outils suivis, le nombre de commandes par mois, vos logiciels actuels.</p>
+      </div>
+      <div class="card">
+        <label for="mail">Écrivez-nous à</label>
+        <div class="mail" id="mail"><code id="mail-addr">contact@azimys.com</code></div>
+        <div class="cta">
+          <a class="btn btn-main" href="mailto:contact@azimys.com?subject=Atelier%20pilote%20Azimys">Écrire un e-mail</a>
+          <button class="btn" type="button" id="copy">Copier l'adresse</button>
+          <a class="btn" href="demo.html" target="_blank" rel="noopener">Essayer la démo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Azimys. L'ERP modulable des ateliers aéronautiques.</span><nav class="foot-links" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="mentions-legales.html#confidentialite">Confidentialité</a><a href="mailto:contact@azimys.com">contact@azimys.com</a><a href="#top">Haut de page</a></nav></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  var DEMO_URL = new URL('demo.html', location.href).href;
+  var EMAIL = 'contact@azimys.com';
+  var addr = document.getElementById('mail-addr');
+  var toast = document.getElementById('toast'), t;
+  function say(m) { toast.textContent = m; toast.classList.add('show'); clearTimeout(t); t = setTimeout(function () { toast.classList.remove('show'); }, 2600); }
+  document.getElementById('copy').addEventListener('click', function () {
+    if (!EMAIL) { say("L'adresse de contact sera bientôt disponible."); return; }
+    function fallback() { var r = document.createRange(); r.selectNodeContents(addr); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); say('Adresse sélectionnée : copiez-la.'); }
+    try { navigator.clipboard.writeText(EMAIL).then(function () { say('Adresse copiée.'); }, fallback); } catch (e) { fallback(); }
+  });
+  /* Real QR code to the demo, drawn once the small generator has loaded */
+  var urls = ['js/qrcode.js'];
+  function draw() {
+    try {
+      var q = window.qrcode(0, 'M'); q.addData(DEMO_URL); q.make();
+      var n = q.getModuleCount(), m = 1, dim = n + 2 * m, p = '';
+      for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (q.isDark(r, c)) p += 'M' + (c + m) + ' ' + (r + m) + 'h1v1h-1z';
+      document.getElementById('qr').innerHTML = '<svg viewBox="0 0 ' + dim + ' ' + dim + '" shape-rendering="crispEdges" role="img" aria-label="QR code vers la démo d\'Azimys"><rect width="' + dim + '" height="' + dim + '" fill="#fff"/><path d="' + p + '" fill="#000"/></svg>';
+      document.getElementById('qr-card').hidden = false;
+    } catch (e) {}
+  }
+  (function load(i) {
+    if (window.qrcode) { draw(); return; }
+    if (i >= urls.length) return;
+    var s = document.createElement('script'); s.src = urls[i]; s.async = true;
+    s.onload = draw; s.onerror = function () { load(i + 1); };
+    document.head.appendChild(s);
+  })(0);
+})();
+</script>
+
+</html>
