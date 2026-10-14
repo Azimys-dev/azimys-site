@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Logiciel de gestion de stock pour ateliers aéronautiques : lots et n° de série, péremptions, quarantaine, réception sur certificat, inventaire et étiquettes QR.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect x='1' y='1' width='32' height='32' rx='7' fill='%23145a6e'/%3E%3Ccircle cx='17' cy='17' r='10' fill='none' stroke='%23fff' stroke-width='1.6' opacity='.45'/%3E%3Cg transform='rotate(35 17 17)'%3E%3Cpath d='M17 6l4 11h-8z' fill='%23fff'/%3E%3Cpath d='M17 28l-4-11h8z' fill='%23f3f5f4' opacity='.8'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="canonical" href="https://azimys.com/gestion-stock-aeronautique.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Azimys">
+<meta property="og:title" content="Gestion de stock aéronautique, lot par lot">
+<meta property="og:description" content="Logiciel de gestion de stock pour ateliers aéronautiques : lots et n° de série, péremptions, quarantaine, réception sur certificat, inventaire et étiquettes QR.">
+<meta property="og:url" content="https://azimys.com/gestion-stock-aeronautique.html">
+<meta property="og:image" content="https://azimys.com/assets/azimys-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="fr_FR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Azimys", "item": "https://azimys.com/"}, {"@type": "ListItem", "position": 2, "name": "Gestion de stock", "item": "https://azimys.com/gestion-stock-aeronautique.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Peut-on suivre les produits à durée de vie limitée ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Pour les mastics, colles, primaires, joints ou kits, cochez le suivi de péremption sur l'article : chaque lot reçu porte sa date, et Azimys vous prévient avant qu'elle soit atteinte."}}, {"@type": "Question", "name": "Et un lot reçu sans certificat ?", "acceptedAnswer": {"@type": "Answer", "text": "Il reste en quarantaine jusqu'à son acceptation : Azimys ne le propose ni pour un OF, ni pour un DST, ni pour une livraison. Un lot périmé n'est pas proposé non plus."}}, {"@type": "Question", "name": "Le magasin fonctionne-t-il seul ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Le magasin s'utilise seul, ou avec les commandes clients, les achats, l'outillage étalonné ou le personnel. Seules les commandes et les achats demandent le magasin."}}, {"@type": "Question", "name": "Peut-on reprendre nos stocks actuels ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Vos articles, vos lots et vos emplacements sont repris avec vous au démarrage."}}, {"@type": "Question", "name": "Faut-il un lecteur de codes-barres ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Les étiquettes QR se lisent avec l'appareil photo de n'importe quel téléphone, et s'impriment sur une imprimante de bureau."}}]}</script>
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Gestion de stock aéronautique : lots, S/N, péremptions · Azimys</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  /* Layout: single-column sales page on a cool workshop paper. One bold element: the fanned labels in the hero.
+     Deliberately single light theme, every color set explicitly. */
+  :root {
+    --paper: #f3f5f4;
+    --surface: #ffffff;
+    --ink: #142028;
+    --muted: #55626b;
+    --line: #d5dcdf;
+    --petrol: #145a6e;
+    --petrol-deep: #0d3f4e;
+    --petrol-soft: #dcebef;
+    --ok: #2a7a46; --ok-soft: #e0f0e5;
+    --warn: #9a5b0b; --warn-soft: #fbedd6;
+    --bad: #b42318; --bad-soft: #fbe3df;
+    --on-dark: #e8eff1;
+    --on-dark-muted: #a9bcc3;
+    --font-ui: "Barlow", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-ui); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.05; letter-spacing: .005em; text-wrap: balance; color: var(--ink); }
+  a { color: var(--petrol); }
+  :focus-visible { outline: 3px solid var(--petrol); outline-offset: 3px; }
+  .wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: 0 1.3rem; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 1rem/1 var(--font-ui); text-decoration: none; cursor: pointer; white-space: nowrap; }
+  .btn:hover { border-color: var(--ink); }
+  .btn-main { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .btn-main:hover { background: var(--petrol-deep); border-color: var(--petrol-deep); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* Header */
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(243, 245, 244, .96); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 66px; }
+  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
+  .logo svg { width: 34px; height: 24px; }
+  .logo b { font-family: var(--font-display); font-size: 1.75rem; line-height: 1; letter-spacing: .01em; }
+  .nav { display: flex; align-items: center; gap: 1.6rem; }
+  .nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .98rem; }
+  .nav a:not(.btn):hover { color: var(--petrol); }
+  .nav .btn { min-height: 42px; }
+
+  /* Product name, same pattern as in the apps: brand in ink, product word in petrol */
+  .wrap .eyebrow { display: flex; align-items: center; gap: .55rem; font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; line-height: 1; margin-bottom: 1rem; color: var(--ink); }
+  .wrap .eyebrow svg { width: 30px; height: 21px; flex: none; }
+  .wrap .eyebrow span { color: var(--petrol); font-weight: 600; }
+
+  /* Hero */
+  .hero { padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.5rem); max-width: 17ch; margin-bottom: .7rem; }
+  .hero .kicker { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: clamp(1.25rem, 2.4vw, 1.7rem); color: var(--petrol); margin: 0 0 1.3rem; letter-spacing: .01em; }
+  .hero .lead { font-size: clamp(1.05rem, 1.6vw, 1.22rem); color: var(--muted); max-width: 54ch; margin-bottom: 2rem; }
+  .hero .lead b { color: var(--ink); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .proof { margin-top: 1.5rem; font-size: .95rem; color: var(--muted); }
+  .proof a { font-weight: 600; }
+
+  .stack { position: relative; height: 540px; }
+  .tag { position: absolute; width: min(330px, 86%); background: var(--surface); border: 2px solid var(--tone); border-radius: 10px; overflow: hidden; box-shadow: 0 30px 50px -30px rgba(20, 32, 40, .55); }
+  .tag-band { position: relative; background: var(--tone); color: #fff; padding: .8rem 1rem .85rem 2.9rem; }
+  .tag-band::before { content: ""; position: absolute; left: 1rem; top: 50%; width: 15px; height: 15px; margin-top: -7.5px; border-radius: 50%; background: var(--surface); }
+  .tag-band b { display: block; font-family: var(--font-display); font-size: 1.65rem; line-height: 1.05; }
+  .tag-band span { display: block; font-size: .9rem; font-weight: 600; opacity: .92; }
+  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad) 0 16px, #8f1c13 16px 26px); }
+  .tag dl { display: grid; grid-template-columns: auto 1fr; padding: .3rem 1rem .55rem; font-size: .92rem; }
+  .tag dt, .tag dd { padding: .4rem 0; border-bottom: 1px dashed var(--line); }
+  .tag dt { color: var(--muted); padding-right: 1rem; }
+  .tag dd { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tag dt:nth-last-child(2), .tag dd:last-child { border-bottom: 0; }
+  .t-ok { --tone: var(--ok); } .t-warn { --tone: var(--warn); } .t-bad { --tone: var(--bad); }
+  .tag.a { left: 0; top: 40px; transform: rotate(-5deg); z-index: 1; }
+  .tag.b { right: 0; top: 0; transform: rotate(4deg); z-index: 2; }
+  .tag.c { left: 12%; top: 190px; transform: rotate(-1.5deg); z-index: 3; }
+  .tag { animation: drop .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .tag.b { animation-delay: .12s; } .tag.c { animation-delay: .24s; }
+  @keyframes drop { from { opacity: 0; translate: 0 -18px; } to { opacity: 1; translate: 0 0; } }
+  .qr-card { position: absolute; right: 0; bottom: 0; z-index: 4; display: flex; gap: .8rem; align-items: center; width: 280px; padding: .75rem; background: var(--ink); color: var(--on-dark); border-radius: 10px; font-size: .88rem; line-height: 1.35; box-shadow: 0 30px 50px -30px rgba(20, 32, 40, .7); }
+  .qr-card .qr { width: 86px; height: 86px; flex: none; background: #fff; border-radius: 4px; padding: 3px; }
+  .qr-card .qr svg { width: 100%; height: 100%; display: block; }
+  .qr-card b { color: #fff; }
+
+  /* Modules: the base and the modules to add, one card each */
+  .mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .mod { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem 1.25rem 1.3rem; }
+  .mod h3 { font-size: 1.4rem; margin-bottom: .35rem; display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+  .mod h3 small { font-family: var(--font-ui); font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .mod p { color: var(--muted); font-size: .97rem; }
+  .mod.base { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .mod.base h3, .mod.base h3 small { color: #fff; }
+  .mod.base p { color: rgba(255, 255, 255, .86); }
+
+  /* QR codes: a phone that has just scanned a label */
+  .scans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
+  .scan { margin: 0; display: flex; flex-direction: column; }
+  .scan .phone { flex: 1; display: flex; flex-direction: column; width: 100%; }
+  .scan .screen { flex: 1; }
+  .scan figcaption { margin-top: 1rem; text-align: center; }
+  .scan figcaption b { display: block; font-family: var(--font-display); font-size: 1.45rem; color: #fff; }
+  .scan figcaption span { color: var(--on-dark-muted); font-size: .95rem; }
+  .phone { max-width: 290px; margin-inline: auto; background: #0b1418; border: 1px solid #2c3f4b; border-radius: 34px; padding: 12px; box-shadow: 0 34px 60px -34px rgba(0, 0, 0, .8); }
+  .screen { background: var(--paper); color: var(--ink); border-radius: 24px; padding: 14px 12px 16px; min-height: 300px; }
+  .screen .bar { display: flex; align-items: center; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 12px; }
+  .screen .bar b { display: flex; align-items: center; gap: .35rem; font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); }
+  .screen .bar svg { width: 22px; height: 16px; }
+  .screen .tag { position: static; width: 100%; animation: none; box-shadow: none; }
+  .screen .tag-band b { font-size: 1.4rem; }
+  .screen .tag dl { font-size: .86rem; }
+  .t-acc { --tone: var(--petrol); } .t-off { --tone: #69737a; }
+  .legend-head { margin-top: clamp(3rem, 6vw, 4.5rem); max-width: 62ch; }
+  .legend-head h3 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: .5rem; }
+  .legend-head p { color: var(--on-dark-muted); }
+  .statuses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; padding: 0; list-style: none; }
+  .statuses .tag { position: static; width: auto; animation: none; box-shadow: none; border-color: var(--tone); }
+  .statuses .tag-band { height: 100%; }
+  .scans-note { margin-top: clamp(2rem, 4vw, 2.75rem); color: var(--on-dark-muted); text-align: center; }
+
+  /* Sections */
+  section.band { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+  .band.white { background: var(--surface); border-block: 1px solid var(--line); }
+  .band.dark { background: var(--ink); color: var(--on-dark); }
+  .band.dark h2, .band.dark h3 { color: #fff; }
+  .head { max-width: 62ch; margin-bottom: clamp(2rem, 5vw, 3.25rem); }
+  .head h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: .9rem; }
+  .head p { color: var(--muted); font-size: 1.1rem; }
+  .head .cta { margin-top: 1.4rem; }
+  .band.dark .head p { color: var(--on-dark-muted); }
+
+  /* Problem */
+  .pains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+  .pain { border-top: 3px solid var(--bad); padding-top: 1.1rem; }
+  .pain h3 { font-size: 1.45rem; margin-bottom: .5rem; }
+  .pain p { color: var(--muted); }
+  .sheet { margin-top: 2.5rem; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  .sheet table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .9rem; font-variant-numeric: tabular-nums; }
+  .sheet th, .sheet td { border: 1px solid #e3e8ea; padding: .4rem .6rem; text-align: left; white-space: nowrap; }
+  .sheet th { background: #eef2f3; color: var(--muted); font-weight: 600; }
+  .sheet td:first-child, .sheet th:first-child { background: #eef2f3; color: var(--muted); width: 2.5rem; text-align: center; }
+  .sheet .late { background: var(--bad-soft); color: var(--bad); font-weight: 700; }
+  .sheet-cap { font-size: .88rem; color: var(--muted); padding: .55rem .75rem; border-top: 1px solid var(--line); }
+
+  /* Features */
+  .feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+  .feature:first-of-type { border-top: 0; padding-top: 0; }
+  .feature:nth-of-type(even) .f-text { order: 2; }
+  .f-text h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: .75rem; }
+  .f-text p { color: var(--muted); margin-bottom: .75rem; max-width: 52ch; }
+  .f-text ul { display: grid; gap: .35rem; }
+  .f-text li { padding-left: 1.4rem; position: relative; }
+  .f-text li::before { content: ""; position: absolute; left: 0; top: .62em; width: .7rem; height: 2px; background: var(--petrol); }
+  .ui { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; display: grid; gap: .6rem; font-size: .93rem; }
+  .ui-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem .75rem; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .65rem .8rem; }
+  .ui-row.off { opacity: .8; }
+  .ui-row .sw { position: relative; width: 2.4rem; height: 1.4rem; border-radius: 999px; background: var(--line); }
+  .ui-row .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: calc(1.4rem - 6px); height: calc(1.4rem - 6px); border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
+  .ui-row .sw.on { background: var(--petrol); }
+  .ui-row .sw.on::after { transform: translateX(1rem); }
+  .ui-presets { display: flex; flex-wrap: wrap; gap: .4rem; font-size: .84rem; font-weight: 600; }
+  .ui-presets span { padding: .25rem .65rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--muted); }
+  .ui-presets span.on { border-color: var(--petrol); color: var(--petrol); background: var(--petrol-soft); }
+  .ui-row .why { grid-column: 1 / -1; color: var(--bad); font-weight: 600; font-size: .86rem; }
+  .ui-row .sub { grid-column: 1 / -1; color: var(--muted); font-size: .86rem; }
+  .r { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; margin-right: .4rem; font-variant-numeric: tabular-nums; }
+  .pill { display: inline-flex; align-items: center; gap: .4rem; padding: .15rem .6rem; border-radius: 999px; background: var(--tone-soft); color: var(--tone); font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .p-ok { --tone: var(--ok); --tone-soft: var(--ok-soft); } .p-warn { --tone: var(--warn); --tone-soft: var(--warn-soft); } .p-bad { --tone: var(--bad); --tone-soft: var(--bad-soft); } .p-acc { --tone: var(--petrol); --tone-soft: var(--petrol-soft); }
+  .note-bad { background: var(--bad-soft); border-radius: 8px; padding: .7rem .85rem; }
+  .note-bad b { color: var(--bad); }
+  .month { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+  .month:last-child { border-bottom: 0; }
+  .month b { font-family: var(--font-display); font-size: 1.12rem; }
+  .month span { color: var(--muted); font-size: .88rem; grid-column: 1; }
+  .month em { font-style: normal; font-weight: 700; grid-column: 2; grid-row: 1 / span 2; align-self: center; font-variant-numeric: tabular-nums; }
+  .ui-total { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--ink); }
+  .ui-total strong { font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+  .more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem 2rem; margin-top: clamp(2rem, 4vw, 3rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+  .more h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+  .more p { color: var(--muted); font-size: .97rem; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; counter-reset: s; }
+  .step { counter-increment: s; }
+  .step::before { content: counter(s); display: block; font-family: var(--font-display); font-weight: 700; font-size: 3.4rem; line-height: 1; color: var(--petrol); margin-bottom: .6rem; }
+  .step h3 { font-size: 1.45rem; margin-bottom: .45rem; }
+  .step p { color: var(--muted); }
+
+  /* Compliance */
+  .comply { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .quote { border-left: 3px solid var(--petrol-soft); padding-left: 1.25rem; font-size: 1.15rem; color: var(--on-dark); }
+  .rules { width: 100%; border-collapse: collapse; margin-top: 1.75rem; font-size: .97rem; }
+  .rules th, .rules td { text-align: left; padding: .6rem .75rem .6rem 0; border-bottom: 1px solid #2c3f4b; vertical-align: top; }
+  .rules th { color: var(--on-dark-muted); font-weight: 600; font-size: .88rem; }
+  .rules td:first-child { color: #fff; font-weight: 600; width: 38%; }
+  .rules td { color: var(--on-dark); }
+  .checks { display: grid; gap: .7rem; }
+  .checks li { padding-left: 1.8rem; position: relative; color: var(--on-dark); }
+  .checks li::before { content: ""; position: absolute; left: 0; top: .35em; width: 1rem; height: .55rem; border-left: 2.5px solid #7fc9da; border-bottom: 2.5px solid #7fc9da; transform: rotate(-45deg); }
+  .checks .sep { padding: .6rem 0 0; color: var(--on-dark-muted); font-size: .88rem; font-weight: 600; }
+  .checks .sep::before { display: none; }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; }
+  .plan { padding: 1.75rem 1.5rem; display: grid; gap: .9rem; align-content: start; border-left: 1px solid var(--line); }
+  .plan:first-child { border-left: 0; }
+  .plan.hl { background: #f7fbfc; box-shadow: inset 0 4px 0 var(--petrol); }
+  .plan h3 { font-size: 1.6rem; }
+  .plan .price { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .plan .price small { font-family: var(--font-ui); font-size: .95rem; font-weight: 500; color: var(--muted); }
+  .plan p { color: var(--muted); font-size: .97rem; }
+  .plan ul { display: grid; gap: .4rem; font-size: .97rem; }
+  .plan li { padding-left: 1.4rem; position: relative; }
+  .plan li::before { content: ""; position: absolute; left: 0; top: .62em; width: .7rem; height: 2px; background: var(--petrol); }
+  .plan .btn { justify-self: start; margin-top: .25rem; }
+  .addon { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2rem; align-items: center; margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .addon .eyebrow.eyebrow { margin-bottom: .45rem; font-size: 1.45rem; }
+  .addon p { color: var(--muted); font-size: .97rem; max-width: 60ch; }
+  .addon .addon-price { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--ink); }
+  .addon .addon-price small { display: block; font-family: var(--font-ui); font-size: .9rem; font-weight: 500; color: var(--muted); }
+  .fine { margin-top: 1rem; font-size: .9rem; color: var(--muted); }
+  .pilot { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; margin-bottom: 1rem; padding: 1.2rem 1.5rem; background: #f7fbfc; border: 1px solid var(--line); border-radius: 12px; box-shadow: inset 4px 0 0 var(--petrol); }
+  .pilot p { color: var(--muted); max-width: 70ch; min-width: 0; }
+  .pilot b { color: var(--ink); }
+  .plan .badge { justify-self: start; margin-bottom: -.35rem; padding: .2rem .6rem; border-radius: 999px; background: var(--petrol); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .02em; }
+  .plan .save { margin-top: -.45rem; color: var(--petrol); font-size: .88rem; font-weight: 600; }
+  .carte { margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: grid; gap: 1rem; }
+  .carte-head { display: flex; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; flex-wrap: wrap; }
+  .carte-head h3 { font-size: 1.6rem; }
+  .carte-head p { color: var(--muted); font-size: .95rem; }
+  .carte-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
+  .carte-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--line); }
+  .carte-list li span { min-width: 0; }
+  .carte-list b { display: block; font-weight: 600; }
+  .carte-list small { display: block; color: var(--muted); font-size: .86rem; line-height: 1.35; }
+  .carte-list em { font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .carte-list li.base { grid-column: 1 / -1; background: #f7fbfc; margin-inline: -.75rem; padding-inline: .75rem; border-radius: 8px; border-top: 0; }
+
+  /* FAQ */
+  .faq { max-width: 820px; display: grid; }
+  .faq details { border-top: 1px solid var(--line); }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; padding: 1.05rem 2rem 1.05rem 0; position: relative; font-weight: 600; font-size: 1.08rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: ""; position: absolute; right: .3rem; top: 1.4rem; width: .6rem; height: .6rem; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(-135deg); top: 1.7rem; }
+  .faq details p { padding-bottom: 1.1rem; color: var(--muted); max-width: 68ch; }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .contact h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: .9rem; }
+  .contact p { color: var(--on-dark-muted); font-size: 1.1rem; max-width: 52ch; }
+  .card { background: #1d2c36; border: 1px solid #2c3f4b; border-radius: 12px; padding: 1.5rem; display: grid; gap: 1rem; }
+  .card label { font-size: .9rem; color: var(--on-dark-muted); }
+  .mail { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+  .mail code { font-family: var(--font-ui); font-size: 1.15rem; font-weight: 600; color: #fff; user-select: all; overflow-wrap: anywhere; }
+  .mail .todo { color: #f5c26b; font-style: italic; font-weight: 500; }
+  .card .btn { background: transparent; color: #fff; border-color: #4a6170; }
+  .card .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+
+  footer { padding-block: 2rem; font-size: .9rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 2rem; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+
+  .toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); transform: translate(-50%, 16px); opacity: 0; pointer-events: none; z-index: 50; background: var(--ink); color: #fff; padding: .7rem 1rem; border-radius: 8px; font-weight: 600; transition: opacity .2s, transform .2s; max-width: calc(100% - 32px); }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 980px) {
+    .nav a:not(.btn) { display: none; }
+    .hero .wrap, .feature, .comply, .contact { grid-template-columns: 1fr; }
+    .feature:nth-of-type(even) .f-text { order: 0; }
+    .stack { height: 400px; max-width: 520px; width: 100%; margin-inline: auto; }
+    .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .scans { grid-template-columns: 1fr; gap: 2.5rem; }
+    .statuses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .plans { grid-template-columns: 1fr; }
+    .plan { border-left: 0; border-top: 1px solid var(--line); }
+    .plan:first-child { border-top: 0; }
+    .addon { grid-template-columns: 1fr; }
+    .addon .btn { justify-self: start; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .pains, .steps, .more, .mods, .statuses, .carte-list { grid-template-columns: 1fr; }
+    .stack { height: 380px; }
+    .tag { width: 82%; }
+    .tag.c { left: 6%; top: 175px; }
+    .qr-card { display: none; }
+    .cta .btn { flex: 1 1 auto; }
+    .rules { font-size: .9rem; }
+    .rules th, .rules td { padding-right: .5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<style>
+  .crumbs { font-size: .92rem; color: var(--muted); margin: 0 0 1.1rem; }
+  .crumbs a { color: var(--petrol); text-decoration: none; font-weight: 600; }
+  .crumbs a:hover { text-decoration: underline; }
+  .hero.landing h1 { font-size: clamp(2.2rem, 4.8vw, 3.7rem); max-width: 20ch; }
+  .hero.landing .ui { align-self: center; }
+  .related { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .related a { display: block; padding: 1.2rem 1.3rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
+  .related a:hover { border-color: var(--petrol); }
+  .related h3 { font-size: 1.35rem; margin-bottom: .35rem; color: var(--petrol); }
+  .related p { color: var(--muted); font-size: .96rem; }
+  .foot-pages { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; width: 100%; }
+  .foot-pages a { color: var(--muted); }
+  .nav a[aria-current] { color: var(--petrol); font-weight: 700; }
+  .landing-cta .cta { margin-top: 1.5rem; }
+  .landing-cta .btn:not(.btn-main) { background: transparent; color: #fff; border-color: #4a6170; }
+  .landing-cta .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+  @media (max-width: 980px) { .related { grid-template-columns: 1fr; } }
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 34 24">
+      <rect x="1" y="1" width="32" height="22" rx="4" fill="#145a6e"/>
+      <circle cx="17" cy="12" r="7.6" fill="none" stroke="#fff" stroke-width="1.3" opacity=".45"/>
+      <g transform="rotate(35 17 12)"><path d="M17 3.6l3.1 8.4h-6.2z" fill="#fff"/><path d="M17 20.4l-3.1-8.4h6.2z" fill="#f3f5f4" opacity=".8"/></g>
+    </symbol>
+  </defs>
+</svg>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Azimys, accueil"><svg aria-hidden="true"><use href="#mark"/></svg><b>Azimys</b></a>
+    <nav class="nav" aria-label="Pages"><a href="logiciel-suivi-etalonnage.html">Suivi d'étalonnage</a><a href="gestion-stock-aeronautique.html" aria-current="page">Gestion de stock</a><a href="coc-form1-bon-de-livraison.html">CoC et EASA Form 1</a><a href="planning-conges-competences.html">Planning et compétences</a><a href="./#tarifs">Tarifs</a><a class="btn btn-main" href="demo.html">Essayer la démo</a></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero landing" aria-labelledby="h1">
+    <div class="wrap">
+      <div>
+        <p class="crumbs"><a href="./">Azimys</a> › Gestion de stock</p>
+        <h1 id="h1">Gestion de stock aéronautique, lot par lot.</h1>
+        <p class="kicker">Lots, n° de série, péremptions, quarantaine.</p>
+        <p class="lead">Le magasin d'Azimys suit chaque pièce et chaque produit <b>du fournisseur jusqu'au client</b> : le lot ou le n° de série, le certificat reçu, l'emplacement, la date de péremption. Un lot sans certificat reste en quarantaine, un lot périmé n'est plus proposé.</p>
+        <div class="cta">
+          <a class="btn btn-main" href="demo.html">Essayer la démo</a>
+          <a class="btn" href="#fonctions">Voir les fonctions</a>
+        </div>
+        <p class="proof">Pour la maintenance Part 145, la production Part 21G, la défense et l'industrie.</p>
+      </div>
+      <div class="ui" aria-hidden="true">
+        <div class="ui-row"><span><span class="r">RIV-003</span>Rivet aveugle 1/8"</span><span class="pill p-ok">En stock</span><span class="sub">150 pièces, bac D4, CoC CC-25-80112</span></div>
+        <div class="ui-row"><span><span class="r">MAS-001</span>Mastic polysulfure classe B</span><span class="pill p-warn">Périme bientôt</span><span class="sub">Lot P25-0212, périme le 27/10 : à utiliser en premier</span></div>
+        <div class="ui-row off"><span><span class="r">PRI-001</span>Primaire époxy</span><span class="pill p-bad">Lot périmé</span><span class="why">Non proposé pour les OF ni les livraisons</span></div>
+        <div class="ui-row"><span><span class="r">CNX-019</span>Connecteur circulaire 19 contacts</span><span class="pill p-bad">Quarantaine</span><span class="sub">Reçu sans certificat</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white" aria-labelledby="pb">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="pb">Un stock aéronautique ne se gère pas comme un autre.</h2>
+        <p>Une quantité ne suffit pas : il faut savoir de quel lot vient chaque pièce, avec quel certificat, et jusqu'à quand chaque produit reste utilisable.</p>
+      </div>
+      <div class="pains">
+        <div class="pain"><h3>Le produit périmé utilisé</h3><p>Un mastic ou une colle dépasse sa date dans une armoire. Rien n'empêche de le prendre.</p></div>
+        <div class="pain"><h3>Le certificat introuvable</h3><p>Le CoC du fournisseur est dans un classeur, ou nulle part. L'auditeur demande d'où vient ce lot.</p></div>
+        <div class="pain"><h3>Le lot à rappeler</h3><p>Un fournisseur signale un lot défectueux. Il faut retrouver où il est encore en stock et à quels clients il a été livré.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="fonctions" aria-labelledby="fn">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#mark"/></svg>Module <span>Magasin</span></p>
+        <h2 id="fn">Chaque lot tracé, de la réception au client.</h2>
+        <p>Articles, lots et n° de série, emplacements, péremptions, quarantaine, inventaires et étiquettes QR.</p>
+      </div>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Réception contrôlée, documents scannés.</h3>
+          <p>À la réception d'une commande fournisseur, le magasinier saisit le lot, le n° du CoC ou du Form 1, et photographie le BL et les certificats avec son téléphone. Le contrôle à réception se coche point par point : référence, quantité, état, certificat.</p>
+          <ul><li>Tout accepté, accepté en partie ou refusé en quarantaine</li><li>Les scans restent attachés au lot</li><li>La commande fournisseur se solde d'elle-même</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-row"><span><b>Référence et P/N conformes</b></span><span class="pill p-ok">Vérifié</span></div>
+          <div class="ui-row"><span><b>Quantité conforme au BL</b></span><span class="pill p-ok">Vérifié</span></div>
+          <div class="ui-row"><span><b>Emballage et pièces sans défaut</b></span><span class="pill p-ok">Vérifié</span></div>
+          <div class="ui-row"><span><b>Certificat conforme</b></span><span class="pill p-ok">Vérifié</span><span class="sub">BL, CoC et Form 1 scannés</span></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Péremptions et quarantaine, sans surveillance.</h3>
+          <p>Chaque lot a sa date de péremption. Azimys signale ceux qui périment bientôt, propose toujours le plus ancien en premier, et écarte les lots périmés ou en quarantaine des OF, des DST et des livraisons.</p>
+          <ul><li>Alertes avant péremption</li><li>Premier périmé, premier sorti</li><li>Acceptation ou rebut d'un lot en quarantaine, avec visa</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-row"><span><span class="r">P25-0212</span>Mastic, 6 cartouches</span><span class="pill p-warn">Périme bientôt</span><span class="sub">Armoire B2, périme le 27/10</span></div>
+          <div class="ui-row"><span><span class="r">P26-0031</span>Mastic, 10 cartouches</span><span class="pill p-ok">Utilisable</span><span class="sub">Armoire B2, périme le 14/04</span></div>
+          <div class="ui-row off"><span><span class="r">K24-118</span>Primaire, 1 kit</span><span class="pill p-bad">Périmé</span><span class="why">À rebuter</span></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Inventaire et emplacements.</h3>
+          <p>Chaque lot a son emplacement : armoire, étagère, bac. L'inventaire se fait article par article ou sur une feuille d'inventaire imprimée, classée par emplacement. Les écarts sont enregistrés, datés et visés.</p>
+          <ul><li>Feuille d'inventaire prête à imprimer</li><li>Écarts tracés dans le journal</li><li>Déplacement d'un lot en deux clics</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-total"><span>Inventaire du 14/10</span><strong class="num">2 écarts</strong></div>
+          <div class="month"><b>RIV-003 Rivet aveugle</b><span>Bac D4 : 148 comptés pour 150</span><em>−2</em></div>
+          <div class="month"><b>GTH-006 Gaine thermo 6 mm</b><span>Étagère C2 : 15 m comptés pour 14,8 m</span><em>+0,2</em></div>
+        </div>
+      </article>
+
+      <div class="more">
+        <div><h3>Étiquettes QR</h3><p>Une étiquette par lot ou par pièce : scannée au téléphone, elle ouvre la fiche avec l'état, la péremption et le certificat.</p></div>
+        <div><h3>Réservations</h3><p>Les quantités dues aux commandes clients sont réservées : vous voyez ce qui est vraiment disponible.</p></div>
+        <div><h3>Stock minimum</h3><p>Les articles sous leur minimum et les manquants des commandes sont transférés en commandes fournisseurs.</p></div>
+        <div><h3>Traçabilité</h3><p>Un lot ou un n° de série se retrouve en une recherche : réception, mouvements, OF, livraison au client.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" aria-labelledby="cf">
+    <div class="wrap comply">
+      <div>
+        <div class="head" style="margin-bottom:1.5rem">
+          <h2 id="cf">Ce que l'auditeur vous demande.</h2>
+          <p>Les pièces et les produits sont acceptés sur certificat, stockés dans de bonnes conditions, et restent traçables jusqu'au client.</p>
+        </div>
+        <table class="rules">
+          <thead><tr><th scope="col">Votre activité</th><th scope="col">Exigence</th></tr></thead>
+          <tbody>
+            <tr><td>Maintenance, Part 145</td><td>145.A.42, acceptation des éléments</td></tr>
+            <tr><td>Production, Part 21 sous-partie G</td><td>21.A.139, système qualité</td></tr>
+            <tr><td>Qualité, EN 9100 et ISO 9001</td><td>§&nbsp;8.4 et §&nbsp;8.5.2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="checks">
+        <li>Lots acceptés sur certificat de conformité, quarantaine sinon</li>
+        <li>Certificats et BL fournisseurs scannés avec chaque lot</li>
+        <li>Péremptions surveillées</li>
+        <li>Inventaires datés et visés, écarts tracés</li>
+        <li>Traçabilité lot et n° de série, du fournisseur au client</li>
+        <li>Exports Excel du stock et des lots</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band white" aria-labelledby="qs">
+    <div class="wrap">
+      <div class="head"><h2 id="qs">Questions fréquentes.</h2></div>
+      <div class="faq">
+        <details><summary>Peut-on suivre les produits à durée de vie limitée ?</summary><p>Oui. Pour les mastics, colles, primaires, joints ou kits, cochez le suivi de péremption sur l'article : chaque lot reçu porte sa date, et Azimys vous prévient avant qu'elle soit atteinte.</p></details>
+        <details><summary>Et un lot reçu sans certificat ?</summary><p>Il reste en quarantaine jusqu'à son acceptation : Azimys ne le propose ni pour un OF, ni pour un DST, ni pour une livraison. Un lot périmé n'est pas proposé non plus.</p></details>
+        <details><summary>Le magasin fonctionne-t-il seul ?</summary><p>Oui. Le magasin s'utilise seul, ou avec les commandes clients, les achats, l'outillage étalonné ou le personnel. Seules les commandes et les achats demandent le magasin.</p></details>
+        <details><summary>Peut-on reprendre nos stocks actuels ?</summary><p>Oui. Vos articles, vos lots et vos emplacements sont repris avec vous au démarrage.</p></details>
+        <details><summary>Faut-il un lecteur de codes-barres ?</summary><p>Non. Les étiquettes QR se lisent avec l'appareil photo de n'importe quel téléphone, et s'impriment sur une imprimante de bureau.</p></details>
+      </div>
+    </div>
+  </section>
+  <section class="band" aria-labelledby="rel">
+    <div class="wrap">
+      <div class="head"><h2 id="rel">Les autres modules d'Azimys.</h2><p>Azimys est modulable : vous activez seulement ce dont vous avez besoin. <a href="./#modules">Voir tous les modules</a>.</p></div>
+      <div class="related"><a href="logiciel-suivi-etalonnage.html"><h3>Suivi d'étalonnage</h3><p>Échéances, sorties par dossier, envois chez le prestataire, analyse d'impact.</p></a><a href="coc-form1-bon-de-livraison.html"><h3>CoC et EASA Form 1</h3><p>BL, certificats de conformité et Form 1 sans ressaisie, signés par le personnel habilité.</p></a><a href="planning-conges-competences.html"><h3>Planning et compétences</h3><p>Congés et absences, matrice de compétences, formations et leur validité.</p></a></div>
+    </div>
+  </section>
+  <section class="band dark landing-cta" aria-labelledby="ct">
+    <div class="wrap">
+      <div class="head" style="margin-bottom:0"><h2 id="ct">Essayez Azimys.</h2><p>La démo s'ouvre tout de suite, sans inscription, avec des données d'exemple. Pour un essai avec vos propres données, écrivez-nous : votre activité, vos agréments et les modules qui vous intéressent.</p>
+        <div class="cta"><a class="btn btn-main" href="demo.html">Essayer la démo</a><a class="btn" href="mailto:contact@azimys.com?subject=Azimys">Écrire à contact@azimys.com</a></div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><nav class="foot-pages" aria-label="Azimys par besoin"><a href="logiciel-suivi-etalonnage.html">Suivi d'étalonnage</a><a href="gestion-stock-aeronautique.html">Gestion de stock</a><a href="coc-form1-bon-de-livraison.html">CoC et EASA Form 1</a><a href="planning-conges-competences.html">Planning et compétences</a><a href="demo.html">Démo</a></nav><span>© 2026 Azimys. L'ERP nouvelle génération des ateliers exigeants.</span><nav class="foot-links" aria-label="Informations légales"><a href="mentions-legales.html">Mentions légales</a><a href="mentions-legales.html#confidentialite">Confidentialité</a><a href="mailto:contact@azimys.com">contact@azimys.com</a></nav></div>
+</footer>
+
+</html>
