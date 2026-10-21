@@ -343,25 +343,40 @@
   .today-cap { margin-top: .8rem; font-size: .9rem; color: var(--muted); }
 
   /* Modules by domain, with example combinations */
-  .profiles { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: .75rem; }
+  .profiles { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1.25rem; }
   .profiles > span { font-weight: 600; color: var(--muted); margin-right: .25rem; }
   .profiles button { min-height: 42px; padding: 0 1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 .95rem/1 var(--font-ui); cursor: pointer; }
   .profiles button:hover { border-color: var(--ink); }
   .profiles button[aria-pressed="true"] { background: var(--petrol); border-color: var(--petrol); color: #fff; }
-  .prof-note { min-height: 1.6em; margin-bottom: 1rem; color: var(--muted); }
-  .prof-note b { color: var(--ink); }
   .doms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
   .dom { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.15rem 1.25rem 1.2rem; }
-  .dom h3 { display: flex; align-items: center; gap: .6rem; font-size: 1.45rem; margin-bottom: .7rem; }
+  .dom h3 { display: flex; align-items: center; gap: .6rem; font-size: 1.45rem; margin-bottom: .55rem; }
   .dom h3 svg { width: 28px; height: 28px; flex: none; fill: none; stroke: var(--petrol); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-  .dom ul { display: grid; gap: .6rem; }
-  .dom li { padding-top: .6rem; border-top: 1px solid var(--line); transition: opacity .2s; }
-  .dom li b { display: flex; align-items: center; gap: .45rem; font-weight: 600; }
-  .dom li span { display: block; color: var(--muted); font-size: .94rem; line-height: 1.45; }
-  .doms.picked li:not(.dim) b { color: var(--petrol); }
-  .doms.picked li:not(.dim) b::before { content: ""; width: .8rem; height: .45rem; margin: -.2rem .1rem 0 0; border-left: 2.5px solid var(--petrol); border-bottom: 2.5px solid var(--petrol); transform: rotate(-45deg); }
-  .dom li.dim { opacity: .35; }
-  .dom li b em { margin-left: auto; padding-left: .75rem; font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--ink); white-space: nowrap; }
+  .dom ul { display: grid; gap: .25rem; }
+  .dom li { border-top: 1px solid var(--line); padding-top: .25rem; }
+  .dom label { position: relative; display: block; margin: 0 -.6rem; padding: .5rem .6rem .55rem; border-radius: 8px; cursor: pointer; transition: background .15s; }
+  .dom label:hover { background: var(--paper); }
+  .dom li.on label { background: var(--petrol-soft); }
+  .dom input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+  .dom label b { display: flex; align-items: center; gap: .55rem; font-weight: 600; }
+  .dom label b::before { content: ""; flex: none; width: 20px; height: 20px; border: 2px solid #9aa7ae; border-radius: 5px; background: #fff center / 13px no-repeat; }
+  .dom input:checked + b { color: var(--petrol); }
+  .dom input:checked + b::before { background-color: var(--petrol); border-color: var(--petrol); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.3l2.6 2.5L10 3.3' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+  .dom input:focus-visible + b::before { outline: 3px solid var(--petrol); outline-offset: 2px; }
+  .dom label b em { margin-left: auto; padding-left: .75rem; font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--ink); white-space: nowrap; }
+  .dom label span { display: block; padding-left: calc(20px + .55rem); color: var(--muted); font-size: .93rem; line-height: 1.45; }
+  .sel { position: sticky; bottom: 12px; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; flex-wrap: wrap; margin-top: 1rem; padding: .9rem 1.2rem; background: var(--ink); color: var(--on-dark); border-radius: 12px; box-shadow: 0 18px 40px -20px rgba(20, 32, 40, .6); }
+  .sel-text { min-width: 0; flex: 1 1 22rem; }
+  .sel-text p { font-size: 1.02rem; }
+  .sel-text b { color: #fff; }
+  .sel-text strong { font-family: var(--font-display); font-size: 1.5rem; color: #fff; white-space: nowrap; }
+  .sel-msg { margin-top: .15rem; color: var(--on-dark-muted); font-size: .9rem !important; }
+  .sel-msg:empty { display: none; }
+  .sel-act { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .sel-act[hidden] { display: none; }
+  .sel .btn { min-height: 44px; background: transparent; color: #fff; border-color: #4a6170; }
+  .sel .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+
   .plans-head { display: flex; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; flex-wrap: wrap; margin: 1.75rem 0 .9rem; }
   .plans-head h3 { font-size: 1.6rem; }
   .plans-head p { color: var(--muted); font-size: .95rem; }
@@ -406,6 +421,13 @@
     .facts b { font-size: 1.3rem; }
     .today-grid, .doms, .trio { grid-template-columns: 1fr; }
     .profiles button { flex: 1 1 auto; }
+    .sel { bottom: 8px; padding: .65rem .85rem; gap: .5rem; }
+    .sel-text p { font-size: .92rem; line-height: 1.35; }
+    .sel-text strong { font-size: 1.25rem; }
+    .sel-msg { font-size: .82rem !important; }
+    .sel-act { flex: 1 1 100%; flex-wrap: nowrap; }
+    .sel-act .btn { flex: 1 1 0; min-height: 40px; padding: 0 .5rem; font-size: .92rem; }
+    .sel-act .btn-main { flex-grow: 1.6; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -532,63 +554,66 @@
     <div class="wrap">
       <div class="head">
         <h2 id="md">Composez votre ERP.</h2>
-        <p>Quinze modules, chacun avec son prix. Prenez-en un seul ou plusieurs : vous ne payez que ceux que vous activez, et les menus, l'accueil, les documents et les exports s'adaptent. Vous en ajoutez quand l'entreprise grandit, sans rien ressaisir. Prix HT par mois, pour toute l'équipe.</p>
+        <p>Quinze modules, chacun avec son prix. Cochez ceux qui vous servent, même un seul : le prix se calcule tout seul, et vous ne payez que ceux que vous activez. Les menus, l'accueil, les documents et les exports s'adaptent, et vous en ajoutez quand l'entreprise grandit. Prix HT par mois, pour toute l'équipe.</p>
       </div>
       <div class="profiles" role="group" aria-label="Exemples de combinaisons">
-        <span>Exemples :</span>
+        <span>Ou partez d'un exemple :</span>
         <button type="button" data-p="tout" aria-pressed="false">Tout Azimys</button>
         <button type="button" data-p="maintenance" aria-pressed="false">Atelier de maintenance</button>
         <button type="button" data-p="fabrication" aria-pressed="false">Fabrication</button>
         <button type="button" data-p="negoce" aria-pressed="false">Négoce et distribution</button>
         <button type="button" data-p="equipe" aria-pressed="false">Équipe et moyens</button>
       </div>
-      <p class="prof-note" id="prof-note" aria-live="polite"></p>
       <div class="doms" id="doms">
         <div class="dom">
           <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/></svg>Stock et achats</h3>
           <ul>
-            <li data-m="magasin"><b>Magasin<em>49 €</em></b><span>Articles classés par vos propres types, stock par lot et n° de série, péremptions, emplacements, inventaires, quarantaine.</span></li>
-            <li data-m="achats"><b>Achats<em>25 €</em></b><span>Manquants et stock minimum transférés en commandes fournisseurs, réception sur certificat, prestations comprises.</span></li>
+            <li data-m="magasin"><label><input type="checkbox" value="magasin"><b>Magasin<em>49 €</em></b><span>Articles classés par vos propres types, stock par lot et n° de série, péremptions, emplacements, inventaires, quarantaine.</span></label></li>
+            <li data-m="achats"><label><input type="checkbox" value="achats"><b>Achats<em>25 €</em></b><span>Manquants et stock minimum transférés en commandes fournisseurs, réception sur certificat, prestations comprises.</span></label></li>
           </ul>
         </div>
         <div class="dom">
           <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/></svg>Ventes et facturation</h3>
           <ul>
-            <li data-m="commandes"><b>Commandes et devis<em>39 €</em></b><span>Devis, ventes, réparations et maintenances : le stock est réservé, chaque commande suivie jusqu'à la livraison.</span></li>
-            <li data-m="bl"><b>Bons de livraison<em>12 €</em></b><span>Imprimés avec les lots et les n° de série livrés.</span></li>
-            <li data-m="facturation"><b>Facturation<em>25 €</em></b><span>Factures, avoirs, échéances, relances et journal des ventes pour le comptable.</span></li>
+            <li data-m="commandes"><label><input type="checkbox" value="commandes"><b>Commandes et devis<em>39 €</em></b><span>Devis, ventes, réparations et maintenances : le stock est réservé, chaque commande suivie jusqu'à la livraison.</span></label></li>
+            <li data-m="bl"><label><input type="checkbox" value="bl"><b>Bons de livraison<em>12 €</em></b><span>Imprimés avec les lots et les n° de série livrés.</span></label></li>
+            <li data-m="facturation"><label><input type="checkbox" value="facturation"><b>Facturation<em>25 €</em></b><span>Factures, avoirs, échéances, relances et journal des ventes pour le comptable.</span></label></li>
           </ul>
         </div>
         <div class="dom">
           <h3><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="6.6"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>Production et atelier</h3>
           <ul>
-            <li data-m="atelier"><b>Atelier : OF et DST<em>49 €</em></b><span>Ordres de fabrication et dossiers de travaux visés opération par opération, composants sortis lot par lot, heures.</span></li>
-            <li data-m="suivi"><b>Suivi d'activité<em>12 €</em></b><span>Les équipements reçus de vos clients, par jour et par semaine, l'historique de chaque n° de série et les délais.</span></li>
+            <li data-m="atelier"><label><input type="checkbox" value="atelier"><b>Atelier : OF et DST<em>49 €</em></b><span>Ordres de fabrication et dossiers de travaux visés opération par opération, composants sortis lot par lot, heures.</span></label></li>
+            <li data-m="suivi"><label><input type="checkbox" value="suivi"><b>Suivi d'activité<em>12 €</em></b><span>Les équipements reçus de vos clients, par jour et par semaine, l'historique de chaque n° de série et les délais.</span></label></li>
           </ul>
         </div>
         <div class="dom">
           <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Qualité et certificats</h3>
           <ul>
-            <li data-m="qualite"><b>Qualité<em>39 €</em></b><span>Rapports d'inspection, non-conformités et actions correctives, tableau SQDP, indicateurs du mois.</span></li>
-            <li data-m="coc"><b>Certificats de conformité<em>12 €</em></b><span>Le CoC émis à la livraison, signé par une personne habilitée.</span></li>
-            <li data-m="f1"><b>EASA Form 1<em>25 €</em></b><span>Production ou maintenance, en anglais et en français, pour les organismes aéronautiques.</span></li>
+            <li data-m="qualite"><label><input type="checkbox" value="qualite"><b>Qualité<em>39 €</em></b><span>Rapports d'inspection, non-conformités et actions correctives, tableau SQDP, indicateurs du mois.</span></label></li>
+            <li data-m="coc"><label><input type="checkbox" value="coc"><b>Certificats de conformité<em>12 €</em></b><span>Le CoC émis à la livraison, signé par une personne habilitée.</span></label></li>
+            <li data-m="f1"><label><input type="checkbox" value="f1"><b>EASA Form 1<em>25 €</em></b><span>Production ou maintenance, en anglais et en français, pour les organismes aéronautiques.</span></label></li>
           </ul>
         </div>
         <div class="dom">
           <h3><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.6 14.1c3 .2 5.4 2.7 5.4 5.9"/></svg>Personnel et RH</h3>
           <ul>
-            <li data-m="planning"><b>Planning<em>25 €</em></b><span>Congés, RTT, arrêts, visites médicales et vos propres motifs, demandes à valider, solde de congés.</span></li>
-            <li data-m="competences"><b>Matrice de compétences<em>12 €</em></b><span>Le niveau de chacun sur chaque savoir-faire, et ce que sait faire une seule personne.</span></li>
-            <li data-m="formations"><b>Formations<em>25 €</em></b><span>Les formations suivies, leur validité et une alerte 60 jours avant l'expiration.</span></li>
+            <li data-m="planning"><label><input type="checkbox" value="planning"><b>Planning<em>25 €</em></b><span>Congés, RTT, arrêts, visites médicales et vos propres motifs, demandes à valider, solde de congés.</span></label></li>
+            <li data-m="competences"><label><input type="checkbox" value="competences"><b>Matrice de compétences<em>12 €</em></b><span>Le niveau de chacun sur chaque savoir-faire, et ce que sait faire une seule personne.</span></label></li>
+            <li data-m="formations"><label><input type="checkbox" value="formations"><b>Formations<em>25 €</em></b><span>Les formations suivies, leur validité et une alerte 60 jours avant l'expiration.</span></label></li>
           </ul>
         </div>
         <div class="dom">
           <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>Moyens de l'entreprise</h3>
           <ul>
-            <li data-m="outillage"><b>Outillage étalonné<em>39 €</em></b><span>Échéances et alertes, sorties par dossier, envois chez le prestataire, analyse d'impact.</span></li>
-            <li data-m="vehicules"><b>Parc automobile<em>19 €</em></b><span>Kilométrage, entretiens et factures, contrôles techniques, assurances, coût au km, frais de déplacement.</span></li>
+            <li data-m="outillage"><label><input type="checkbox" value="outillage"><b>Outillage étalonné<em>39 €</em></b><span>Échéances et alertes, sorties par dossier, envois chez le prestataire, analyse d'impact.</span></label></li>
+            <li data-m="vehicules"><label><input type="checkbox" value="vehicules"><b>Parc automobile<em>19 €</em></b><span>Kilométrage, entretiens et factures, contrôles techniques, assurances, coût au km, frais de déplacement.</span></label></li>
           </ul>
         </div>
+      </div>
+      <div class="sel" id="sel">
+        <div class="sel-text"><p id="sel-sum" aria-live="polite"><b>Votre sélection</b> : cochez les modules qui vous intéressent.</p><p class="sel-msg" id="sel-msg"></p></div>
+        <div class="sel-act" id="sel-act" hidden><button class="btn" type="button" id="sel-clear">Effacer</button><a class="btn btn-main" id="sel-mail" href="mailto:contact@azimys.com">Demander une offre</a></div>
       </div>
       <div class="more">
         <div><h3>Vos mots</h3><p>Vos types d'article, vos motifs d'absence, vos savoir-faire, vos formations, vos points d'inspection : Azimys parle comme votre entreprise.</p></div>
@@ -963,33 +988,64 @@
     function fallback() { var r = document.createRange(); r.selectNodeContents(addr); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); say('Adresse sélectionnée : copiez-la.'); }
     try { navigator.clipboard.writeText(EMAIL).then(function () { say('Adresse copiée.'); }, fallback); } catch (e) { fallback(); }
   });
-  /* Example combinations of modules: the others fade, with what they cost à la carte */
+  /* Build your own Azimys: tick modules (what one needs is ticked with it), the price is worked out, bundles applied when cheaper */
   var PRICE = { magasin: 49, outillage: 39, commandes: 39, bl: 12, achats: 25, atelier: 49, coc: 12, f1: 25, facturation: 25, planning: 25, competences: 12, formations: 25, suivi: 12, vehicules: 19, qualite: 39 };
+  var NEEDS = { commandes: 'magasin', achats: 'magasin', bl: 'commandes', atelier: 'commandes', coc: 'commandes', f1: 'commandes', facturation: 'commandes' };
+  var ALL = Object.keys(PRICE);
+  var PLANS = [{ label: 'Magasin et outillage', price: 79, on: ['magasin', 'outillage'] },
+    { label: 'Atelier de maintenance', price: 199, on: ['magasin', 'outillage', 'commandes', 'bl', 'atelier', 'f1', 'facturation'] },
+    { label: 'Tout Azimys', price: 299, on: ALL }];
   var PROFILES = {
-    tout: { label: 'Tout Azimys', on: Object.keys(PRICE) },
-    maintenance: { label: 'Atelier de maintenance', on: ['magasin', 'outillage', 'commandes', 'bl', 'atelier', 'f1', 'facturation'], plan: 199 },
-    fabrication: { label: 'Fabrication', on: ['magasin', 'achats', 'commandes', 'bl', 'atelier', 'coc', 'facturation', 'qualite', 'competences', 'formations'] },
-    negoce: { label: 'Négoce et distribution', on: ['magasin', 'achats', 'commandes', 'bl', 'facturation', 'vehicules'] },
-    equipe: { label: 'Équipe et moyens', on: ['planning', 'competences', 'formations', 'outillage', 'vehicules'] }
+    tout: ALL,
+    maintenance: ['magasin', 'outillage', 'commandes', 'bl', 'atelier', 'f1', 'facturation'],
+    fabrication: ['magasin', 'achats', 'commandes', 'bl', 'atelier', 'coc', 'facturation', 'qualite', 'competences', 'formations'],
+    negoce: ['magasin', 'achats', 'commandes', 'bl', 'facturation', 'vehicules'],
+    equipe: ['planning', 'competences', 'formations', 'outillage', 'vehicules']
   };
-  var doms = document.getElementById('doms'), note = document.getElementById('prof-note');
+  var doms = document.getElementById('doms');
+  var boxes = doms.querySelectorAll('input[type="checkbox"]');
   var chips = document.querySelectorAll('.profiles button');
-  function pick(k) {
-    var p = PROFILES[k];
-    for (var i = 0; i < chips.length; i++) chips[i].setAttribute('aria-pressed', String(chips[i].getAttribute('data-p') === k));
-    var items = doms.querySelectorAll('li[data-m]');
-    for (var j = 0; j < items.length; j++) items[j].classList.toggle('dim', !!p && p.on.indexOf(items[j].getAttribute('data-m')) < 0);
-    doms.classList.toggle('picked', !!p);
-    if (!p) { note.textContent = ''; return; }
-    var sum = 0; p.on.forEach(function (m) { sum += PRICE[m]; });
-    var n = p.on.length, all = Object.keys(PRICE).length;
-    note.innerHTML = '<b>' + p.label + '</b> : ' + (n === all ? 'les ' + all + ' modules, 299 € HT par mois au lieu de ' + sum + ' € à la carte.'
-      : n + ' modules sur ' + all + ', ' + (p.plan ? p.plan + ' € HT par mois avec la formule ' + p.label + ' (' + sum + ' € à la carte).'
-      : sum + ' € HT par mois à la carte' + (sum >= 250 ? ', ou 299 € pour les ' + all + ' modules.' : '.'))) + ' Un exemple : vous cochez ce que vous voulez.';
+  var NAME = {};
+  for (var i = 0; i < boxes.length; i++) NAME[boxes[i].value] = boxes[i].nextElementSibling.firstChild.textContent.trim();
+  function box(k) { for (var i = 0; i < boxes.length; i++) if (boxes[i].value === k) return boxes[i]; }
+  function chosen() { var r = []; for (var i = 0; i < boxes.length; i++) if (boxes[i].checked) r.push(boxes[i].value); return r; }
+  function eur(n) { return n + ' €'; }
+  function update(msg) {
+    var s = chosen(), sum = 0;
+    s.forEach(function (k) { sum += PRICE[k]; });
+    for (var i = 0; i < boxes.length; i++) boxes[i].closest('li').classList.toggle('on', boxes[i].checked);
+    for (var c = 0; c < chips.length; c++) chips[c].setAttribute('aria-pressed', String(PROFILES[chips[c].getAttribute('data-p')].slice().sort().join() === s.slice().sort().join()));
+    document.getElementById('sel-msg').textContent = msg || '';
+    document.getElementById('sel-act').hidden = !s.length;
+    var out = document.getElementById('sel-sum');
+    if (!s.length) { out.innerHTML = '<b>Votre sélection</b> : cochez les modules qui vous intéressent.'; return; }
+    var best = { price: sum, plan: null };
+    PLANS.forEach(function (p) {
+      var price = p.price, more = false;
+      s.forEach(function (k) { if (p.on.indexOf(k) < 0) price += PRICE[k]; });
+      p.on.forEach(function (k) { if (s.indexOf(k) < 0) more = true; });
+      if (price < best.price) best = { price: price, plan: p, more: more };
+    });
+    out.innerHTML = '<b>Votre sélection</b> : ' + s.length + ' module' + (s.length > 1 ? 's' : '') + ', <strong>' + eur(best.price) + ' HT par mois</strong>' +
+      (best.plan ? '<br>avec la formule ' + best.plan.label + (best.more ? ', qui en comprend davantage' : '') + ' (' + eur(sum) + ' à la carte)'
+        : best.price >= 250 ? '<br>Pour ' + eur(299 - best.price) + ' de plus, les 15 modules avec Tout Azimys.' : '');
+    var body = 'Bonjour,\n\nLes modules qui m\'intéressent : ' + s.map(function (k) { return NAME[k]; }).join(', ') + ' (' + eur(best.price) + ' HT par mois' +
+      (best.plan ? ', formule ' + best.plan.label : '') + ').\n\nNotre activité : \nTaille de l\'équipe : \nLogiciels actuels : \n';
+    document.getElementById('sel-mail').href = 'mailto:contact@azimys.com?subject=' + encodeURIComponent('Azimys : proposition') + '&body=' + encodeURIComponent(body);
   }
-  for (var c = 0; c < chips.length; c++) chips[c].addEventListener('click', function () {
-    var k = this.getAttribute('data-p'); pick(this.getAttribute('aria-pressed') === 'true' ? null : k);
+  doms.addEventListener('change', function (e) {
+    var b = e.target, added = [], removed = [];
+    if (b.checked) for (var k = NEEDS[b.value]; k; k = NEEDS[k]) { if (!box(k).checked) { box(k).checked = true; added.push(NAME[k]); } }
+    else (function drop(v) { ALL.forEach(function (k) { if (NEEDS[k] === v && box(k).checked) { box(k).checked = false; removed.push(NAME[k]); drop(k); } }); })(b.value);
+    update(added.length ? NAME[b.value] + ' demande ' + added.join(' et ') + (added.length > 1 ? ' : cochés aussi.' : ' : coché aussi.') : removed.length ? 'Décoché aussi, car il demande ' + NAME[b.value] + ' : ' + removed.join(', ') + '.' : '');
   });
+  for (var c = 0; c < chips.length; c++) chips[c].addEventListener('click', function () {
+    var on = this.getAttribute('aria-pressed') === 'true' ? [] : PROFILES[this.getAttribute('data-p')];
+    for (var i = 0; i < boxes.length; i++) boxes[i].checked = on.indexOf(boxes[i].value) >= 0;
+    update('');
+  });
+  document.getElementById('sel-clear').addEventListener('click', function () { for (var i = 0; i < boxes.length; i++) boxes[i].checked = false; update(''); });
+  update('');
   /* Real QR code to the demo, drawn once the small generator has loaded */
   var urls = ['js/qrcode.js'];
   function draw() {
