@@ -904,10 +904,10 @@
       <div class="plans-head"><h3>Ou une formule, pour payer moins</h3><p>Plusieurs modules ensemble, moins chers qu'à la carte. Les prix suivent la taille de votre équipe.</p></div>
       <div class="plans">
         <div class="plan" data-plan="commerce">
-          <h3>Commerce et négoce</h3>
+          <h3>Gestion commerciale</h3>
           <p class="price"><span data-pp>39 €</span> <small>HT par mois</small></p>
           <p class="save" data-ps>57 € à la carte : 18 € d'économie par mois</p>
-          <p>Pour un commerce, un négoce ou un artisan qui vend et achète.</p>
+          <p>Pour vendre, acheter et facturer, avec un stock toujours à jour.</p>
           <ul><li>Stock par lot, péremptions, emplacements, inventaire</li><li>Devis, commandes clients et bons de livraison</li><li>Commandes fournisseurs et factures, relances</li></ul>
           <a class="btn" href="#contact">Nous contacter</a>
         </div>
@@ -1024,7 +1024,7 @@
   var T = 'tpe', PRICE = PRICES[T];
   var NEEDS = { commandes: 'magasin', achats: 'magasin', bl: 'commandes', atelier: 'commandes', coc: 'commandes', f1: 'commandes', facturation: 'commandes' };
   var ALL = Object.keys(PRICE);
-  var PLANS = [{ k: 'commerce', label: 'Commerce et négoce', price: { tpe: 39, pme: 79, ent: 109 }, on: ['magasin', 'commandes', 'bl', 'achats', 'facturation'] },
+  var PLANS = [{ k: 'commerce', label: 'Gestion commerciale', price: { tpe: 39, pme: 79, ent: 109 }, on: ['magasin', 'commandes', 'bl', 'achats', 'facturation'] },
     { k: 'equipe', label: 'Équipe', price: { tpe: 19, pme: 39, ent: 49 }, on: ['planning', 'competences', 'formations'] },
     { k: 'magout', label: 'Magasin et outillage', price: { tpe: 29, pme: 55, ent: 79 }, on: ['magasin', 'outillage'] },
     { k: 'maint', label: 'Atelier de maintenance', price: { tpe: 79, pme: 149, ent: 199 }, on: ['magasin', 'outillage', 'commandes', 'bl', 'atelier', 'f1', 'facturation'] },
