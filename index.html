@@ -567,10 +567,11 @@
       <div class="profiles" role="group" aria-label="Exemples de combinaisons">
         <span>Ou partez d'un exemple :</span>
         <button type="button" data-p="tout" aria-pressed="false">Tout Azimys</button>
-        <button type="button" data-p="maintenance" aria-pressed="false">Atelier de maintenance</button>
+        <button type="button" data-p="maint" aria-pressed="false">Atelier de maintenance</button>
+        <button type="button" data-p="commerce" aria-pressed="false">Gestion commerciale</button>
+        <button type="button" data-p="magout" aria-pressed="false">Magasin et outillage</button>
+        <button type="button" data-p="equipe" aria-pressed="false">Équipe</button>
         <button type="button" data-p="fabrication" aria-pressed="false">Fabrication</button>
-        <button type="button" data-p="negoce" aria-pressed="false">Négoce et distribution</button>
-        <button type="button" data-p="equipe" aria-pressed="false">Équipe et moyens</button>
       </div>
       <div class="doms" id="doms">
         <div class="dom">
@@ -1045,13 +1046,9 @@
     });
   }
   for (var z = 0; z < sizes.length; z++) sizes[z].addEventListener('click', function () { setSize(this.getAttribute('data-t')); update(''); });
-  var PROFILES = {
-    tout: ALL,
-    maintenance: ['magasin', 'outillage', 'commandes', 'bl', 'atelier', 'f1', 'facturation'],
-    fabrication: ['magasin', 'achats', 'commandes', 'bl', 'atelier', 'coc', 'facturation', 'qualite', 'competences', 'formations'],
-    negoce: ['magasin', 'achats', 'commandes', 'bl', 'facturation', 'vehicules'],
-    equipe: ['planning', 'competences', 'formations', 'outillage', 'vehicules']
-  };
+  /* Example buttons: the formulas (same names, same modules), plus Fabrication. */
+  var PROFILES = { fabrication: ['magasin', 'achats', 'commandes', 'bl', 'atelier', 'coc', 'facturation', 'qualite', 'competences', 'formations'] };
+  PLANS.forEach(function (p) { PROFILES[p.k] = p.on; });
   var doms = document.getElementById('doms');
   var boxes = doms.querySelectorAll('input[type="checkbox"]');
   var chips = document.querySelectorAll('.profiles button');
