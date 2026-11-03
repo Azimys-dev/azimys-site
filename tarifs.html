@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Tarifs d'Azimys, l'ERP modulable : chaque module a son prix selon la taille de votre équipe, dès 5 € HT par mois. Simulateur, formules et offre pilote.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect x='1' y='1' width='32' height='32' rx='7' fill='%23145a6e'/%3E%3Ccircle cx='17' cy='17' r='10' fill='none' stroke='%23fff' stroke-width='1.6' opacity='.45'/%3E%3Cg transform='rotate(35 17 17)'%3E%3Cpath d='M17 6l4 11h-8z' fill='%23fff'/%3E%3Cpath d='M17 28l-4-11h8z' fill='%23f3f5f4' opacity='.8'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="canonical" href="https://azimys.com/tarifs.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Azimys">
+<meta property="og:title" content="Tarifs d'Azimys : un prix par module, selon votre équipe">
+<meta property="og:description" content="Tarifs d'Azimys, l'ERP modulable : chaque module a son prix selon la taille de votre équipe, dès 5 € HT par mois. Simulateur, formules et offre pilote.">
+<meta property="og:url" content="https://azimys.com/tarifs.html">
+<meta property="og:image" content="https://azimys.com/assets/azimys-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="fr_FR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Azimys", "item": "https://azimys.com/"}, {"@type": "ListItem", "position": 2, "name": "Tarifs", "item": "https://azimys.com/tarifs.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Le prix dépend-il du nombre d'utilisateurs ?", "acceptedAnswer": {"@type": "Answer", "text": "Il dépend de la taille de l'équipe, pas de chaque personne : trois tranches, de 1 à 3 utilisateurs, de 4 à 15, et 16 et plus. Dans votre tranche, chaque personne a son propre accès sans supplément."}}, {"@type": "Question", "name": "Y a-t-il un engagement ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'abonnement est mensuel : vous ajoutez ou coupez un module d'un mois sur l'autre, sans perdre vos données. Deux mois sont offerts en paiement annuel."}}, {"@type": "Question", "name": "Que comprend l'offre entreprise pilote ?", "acceptedAnswer": {"@type": "Answer", "text": "Trois mois offerts avec tous les modules, la reprise de vos fichiers faite avec vous et un échange régulier sur vos besoins, pour les premières entreprises qui construisent Azimys avec nous."}}, {"@type": "Question", "name": "Faut-il payer une installation ou une licence ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Azimys est un logiciel en ligne : ni serveur, ni licence, ni installation. Les mises à jour sont comprises dans l'abonnement."}}, {"@type": "Question", "name": "Et pour un besoin particulier ?", "acceptedAnswer": {"@type": "Answer", "text": "Plusieurs sites, un document imposé par un client, une liaison avec votre logiciel comptable ou une fonction propre à votre métier : nous chiffrons le développement avec vous, sur devis."}}]}</script>
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Tarifs d'Azimys : un prix par module, selon votre équipe · Azimys</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  /* Layout: single-column sales page on a cool workshop paper. One bold element: the fanned status labels in the hero.
+     Deliberately single light theme, every color set explicitly. */
+  :root {
+    --paper: #f3f5f4;
+    --surface: #ffffff;
+    --ink: #142028;
+    --muted: #55626b;
+    --line: #d5dcdf;
+    --petrol: #145a6e;
+    --petrol-deep: #0d3f4e;
+    --petrol-soft: #dcebef;
+    --ok: #2a7a46; --ok-soft: #e0f0e5;
+    --warn: #9a5b0b; --warn-soft: #fbedd6;
+    --bad: #b42318; --bad-soft: #fbe3df;
+    --on-dark: #e8eff1;
+    --on-dark-muted: #a9bcc3;
+    --font-ui: "Barlow", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-ui); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.05; letter-spacing: .005em; text-wrap: balance; color: var(--ink); }
+  a { color: var(--petrol); }
+  :focus-visible { outline: 3px solid var(--petrol); outline-offset: 3px; }
+  .wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: 0 1.3rem; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 1rem/1 var(--font-ui); text-decoration: none; cursor: pointer; white-space: nowrap; }
+  .btn:hover { border-color: var(--ink); }
+  .btn-main { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .btn-main:hover { background: var(--petrol-deep); border-color: var(--petrol-deep); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* Header */
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(243, 245, 244, .96); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 66px; }
+  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
+  .logo svg { width: 34px; height: 24px; }
+  .logo b { font-family: var(--font-display); font-size: 1.75rem; line-height: 1; letter-spacing: .01em; }
+  .nav { display: flex; align-items: center; gap: 1.6rem; }
+  .nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .98rem; }
+  .nav a:not(.btn):hover { color: var(--petrol); }
+  .nav .btn { min-height: 42px; }
+
+  /* Product name, same pattern as in the apps: brand in ink, product word in petrol */
+  .wrap .eyebrow { display: flex; align-items: center; gap: .55rem; font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; line-height: 1; margin-bottom: 1rem; color: var(--ink); }
+  .wrap .eyebrow svg { width: 30px; height: 21px; flex: none; }
+  .wrap .eyebrow span { color: var(--petrol); font-weight: 600; }
+
+  /* Hero */
+  .hero { padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.5rem); max-width: 17ch; margin-bottom: .7rem; }
+  .hero .kicker { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: clamp(1.25rem, 2.4vw, 1.7rem); color: var(--petrol); margin: 0 0 1.3rem; letter-spacing: .01em; }
+  .hero .lead { font-size: clamp(1.05rem, 1.6vw, 1.22rem); color: var(--muted); max-width: 54ch; margin-bottom: 2rem; }
+  .hero .lead b { color: var(--ink); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .proof { margin-top: 1.5rem; font-size: .95rem; color: var(--muted); }
+  .proof a { font-weight: 600; }
+
+  .stack { position: relative; height: 540px; }
+  .tag { position: absolute; width: min(330px, 86%); background: var(--surface); border: 2px solid var(--tone); border-radius: 10px; overflow: hidden; box-shadow: 0 30px 50px -30px rgba(20, 32, 40, .55); }
+  .tag-band { position: relative; background: var(--tone); color: #fff; padding: .8rem 1rem .85rem 2.9rem; }
+  .tag-band::before { content: ""; position: absolute; left: 1rem; top: 50%; width: 15px; height: 15px; margin-top: -7.5px; border-radius: 50%; background: var(--surface); }
+  .tag-band b { display: block; font-family: var(--font-display); font-size: 1.65rem; line-height: 1.05; }
+  .tag-band span { display: block; font-size: .9rem; font-weight: 600; opacity: .92; }
+  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad) 0 16px, #8f1c13 16px 26px); }
+  .tag dl { display: grid; grid-template-columns: auto 1fr; padding: .3rem 1rem .55rem; font-size: .92rem; }
+  .tag dt, .tag dd { padding: .4rem 0; border-bottom: 1px dashed var(--line); }
+  .tag dt { color: var(--muted); padding-right: 1rem; }
+  .tag dd { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tag dt:nth-last-child(2), .tag dd:last-child { border-bottom: 0; }
+  .t-ok { --tone: var(--ok); } .t-warn { --tone: var(--warn); } .t-bad { --tone: var(--bad); }
+  .tag.a { left: 0; top: 40px; transform: rotate(-5deg); z-index: 1; }
+  .tag.b { right: 0; top: 0; transform: rotate(4deg); z-index: 2; }
+  .tag.c { left: 12%; top: 190px; transform: rotate(-1.5deg); z-index: 3; }
+  .tag { animation: drop .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .tag.b { animation-delay: .12s; } .tag.c { animation-delay: .24s; }
+  @keyframes drop { from { opacity: 0; translate: 0 -18px; } to { opacity: 1; translate: 0 0; } }
+  .qr-card { position: absolute; right: 0; bottom: 0; z-index: 4; display: flex; gap: .8rem; align-items: center; width: 280px; padding: .75rem; background: var(--ink); color: var(--on-dark); border-radius: 10px; font-size: .88rem; line-height: 1.35; box-shadow: 0 30px 50px -30px rgba(20, 32, 40, .7); }
+  .qr-card .qr { width: 86px; height: 86px; flex: none; background: #fff; border-radius: 4px; padding: 3px; }
+  .qr-card .qr svg { width: 100%; height: 100%; display: block; }
+  .qr-card b { color: #fff; }
+
+  /* Modules: the base and the modules to add, one card each */
+  .mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .mod { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem 1.25rem 1.3rem; }
+  .mod h3 { font-size: 1.4rem; margin-bottom: .35rem; display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+  .mod h3 small { font-family: var(--font-ui); font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .mod p { color: var(--muted); font-size: .97rem; }
+  .mod.base { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .mod.base h3, .mod.base h3 small { color: #fff; }
+  .mod.base p { color: rgba(255, 255, 255, .86); }
+
+  /* QR codes: a phone that has just scanned a label */
+  .scans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
+  .scan { margin: 0; display: flex; flex-direction: column; }
+  .scan .phone { flex: 1; display: flex; flex-direction: column; width: 100%; }
+  .scan .screen { flex: 1; }
+  .scan figcaption { margin-top: 1rem; text-align: center; }
+  .scan figcaption b { display: block; font-family: var(--font-display); font-size: 1.45rem; color: #fff; }
+  .scan figcaption span { color: var(--on-dark-muted); font-size: .95rem; }
+  .phone { max-width: 290px; margin-inline: auto; background: #0b1418; border: 1px solid #2c3f4b; border-radius: 34px; padding: 12px; box-shadow: 0 34px 60px -34px rgba(0, 0, 0, .8); }
+  .screen { background: var(--paper); color: var(--ink); border-radius: 24px; padding: 14px 12px 16px; min-height: 300px; }
+  .screen .bar { display: flex; align-items: center; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 12px; }
+  .screen .bar b { display: flex; align-items: center; gap: .35rem; font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); }
+  .screen .bar svg { width: 22px; height: 16px; }
+  .screen .tag { position: static; width: 100%; animation: none; box-shadow: none; }
+  .screen .tag-band b { font-size: 1.4rem; }
+  .screen .tag dl { font-size: .86rem; }
+  .t-acc { --tone: var(--petrol); } .t-off { --tone: #69737a; }
+  .legend-head { margin-top: clamp(3rem, 6vw, 4.5rem); max-width: 62ch; }
+  .legend-head h3 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: .5rem; }
+  .legend-head p { color: var(--on-dark-muted); }
+  .statuses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; padding: 0; list-style: none; }
+  .statuses .tag { position: static; width: auto; animation: none; box-shadow: none; border-color: var(--tone); }
+  .statuses .tag-band { height: 100%; }
+  .scans-note { margin-top: clamp(2rem, 4vw, 2.75rem); color: var(--on-dark-muted); text-align: center; }
+
+  /* Sections */
+  section.band { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+  .band.white { background: var(--surface); border-block: 1px solid var(--line); }
+  .band.dark { background: var(--ink); color: var(--on-dark); }
+  .band.dark h2, .band.dark h3 { color: #fff; }
+  .head { max-width: 62ch; margin-bottom: clamp(2rem, 5vw, 3.25rem); }
+  .head h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: .9rem; }
+  .head p { color: var(--muted); font-size: 1.1rem; }
+  .head .cta { margin-top: 1.4rem; }
+  .band.dark .head p { color: var(--on-dark-muted); }
+
+  /* Problem */
+  .pains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+  .pain { border-top: 3px solid var(--bad); padding-top: 1.1rem; }
+  .pain h3 { font-size: 1.45rem; margin-bottom: .5rem; }
+  .pain p { color: var(--muted); }
+  .sheet { margin-top: 2.5rem; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  .sheet table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .9rem; font-variant-numeric: tabular-nums; }
+  .sheet th, .sheet td { border: 1px solid #e3e8ea; padding: .4rem .6rem; text-align: left; white-space: nowrap; }
+  .sheet th { background: #eef2f3; color: var(--muted); font-weight: 600; }
+  .sheet td:first-child, .sheet th:first-child { background: #eef2f3; color: var(--muted); width: 2.5rem; text-align: center; }
+  .sheet .late { background: var(--bad-soft); color: var(--bad); font-weight: 700; }
+  .sheet-cap { font-size: .88rem; color: var(--muted); padding: .55rem .75rem; border-top: 1px solid var(--line); }
+
+  /* Features */
+  .feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+  .feature:first-of-type { border-top: 0; padding-top: 0; }
+  .feature:nth-of-type(even) .f-text { order: 2; }
+  .f-text h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: .75rem; }
+  .f-text p { color: var(--muted); margin-bottom: .75rem; max-width: 52ch; }
+  .f-text ul { display: grid; gap: .35rem; }
+  .f-text li { padding-left: 1.4rem; position: relative; }
+  .f-text li::before { content: ""; position: absolute; left: 0; top: .62em; width: .7rem; height: 2px; background: var(--petrol); }
+  .ui { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; display: grid; gap: .6rem; font-size: .93rem; }
+  .ui-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem .75rem; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .65rem .8rem; }
+  .ui-row.off { opacity: .8; }
+  .ui-row .sw { position: relative; width: 2.4rem; height: 1.4rem; border-radius: 999px; background: var(--line); }
+  .ui-row .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: calc(1.4rem - 6px); height: calc(1.4rem - 6px); border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
+  .ui-row .sw.on { background: var(--petrol); }
+  .ui-row .sw.on::after { transform: translateX(1rem); }
+  .ui-presets { display: flex; flex-wrap: wrap; gap: .4rem; font-size: .84rem; font-weight: 600; }
+  .ui-presets span { padding: .25rem .65rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--muted); }
+  .ui-presets span.on { border-color: var(--petrol); color: var(--petrol); background: var(--petrol-soft); }
+  .ui-row .why { grid-column: 1 / -1; color: var(--bad); font-weight: 600; font-size: .86rem; }
+  .ui-row .sub { grid-column: 1 / -1; color: var(--muted); font-size: .86rem; }
+  .r { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; margin-right: .4rem; font-variant-numeric: tabular-nums; }
+  .pill { display: inline-flex; align-items: center; gap: .4rem; padding: .15rem .6rem; border-radius: 999px; background: var(--tone-soft); color: var(--tone); font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .p-ok { --tone: var(--ok); --tone-soft: var(--ok-soft); } .p-warn { --tone: var(--warn); --tone-soft: var(--warn-soft); } .p-bad { --tone: var(--bad); --tone-soft: var(--bad-soft); } .p-acc { --tone: var(--petrol); --tone-soft: var(--petrol-soft); }
+  .note-bad { background: var(--bad-soft); border-radius: 8px; padding: .7rem .85rem; }
+  .note-bad b { color: var(--bad); }
+  .month { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+  .month:last-child { border-bottom: 0; }
+  .month b { font-family: var(--font-display); font-size: 1.12rem; }
+  .month span { color: var(--muted); font-size: .88rem; grid-column: 1; }
+  .month em { font-style: normal; font-weight: 700; grid-column: 2; grid-row: 1 / span 2; align-self: center; font-variant-numeric: tabular-nums; }
+  .ui-total { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--ink); }
+  .ui-total strong { font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+  .more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem 2rem; margin-top: clamp(2rem, 4vw, 3rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+  .more h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+  .more p { color: var(--muted); font-size: .97rem; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; counter-reset: s; }
+  .step { counter-increment: s; }
+  .step::before { content: counter(s); display: block; font-family: var(--font-display); font-weight: 700; font-size: 3.4rem; line-height: 1; color: var(--petrol); margin-bottom: .6rem; }
+  .step h3 { font-size: 1.45rem; margin-bottom: .45rem; }
+  .step p { color: var(--muted); }
+
+  /* Compliance */
+  .comply { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .quote { border-left: 3px solid var(--petrol-soft); padding-left: 1.25rem; font-size: 1.15rem; color: var(--on-dark); }
+  .rules { width: 100%; border-collapse: collapse; margin-top: 1.75rem; font-size: .97rem; }
+  .rules th, .rules td { text-align: left; padding: .6rem .75rem .6rem 0; border-bottom: 1px solid #2c3f4b; vertical-align: top; }
+  .rules th { color: var(--on-dark-muted); font-weight: 600; font-size: .88rem; }
+  .rules td:first-child { color: #fff; font-weight: 600; width: 38%; }
+  .rules td { color: var(--on-dark); }
+  .checks { display: grid; gap: .7rem; }
+  .checks li { padding-left: 1.8rem; position: relative; color: var(--on-dark); }
+  .checks li::before { content: ""; position: absolute; left: 0; top: .35em; width: 1rem; height: .55rem; border-left: 2.5px solid #7fc9da; border-bottom: 2.5px solid #7fc9da; transform: rotate(-45deg); }
+  .checks .sep { padding: .6rem 0 0; color: var(--on-dark-muted); font-size: .88rem; font-weight: 600; }
+  .checks .sep::before { display: none; }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
+  .plan { grid-column: span 2; padding: 1.75rem 1.5rem; display: grid; gap: .9rem; align-content: start; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  .plan.wide { grid-column: span 3; }
+  .plan:first-child { border-left: 0; }
+  .plan.hl { background: #f7fbfc; box-shadow: inset 0 4px 0 var(--petrol); }
+  .plan h3 { font-size: 1.6rem; }
+  .plan .price { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .plan .price small { font-family: var(--font-ui); font-size: .95rem; font-weight: 500; color: var(--muted); }
+  .plan p { color: var(--muted); font-size: .97rem; }
+  .plan ul { display: grid; gap: .4rem; font-size: .97rem; }
+  .plan li { padding-left: 1.4rem; position: relative; }
+  .plan li::before { content: ""; position: absolute; left: 0; top: .62em; width: .7rem; height: 2px; background: var(--petrol); }
+  .plan .btn { justify-self: start; margin-top: .25rem; }
+  .addon { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2rem; align-items: center; margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .addon .eyebrow.eyebrow { margin-bottom: .45rem; font-size: 1.45rem; }
+  .addon p { color: var(--muted); font-size: .97rem; max-width: 60ch; }
+  .addon .addon-price { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--ink); }
+  .addon .addon-price small { display: block; font-family: var(--font-ui); font-size: .9rem; font-weight: 500; color: var(--muted); }
+  .fine { margin-top: 1rem; font-size: .9rem; color: var(--muted); }
+  .pilot { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; margin-bottom: 1rem; padding: 1.2rem 1.5rem; background: #f7fbfc; border: 1px solid var(--line); border-radius: 12px; box-shadow: inset 4px 0 0 var(--petrol); }
+  .pilot p { color: var(--muted); max-width: 70ch; min-width: 0; }
+  .pilot b { color: var(--ink); }
+  .plan .badge { justify-self: start; margin-bottom: -.35rem; padding: .2rem .6rem; border-radius: 999px; background: var(--petrol); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .02em; }
+  .plan .save { margin-top: -.45rem; color: var(--petrol); font-size: .88rem; font-weight: 600; }
+  .carte { margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: grid; gap: 1rem; }
+  .carte-head { display: flex; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; flex-wrap: wrap; }
+  .carte-head h3 { font-size: 1.6rem; }
+  .carte-head p { color: var(--muted); font-size: .95rem; }
+  .carte-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
+  .carte-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--line); }
+  .carte-list li span { min-width: 0; }
+  .carte-list b { display: block; font-weight: 600; }
+  .carte-list small { display: block; color: var(--muted); font-size: .86rem; line-height: 1.35; }
+  .carte-list em { font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .carte-list li.base { grid-column: 1 / -1; background: #f7fbfc; margin-inline: -.75rem; padding-inline: .75rem; border-radius: 8px; border-top: 0; }
+
+  /* FAQ */
+  .faq { max-width: 820px; display: grid; }
+  .faq details { border-top: 1px solid var(--line); }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; padding: 1.05rem 2rem 1.05rem 0; position: relative; font-weight: 600; font-size: 1.08rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: ""; position: absolute; right: .3rem; top: 1.4rem; width: .6rem; height: .6rem; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(-135deg); top: 1.7rem; }
+  .faq details p { padding-bottom: 1.1rem; color: var(--muted); max-width: 68ch; }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .contact h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: .9rem; }
+  .contact p { color: var(--on-dark-muted); font-size: 1.1rem; max-width: 52ch; }
+  .card { background: #1d2c36; border: 1px solid #2c3f4b; border-radius: 12px; padding: 1.5rem; display: grid; gap: 1rem; }
+  .card label { font-size: .9rem; color: var(--on-dark-muted); }
+  .mail { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+  .mail code { font-family: var(--font-ui); font-size: 1.15rem; font-weight: 600; color: #fff; user-select: all; overflow-wrap: anywhere; }
+  .mail .todo { color: #f5c26b; font-style: italic; font-weight: 500; }
+  .card .btn { background: transparent; color: #fff; border-color: #4a6170; }
+  .card .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+
+  footer { padding-block: 2rem; font-size: .9rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 2rem; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+
+  .toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); transform: translate(-50%, 16px); opacity: 0; pointer-events: none; z-index: 50; background: var(--ink); color: #fff; padding: .7rem 1rem; border-radius: 8px; font-weight: 600; transition: opacity .2s, transform .2s; max-width: calc(100% - 32px); }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 980px) {
+    .nav a:not(.btn) { display: none; }
+    .hero .wrap, .feature, .comply, .contact { grid-template-columns: 1fr; }
+    .feature:nth-of-type(even) .f-text { order: 0; }
+    .stack { height: 400px; max-width: 520px; width: 100%; margin-inline: auto; }
+    .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .scans { grid-template-columns: 1fr; gap: 2.5rem; }
+    .statuses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .plans { grid-template-columns: 1fr; }
+    .plan, .plan.wide { grid-column: auto; }
+    .plan:first-child { border-top: 0; }
+    .addon { grid-template-columns: 1fr; }
+    .addon .btn { justify-self: start; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .pains, .steps, .more, .mods, .statuses, .carte-list { grid-template-columns: 1fr; }
+    .stack { height: 380px; }
+    .tag { width: 82%; }
+    .tag.c { left: 6%; top: 175px; }
+    .qr-card { display: none; }
+    .cta .btn { flex: 1 1 auto; }
+    .rules { font-size: .9rem; }
+    .rules th, .rules td { padding-right: .5rem; }
+  }
+  /* Key facts under the hero */
+  .facts-band { border-top: 1px solid var(--line); background: var(--surface); }
+  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem 2rem; padding-block: 1.5rem; }
+  .facts b { display: block; font-family: var(--font-display); font-size: 1.55rem; line-height: 1.1; color: var(--petrol); }
+  .facts span { display: block; color: var(--muted); font-size: .95rem; line-height: 1.4; margin-top: .2rem; }
+
+  /* The home screen of the app, as a picture */
+  .today { margin-top: clamp(2rem, 5vw, 3rem); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: clamp(1rem, 2.5vw, 1.5rem); }
+  .today-top { display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .88rem; margin-bottom: .6rem; }
+  .today-top span:first-child { display: flex; align-items: center; gap: .4rem; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+  .today-top svg { width: 24px; height: 17px; }
+  .today-sum { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.3rem, 2.5vw, 1.8rem); line-height: 1.25; margin-bottom: 1.1rem; max-width: 52ch; }
+  .today-sum u { color: var(--petrol); text-underline-offset: 4px; text-decoration-thickness: 2px; }
+  .today-sum u.w { color: var(--warn); } .today-sum u.x { color: var(--bad); }
+  .today-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
+  .tp { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .8rem .9rem .5rem; }
+  .tp h3 { font-size: 1.2rem; margin-bottom: .35rem; }
+  .tp p { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; padding: .35rem 0; border-top: 1px dashed var(--line); color: var(--muted); font-size: .9rem; line-height: 1.3; }
+  .tp p b { color: var(--petrol); font-size: 1.05rem; font-variant-numeric: tabular-nums; text-decoration: underline; text-underline-offset: 3px; }
+  .tp p b.w { color: var(--warn); } .tp p b.x { color: var(--bad); } .tp p b.k { color: var(--ok); }
+  .today-cap { margin-top: .8rem; font-size: .9rem; color: var(--muted); }
+
+  /* Modules by domain, with example combinations */
+  .size { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+  .size > span { font-weight: 600; color: var(--muted); margin-right: .25rem; }
+  .size button { min-height: 42px; padding: 0 1rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 .95rem/1 var(--font-ui); cursor: pointer; }
+  .size button:hover { border-color: var(--ink); }
+  .size button[aria-checked="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+  #tarifs .size { margin-bottom: 1.5rem; }
+  .profiles { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1.25rem; }
+  .profiles > span { font-weight: 600; color: var(--muted); margin-right: .25rem; }
+  .profiles button { min-height: 42px; padding: 0 1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 .95rem/1 var(--font-ui); cursor: pointer; }
+  .profiles button:hover { border-color: var(--ink); }
+  .profiles button[aria-pressed="true"] { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .doms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .dom { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.15rem 1.25rem 1.2rem; }
+  .dom h3 { display: flex; align-items: center; gap: .6rem; font-size: 1.45rem; margin-bottom: .55rem; }
+  .dom h3 svg { width: 28px; height: 28px; flex: none; fill: none; stroke: var(--petrol); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .dom ul { display: grid; gap: .25rem; }
+  .dom li { border-top: 1px solid var(--line); padding-top: .25rem; }
+  .dom label { position: relative; display: block; margin: 0 -.6rem; padding: .5rem .6rem .55rem; border-radius: 8px; cursor: pointer; transition: background .15s; }
+  .dom label:hover { background: var(--paper); }
+  .dom li.on label { background: var(--petrol-soft); }
+  .dom input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+  .dom label b { display: flex; align-items: center; gap: .55rem; font-weight: 600; }
+  .dom label b::before { content: ""; flex: none; width: 20px; height: 20px; border: 2px solid #9aa7ae; border-radius: 5px; background: #fff center / 13px no-repeat; }
+  .dom input:checked + b { color: var(--petrol); }
+  .dom input:checked + b::before { background-color: var(--petrol); border-color: var(--petrol); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.3l2.6 2.5L10 3.3' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+  .dom input:focus-visible + b::before { outline: 3px solid var(--petrol); outline-offset: 2px; }
+  .dom label b em { margin-left: auto; padding-left: .75rem; font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--ink); white-space: nowrap; }
+  .dom label span { display: block; padding-left: calc(20px + .55rem); color: var(--muted); font-size: .93rem; line-height: 1.45; }
+  .sel { position: sticky; bottom: 12px; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; flex-wrap: wrap; margin-top: 1rem; padding: .9rem 1.2rem; background: var(--ink); color: var(--on-dark); border-radius: 12px; box-shadow: 0 18px 40px -20px rgba(20, 32, 40, .6); }
+  .sel-text { min-width: 0; flex: 1 1 22rem; }
+  .sel-text p { font-size: 1.02rem; }
+  .sel-text b { color: #fff; }
+  .sel-text strong { font-family: var(--font-display); font-size: 1.5rem; color: #fff; white-space: nowrap; }
+  .sel-msg { margin-top: .15rem; color: var(--on-dark-muted); font-size: .9rem !important; }
+  .sel-msg:empty { display: none; }
+  .sel-act { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .sel-act[hidden] { display: none; }
+  .sel .btn { min-height: 44px; background: transparent; color: #fff; border-color: #4a6170; }
+  .sel .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+
+  .plans-head { display: flex; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; flex-wrap: wrap; margin: 1.75rem 0 .9rem; }
+  .plans-head h3 { font-size: 1.6rem; }
+  .plans-head p { color: var(--muted); font-size: .95rem; }
+
+  /* QR section: what can carry a label */
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-top: clamp(2rem, 4vw, 2.75rem); }
+  .chips li { padding: .35rem .85rem; border: 1px solid #2c3f4b; border-radius: 999px; color: var(--on-dark); font-size: .93rem; font-weight: 600; }
+
+  /* Personnel: a week of the planning */
+  .pg { display: grid; grid-template-columns: 2.6rem repeat(5, minmax(0, 1fr)); gap: 4px; font-size: .8rem; font-weight: 700; text-align: center; }
+  .pg span { min-height: 2rem; display: grid; place-items: center; border-radius: 5px; }
+  .pg .h { color: var(--muted); font-weight: 600; min-height: 1.4rem; }
+  .pg .n { font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); justify-content: start; }
+  .pg .c { background: var(--surface); border: 1px solid var(--line); }
+  .pg .cp { background: var(--petrol-soft); border-color: transparent; color: var(--petrol); }
+  .pg .vm { background: #ece9f8; border-color: transparent; color: #4454a8; }
+  .pg .fo { background: var(--ok-soft); border-color: transparent; color: var(--ok); }
+  .pg .ar { background: var(--bad-soft); border-color: transparent; color: var(--bad); }
+  .pg .ask { background: repeating-linear-gradient(135deg, var(--warn-soft) 0 6px, #fff 6px 10px); border: 1px dashed var(--warn); color: var(--warn); }
+
+  /* Quality: SQDP rings */
+  .rings { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; padding-top: .25rem; }
+  .rings div { display: grid; justify-items: center; text-align: center; gap: .1rem; }
+  .rings svg { width: 100%; max-width: 116px; height: auto; }
+  .rings b { font-family: var(--font-display); font-size: 1.05rem; }
+  .rings span { color: var(--muted); font-size: .8rem; }
+
+  /* Tools, vehicles, equipment */
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .tri { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.3rem 1.3rem 1.4rem; display: grid; gap: .85rem; align-content: start; }
+  .tri h3 { font-size: 1.55rem; }
+  .tri p { color: var(--muted); font-size: .97rem; }
+  .tri .ui { font-size: .9rem; padding: .7rem; }
+  .tri > a { font-weight: 600; }
+
+  @media (max-width: 980px) {
+    .facts, .today-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .doms, .trio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .facts { gap: 1rem 1.25rem; }
+    .facts b { font-size: 1.3rem; }
+    .today-grid, .doms, .trio { grid-template-columns: 1fr; }
+    .profiles button { flex: 1 1 auto; }
+    .sel { bottom: 8px; padding: .65rem .85rem; gap: .5rem; }
+    .sel-text p { font-size: .92rem; line-height: 1.35; }
+    .sel-text strong { font-size: 1.25rem; }
+    .sel-msg { font-size: .82rem !important; }
+    .sel-act { flex: 1 1 100%; flex-wrap: nowrap; }
+    .sel-act .btn { flex: 1 1 0; min-height: 40px; padding: 0 .5rem; font-size: .92rem; }
+    .sel-act .btn-main { flex-grow: 1.6; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<style>
+  .crumbs { font-size: .92rem; color: var(--muted); margin: 0 0 1.1rem; }
+  .crumbs a { color: var(--petrol); text-decoration: none; font-weight: 600; }
+  .crumbs a:hover { text-decoration: underline; }
+  .hero.landing h1 { font-size: clamp(2.2rem, 4.8vw, 3.7rem); max-width: 20ch; }
+  .hero.landing .ui { align-self: center; }
+  .hero.guide .wrap { display: block; }
+  .hero.guide h1 { font-size: clamp(2rem, 4.2vw, 3.2rem); max-width: 24ch; }
+  .hero.guide .lead { max-width: 68ch; }
+  .related { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .related a { display: block; padding: 1.2rem 1.3rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
+  .related a:hover { border-color: var(--petrol); }
+  .related h3 { font-size: 1.35rem; margin-bottom: .35rem; color: var(--petrol); }
+  .related p { color: var(--muted); font-size: .96rem; }
+  .nav a[aria-current] { color: var(--petrol); font-weight: 700; }
+  .landing-cta .cta { margin-top: 1.5rem; }
+  .landing-cta .btn:not(.btn-main) { background: transparent; color: #fff; border-color: #4a6170; }
+  .landing-cta .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+  .prose { max-width: 72ch; }
+  .prose h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 2.4rem 0 .8rem; }
+  .prose h2:first-child { margin-top: 0; }
+  .prose h3 { font-size: 1.3rem; margin: 1.6rem 0 .5rem; }
+  .prose p, .prose li { color: var(--ink); font-size: 1.06rem; line-height: 1.65; }
+  .prose p { margin: 0 0 1rem; }
+  .prose ul, .prose ol { margin: 0 0 1.2rem; padding-left: 1.3rem; }
+  .prose ul { list-style: disc; } .prose ol { list-style: decimal; }
+  .prose li { margin-bottom: .45rem; }
+  .prose a { color: var(--petrol); font-weight: 600; }
+  .prose .note { border-left: 4px solid var(--petrol); background: var(--petrol-soft); padding: .9rem 1.1rem; border-radius: 0 8px 8px 0; margin: 1.4rem 0; }
+  .prose table { width: 100%; border-collapse: collapse; margin: .4rem 0 1.4rem; font-size: .98rem; }
+  .prose th, .prose td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .prose th { font-weight: 700; background: var(--surface); }
+  .prose .tbl { overflow-x: auto; }
+  .gl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .gl a { display: block; padding: 1.1rem 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); }
+  .gl a:hover { border-color: var(--petrol); }
+  .gl b { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--petrol); margin-bottom: .25rem; }
+  .gl span { color: var(--muted); font-size: .96rem; }
+  @media (max-width: 980px) { .related, .gl { grid-template-columns: 1fr; } }
+</style>
+<style>
+  .sol { position: relative; }
+  .sol > summary { list-style: none; cursor: pointer; color: var(--ink); font-weight: 600; font-size: .98rem; display: flex; align-items: center; gap: .4rem; min-height: 42px; user-select: none; }
+  .sol > summary::-webkit-details-marker { display: none; }
+  .sol > summary::after { content: ''; width: .42em; height: .42em; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+  .sol[open] > summary::after { transform: translateY(2px) rotate(225deg); }
+  .sol > summary:hover, .sol[open] > summary { color: var(--petrol); }
+  .sol-panel { position: absolute; top: calc(100% + .7rem); left: 50%; transform: translateX(-50%); width: min(860px, 94vw); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem 1rem; padding: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 18px 40px rgba(20, 32, 40, .16); z-index: 30; }
+  .sol-g p { margin: .2rem .6rem .3rem; font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .nav .sol-panel a:not(.btn) { display: block; padding: .42rem .6rem; border-radius: 7px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: .95rem; }
+  .nav .sol-panel a:not(.btn):hover, .nav .sol-panel a[aria-current] { background: var(--petrol-soft); color: var(--petrol); }
+  .sol-panel .sol-all { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: .6rem; margin-top: .2rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+  .nav .sol-panel .sol-all a { color: var(--petrol); }
+  .mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .mg { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem 1.3rem .5rem; }
+  .mg h3 { display: flex; align-items: center; gap: .55rem; font-size: 1.35rem; margin-bottom: .5rem; }
+  .mg h3 svg { width: 24px; height: 24px; fill: none; stroke: var(--petrol); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .mg a { display: grid; grid-template-columns: 1fr auto; gap: .1rem .8rem; padding: .7rem 0; border-top: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .mg a b { color: var(--petrol); font-size: 1.02rem; }
+  .mg a em { font-style: normal; font-weight: 700; font-size: .88rem; color: var(--ink); white-space: nowrap; align-self: start; }
+  .mg a span { grid-column: 1 / -1; color: var(--muted); font-size: .92rem; line-height: 1.4; }
+  .mg a:hover b { text-decoration: underline; }
+  .who { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .who > div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.4rem 1.4rem 1.2rem; }
+  .who h3 { font-size: 1.5rem; margin-bottom: .2rem; }
+  .who .sz { color: var(--petrol); font-weight: 700; font-size: .95rem; margin-bottom: .7rem; }
+  .who p { color: var(--muted); }
+  .trades { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+  .trades li { padding: .45rem .85rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-weight: 600; font-size: .94rem; }
+  .price-sum { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
+  .foot-cols { display: grid; grid-template-columns: 2fr 1fr 1.4fr; gap: 1.5rem 2rem; width: 100%; padding-bottom: 1.2rem; margin-bottom: .4rem; border-bottom: 1px solid var(--line); }
+  .foot-cols b { display: block; color: var(--ink); font-weight: 700; margin-bottom: .45rem; }
+  .foot-cols div { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; align-content: start; }
+  .foot-cols div b { width: 100%; }
+  .foot-cols a { color: var(--muted); }
+  @media (max-width: 980px) {
+    .nav { gap: 1rem; }
+    .sol-panel { position: fixed; top: 66px; left: 8px; right: 8px; width: auto; transform: none; grid-template-columns: 1fr 1fr; max-height: calc(100vh - 82px); overflow-y: auto; }
+    .mods, .who, .price-sum { grid-template-columns: 1fr 1fr; }
+    .foot-cols { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) { .mods, .who, .price-sum { grid-template-columns: 1fr; } .sol-panel { grid-template-columns: 1fr; } }
+  @media (max-width: 400px) { .top .wrap { gap: .5rem; } .logo b { font-size: 1.5rem; } .nav { gap: .6rem; } .nav .btn { padding-inline: .7rem; font-size: .92rem; } }
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 34 24">
+      <rect x="1" y="1" width="32" height="22" rx="4" fill="#145a6e"/>
+      <circle cx="17" cy="12" r="7.6" fill="none" stroke="#fff" stroke-width="1.3" opacity=".45"/>
+      <g transform="rotate(35 17 12)"><path d="M17 3.6l3.1 8.4h-6.2z" fill="#fff"/><path d="M17 20.4l-3.1-8.4h6.2z" fill="#f3f5f4" opacity=".8"/></g>
+    </symbol>
+  </defs>
+</svg>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Azimys, accueil"><svg aria-hidden="true"><use href="#mark"/></svg><b>Azimys</b></a>
+    <nav class="nav" aria-label="Pages"><details class="sol"><summary>Modules</summary><div class="sol-panel"><div class="sol-g"><p>Stock et achats</p><a href="logiciel-gestion-de-stock.html">Magasin et stock</a><a href="logiciel-achats-fournisseurs.html">Achats</a></div><div class="sol-g"><p>Ventes et facturation</p><a href="logiciel-devis-commandes.html">Devis et commandes</a><a href="logiciel-bon-de-livraison.html">Bons de livraison</a><a href="logiciel-facturation.html">Facturation</a></div><div class="sol-g"><p>Production et atelier</p><a href="logiciel-ordre-de-fabrication.html">Atelier : OF et DST</a><a href="logiciel-suivi-activite.html">Suivi d'activité</a></div><div class="sol-g"><p>Qualité et certificats</p><a href="logiciel-qualite-non-conformites.html">Qualité et SQDP</a><a href="coc-form1-bon-de-livraison.html">CoC et EASA Form 1</a></div><div class="sol-g"><p>Personnel</p><a href="planning-conges-competences.html">Planning et congés</a><a href="logiciel-matrice-competences.html">Matrice de compétences</a><a href="logiciel-suivi-formations.html">Formations et habilitations</a></div><div class="sol-g"><p>Moyens</p><a href="logiciel-suivi-etalonnage.html">Outillage étalonné</a><a href="logiciel-gestion-parc-automobile.html">Parc automobile</a></div><div class="sol-g"><p>Solutions</p><a href="erp-simple-pme.html">ERP simple pour PME</a><a href="logiciel-gestion-commerciale.html">Gestion commerciale</a><a href="logiciel-tracabilite-lots.html">Traçabilité des lots</a><a href="logiciel-aeronautique-part-145.html">Aéronautique, Part 145 et 21G</a></div><div class="sol-all"><a href="./#modules">Tous les modules</a><a href="tarifs.html">Tarifs</a><a href="guides.html">Guides</a></div></div></details><a href="guides.html">Guides</a><a href="tarifs.html" aria-current="page">Tarifs</a><a class="btn btn-main" href="demo.html">Essayer la démo</a></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero landing guide" aria-labelledby="h1">
+    <div class="wrap">
+      <p class="crumbs"><a href="./">Azimys</a> › Tarifs</p>
+      <h1 id="h1">Un prix par module, à la taille de votre équipe.</h1>
+      <p class="lead">Chaque module a son prix, selon le nombre de personnes qui utilisent Azimys : 1 à 3, 4 à 15, ou 16 et plus. Vous ne payez que les modules que vous activez, même un seul, et vous en ajoutez ou en coupez d'un mois sur l'autre, sans engagement.</p>
+      <div class="cta"><a class="btn btn-main" href="#modules">Composer mon Azimys</a><a class="btn" href="#formules">Voir les formules</a></div>
+    </div>
+  </section>
+
+  <section class="band" id="modules" aria-labelledby="md" data-nosnippet>
+    <div class="wrap">
+      <div class="head">
+        <h2 id="md">Composez votre Azimys.</h2>
+        <p>Cochez les modules qui vous servent : le prix se calcule tout seul, avec la formule la moins chère s'il y en a une. Un module qui en demande un autre le coche avec lui. Prix HT par mois.</p>
+      </div>
+      <div class="size" role="radiogroup" aria-label="Taille de votre équipe"><span>Votre équipe :</span><button type="button" role="radio" data-t="tpe" aria-checked="true">1 à 3 utilisateurs</button><button type="button" role="radio" data-t="pme" aria-checked="false">4 à 15 utilisateurs</button><button type="button" role="radio" data-t="ent" aria-checked="false">16 et plus</button></div>
+      <div class="profiles" role="group" aria-label="Exemples de combinaisons">
+        <span>Ou partez d'un exemple :</span>
+        <button type="button" data-p="tout" aria-pressed="false">Tout Azimys</button>
+        <button type="button" data-p="maint" aria-pressed="false">Atelier de maintenance</button>
+        <button type="button" data-p="commerce" aria-pressed="false">Gestion commerciale</button>
+        <button type="button" data-p="magout" aria-pressed="false">Magasin et outillage</button>
+        <button type="button" data-p="equipe" aria-pressed="false">Équipe</button>
+        <button type="button" data-p="fabrication" aria-pressed="false">Fabrication</button>
+      </div>
+      <div class="doms" id="doms">
+        <div class="dom">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/></svg>Stock et achats</h3>
+          <ul>
+            <li data-m="magasin"><label><input type="checkbox" value="magasin"><b>Magasin<em data-pr="magasin">19 €</em></b><span>Articles classés par vos propres types, stock par lot et n° de série, péremptions, emplacements, inventaires, quarantaine.</span></label></li>
+            <li data-m="achats"><label><input type="checkbox" value="achats"><b>Achats<em data-pr="achats">9 €</em></b><span>Manquants et stock minimum transférés en commandes fournisseurs, réception sur certificat, prestations comprises.</span></label></li>
+          </ul>
+        </div>
+        <div class="dom">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/></svg>Ventes et facturation</h3>
+          <ul>
+            <li data-m="commandes"><label><input type="checkbox" value="commandes"><b>Commandes et devis<em data-pr="commandes">15 €</em></b><span>Devis, ventes, réparations et maintenances : le stock est réservé, chaque commande suivie jusqu'à la livraison.</span></label></li>
+            <li data-m="bl"><label><input type="checkbox" value="bl"><b>Bons de livraison<em data-pr="bl">5 €</em></b><span>Imprimés avec les lots et les n° de série livrés.</span></label></li>
+            <li data-m="facturation"><label><input type="checkbox" value="facturation"><b>Facturation<em data-pr="facturation">9 €</em></b><span>Factures, avoirs, échéances, relances et journal des ventes pour le comptable.</span></label></li>
+          </ul>
+        </div>
+        <div class="dom">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="6.6"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>Production et atelier</h3>
+          <ul>
+            <li data-m="atelier"><label><input type="checkbox" value="atelier"><b>Atelier : OF et DST<em data-pr="atelier">19 €</em></b><span>Ordres de fabrication et dossiers de travaux visés opération par opération, composants sortis lot par lot, heures.</span></label></li>
+            <li data-m="suivi"><label><input type="checkbox" value="suivi"><b>Suivi d'activité<em data-pr="suivi">5 €</em></b><span>Les équipements reçus de vos clients, par jour et par semaine, l'historique de chaque n° de série et les délais.</span></label></li>
+          </ul>
+        </div>
+        <div class="dom">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Qualité et certificats</h3>
+          <ul>
+            <li data-m="qualite"><label><input type="checkbox" value="qualite"><b>Qualité<em data-pr="qualite">15 €</em></b><span>Rapports d'inspection, non-conformités et actions correctives, tableau SQDP, indicateurs du mois.</span></label></li>
+            <li data-m="coc"><label><input type="checkbox" value="coc"><b>Certificats de conformité<em data-pr="coc">5 €</em></b><span>Le CoC émis à la livraison, signé par une personne habilitée.</span></label></li>
+            <li data-m="f1"><label><input type="checkbox" value="f1"><b>EASA Form 1<em data-pr="f1">9 €</em></b><span>Production ou maintenance, en anglais et en français, pour les organismes aéronautiques.</span></label></li>
+          </ul>
+        </div>
+        <div class="dom">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M15.6 14.1c3 .2 5.4 2.7 5.4 5.9"/></svg>Personnel et RH</h3>
+          <ul>
+            <li data-m="planning"><label><input type="checkbox" value="planning"><b>Planning<em data-pr="planning">9 €</em></b><span>Congés, RTT, arrêts, visites médicales et vos propres motifs, demandes à valider, solde de congés.</span></label></li>
+            <li data-m="competences"><label><input type="checkbox" value="competences"><b>Matrice de compétences<em data-pr="competences">5 €</em></b><span>Le niveau de chacun sur chaque savoir-faire, et ce que sait faire une seule personne.</span></label></li>
+            <li data-m="formations"><label><input type="checkbox" value="formations"><b>Formations<em data-pr="formations">9 €</em></b><span>Les formations suivies, leur validité et une alerte 60 jours avant l'expiration.</span></label></li>
+          </ul>
+        </div>
+        <div class="dom">
+          <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>Moyens de l'entreprise</h3>
+          <ul>
+            <li data-m="outillage"><label><input type="checkbox" value="outillage"><b>Outillage étalonné<em data-pr="outillage">15 €</em></b><span>Échéances et alertes, sorties par dossier, envois chez le prestataire, analyse d'impact.</span></label></li>
+            <li data-m="vehicules"><label><input type="checkbox" value="vehicules"><b>Parc automobile<em data-pr="vehicules">8 €</em></b><span>Kilométrage, entretiens et factures, contrôles techniques, assurances, coût au km, frais de déplacement.</span></label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sel" id="sel">
+        <div class="sel-text"><p id="sel-sum" aria-live="polite"><b>Votre sélection</b> : cochez les modules qui vous intéressent.</p><p class="sel-msg" id="sel-msg"></p></div>
+        <div class="sel-act" id="sel-act" hidden><button class="btn" type="button" id="sel-clear">Effacer</button><a class="btn btn-main" id="sel-mail" href="mailto:contact@azimys.com">Demander une offre</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white" id="formules" aria-labelledby="tf" data-nosnippet>
+    <div class="wrap">
+      <div class="head">
+        <h2 id="tf">Les formules, et chaque module à la carte.</h2>
+        <p>Dans votre tranche, ajouter une personne ne coûte rien. Un commerce ou un artisan paie un prix de petite entreprise, et vous changez de tranche quand l'équipe grandit.</p>
+      </div>
+      <div class="size" role="radiogroup" aria-label="Taille de votre équipe"><span>Votre équipe :</span><button type="button" role="radio" data-t="tpe" aria-checked="true">1 à 3 utilisateurs</button><button type="button" role="radio" data-t="pme" aria-checked="false">4 à 15 utilisateurs</button><button type="button" role="radio" data-t="ent" aria-checked="false">16 et plus</button></div>
+      <div class="pilot">
+        <p><b>Entreprise pilote : 3 mois offerts.</b> Tous les modules, la reprise de vos fichiers faite avec vous et un échange régulier sur vos besoins, pour les premières entreprises qui construisent Azimys avec nous.</p>
+        <a class="btn btn-main" href="./#contact">Devenir entreprise pilote</a>
+      </div>
+      <div class="carte">
+        <div class="carte-head"><h3>À la carte : un seul module suffit</h3><p>Vous ne payez que les modules que vous activez. Prix HT par mois.</p></div>
+        <ul class="carte-list"><li><span><b>Magasin</b><small>Stock par lot et n° de série, péremptions, inventaire ; requis pour les commandes et les achats</small></span><em data-pr="magasin">19 €</em></li><li><span><b>Outillage étalonné</b><small>Échéances, sorties par dossier, planning, analyse d'impact</small></span><em data-pr="outillage">15 €</em></li><li><span><b>Commandes clients</b><small>Devis, ventes et réparations, réservation du stock</small></span><em data-pr="commandes">15 €</em></li><li><span><b>Bons de livraison</b><small>Avec les lots et les n° de série</small></span><em data-pr="bl">5 €</em></li><li><span><b>Achats</b><small>Manquants, commandes fournisseurs, réception sur certificat</small></span><em data-pr="achats">9 €</em></li><li><span><b>Atelier : OF et DST</b><small>Opérations visées, heures, contrôle final</small></span><em data-pr="atelier">19 €</em></li><li><span><b>Certificats de conformité</b><small>Signés par une personne habilitée</small></span><em data-pr="coc">5 €</em></li><li><span><b>EASA Form 1</b><small>Production et maintenance, bilingue</small></span><em data-pr="f1">9 €</em></li><li><span><b>Facturation</b><small>Factures, avoirs, relances, journal des ventes</small></span><em data-pr="facturation">9 €</em></li><li><span><b>Planning du personnel</b><small>Congés, absences, demandes à valider</small></span><em data-pr="planning">9 €</em></li><li><span><b>Matrice de compétences</b><small>Niveaux par personne, compétences fragiles</small></span><em data-pr="competences">5 €</em></li><li><span><b>Formations</b><small>Validités et alertes avant expiration</small></span><em data-pr="formations">9 €</em></li><li><span><b>Suivi d'activité</b><small>Équipements reçus par jour, par semaine et par n° de série</small></span><em data-pr="suivi">5 €</em></li><li><span><b>Parc automobile</b><small>Kilométrage, entretiens, CT et assurances, coûts par véhicule</small></span><em data-pr="vehicules">8 €</em></li><li><span><b>Qualité</b><small>Rapports d'inspection, non-conformités, SQDP, indicateurs</small></span><em data-pr="qualite">15 €</em></li></ul>
+      </div>
+      <div class="plans-head"><h3>Ou une formule, pour payer moins</h3><p>Plusieurs modules ensemble, moins chers qu'à la carte. Les prix suivent la taille de votre équipe.</p></div>
+      <div class="plans">
+        <div class="plan" data-plan="commerce">
+          <h3>Gestion commerciale</h3>
+          <p class="price"><span data-pp>39 €</span> <small>HT par mois</small></p>
+          <p class="save" data-ps>57 € à la carte : 18 € d'économie par mois</p>
+          <p>Pour vendre, acheter et facturer, avec un stock toujours à jour.</p>
+          <ul><li>Stock par lot, péremptions, emplacements, inventaire</li><li>Devis, commandes clients et bons de livraison</li><li>Commandes fournisseurs et factures, relances</li></ul>
+          <a class="btn" href="./#contact">Nous contacter</a>
+        </div>
+        <div class="plan" data-plan="equipe">
+          <h3>Équipe</h3>
+          <p class="price"><span data-pp>19 €</span> <small>HT par mois</small></p>
+          <p class="save" data-ps>23 € à la carte : 4 € d'économie par mois</p>
+          <p>Pour gérer le personnel, quel que soit votre métier.</p>
+          <ul><li>Planning : congés, absences, demandes à valider</li><li>Matrice de compétences</li><li>Formations et alertes avant expiration</li></ul>
+          <a class="btn" href="./#contact">Nous contacter</a>
+        </div>
+        <div class="plan" data-plan="magout">
+          <h3>Magasin et outillage</h3>
+          <p class="price"><span data-pp>29 €</span> <small>HT par mois</small></p>
+          <p class="save" data-ps>34 € à la carte : 5 € d'économie par mois</p>
+          <p>Pour tenir le stock et l'outillage étalonné, sans Excel.</p>
+          <ul><li>Stock par lot et n° de série, péremptions, inventaire</li><li>Outillage : échéances, sorties par dossier, analyse d'impact</li><li>Étiquettes QR, journal et exports Excel</li></ul>
+          <a class="btn" href="./#contact">Nous contacter</a>
+        </div>
+        <div class="plan wide" data-plan="maint">
+          <h3>Atelier de maintenance</h3>
+          <p class="price"><span data-pp>79 €</span> <small>HT par mois</small></p>
+          <p class="save" data-ps>91 € à la carte : 12 € d'économie par mois</p>
+          <p>Pour réparer les équipements de vos clients, de la commande à la facture.</p>
+          <ul><li>Tout ce que contient Magasin et outillage</li><li>Commandes, bons de livraison et dossiers de travaux signés opération par opération</li><li>EASA Form 1 et facturation</li></ul>
+          <a class="btn" href="./#contact">Nous contacter</a>
+        </div>
+        <div class="plan wide hl" data-plan="tout">
+          <p class="badge">Le plus complet</p>
+          <h3>Tout Azimys</h3>
+          <p class="price"><span data-pp>119 €</span> <small>HT par mois</small></p>
+          <p class="save" data-ps>156 € à la carte : 37 € d'économie par mois</p>
+          <p>Pour une entreprise qui vend, fabrique, répare et gère son équipe.</p>
+          <ul><li>Les 15 modules, sans exception</li><li>Achats, OF, CoC et EASA Form 1</li><li>Personnel, qualité, suivi d'activité et parc automobile</li></ul>
+          <a class="btn btn-main" href="./#contact">Nous contacter</a>
+        </div>
+      </div>
+      <div class="addon">
+        <div>
+          <p class="eyebrow"><svg aria-hidden="true"><use href="#mark"/></svg>Sur <span>mesure</span></p>
+          <p>Plusieurs sites, plus de 500 outils suivis, un document imposé par un client ou par votre manuel, une liaison avec votre logiciel comptable, une fonction propre à votre métier, une reprise de données importante : nous chiffrons votre besoin avec vous.</p>
+        </div>
+        <a class="btn" href="./#contact">Demander un devis</a>
+      </div>
+      <p class="fine">Prix hors taxes (TVA non applicable, article 293 B du CGI), par site et par mois, selon le nombre d'utilisateurs (comptes actifs : 1 à 3, 4 à 15, 16 et plus), jusqu'à 500 outils suivis. Deux mois offerts en paiement annuel.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="qs">
+    <div class="wrap">
+      <div class="head"><h2 id="qs">Questions sur les tarifs.</h2></div>
+      <div class="faq">
+        <details><summary>Le prix dépend-il du nombre d'utilisateurs ?</summary><p>Il dépend de la taille de l'équipe, pas de chaque personne : trois tranches, de 1 à 3 utilisateurs, de 4 à 15, et 16 et plus. Dans votre tranche, chaque personne a son propre accès sans supplément.</p></details>
+        <details><summary>Y a-t-il un engagement ?</summary><p>Non. L'abonnement est mensuel : vous ajoutez ou coupez un module d'un mois sur l'autre, sans perdre vos données. Deux mois sont offerts en paiement annuel.</p></details>
+        <details><summary>Que comprend l'offre entreprise pilote ?</summary><p>Trois mois offerts avec tous les modules, la reprise de vos fichiers faite avec vous et un échange régulier sur vos besoins, pour les premières entreprises qui construisent Azimys avec nous.</p></details>
+        <details><summary>Faut-il payer une installation ou une licence ?</summary><p>Non. Azimys est un logiciel en ligne : ni serveur, ni licence, ni installation. Les mises à jour sont comprises dans l'abonnement.</p></details>
+        <details><summary>Et pour un besoin particulier ?</summary><p>Plusieurs sites, un document imposé par un client, une liaison avec votre logiciel comptable ou une fonction propre à votre métier : nous chiffrons le développement avec vous, sur devis.</p></details>
+      </div>
+    </div>
+  </section>
+
+<script>
+(function () {
+  'use strict';
+  /* Build your own Azimys: tick modules (what one needs is ticked with it), the price is worked out, bundles applied when cheaper */
+  /* Prices by size of team (active accounts): 1 to 3 users, 4 to 15, 16 and more. Keep in step with the cards above and site/cgv.html. */
+  var PRICES = {
+    tpe: { magasin: 19, outillage: 15, commandes: 15, bl: 5, achats: 9, atelier: 19, coc: 5, f1: 9, facturation: 9, planning: 9, competences: 5, formations: 9, suivi: 5, vehicules: 8, qualite: 15 },
+    pme: { magasin: 35, outillage: 29, commandes: 29, bl: 9, achats: 19, atelier: 35, coc: 9, f1: 19, facturation: 19, planning: 19, competences: 9, formations: 19, suivi: 9, vehicules: 15, qualite: 29 },
+    ent: { magasin: 49, outillage: 39, commandes: 39, bl: 12, achats: 25, atelier: 49, coc: 12, f1: 25, facturation: 25, planning: 25, competences: 12, formations: 25, suivi: 12, vehicules: 19, qualite: 39 }
+  };
+  var TL = { tpe: '1 à 3 utilisateurs', pme: '4 à 15 utilisateurs', ent: '16 utilisateurs et plus' };
+  var T = 'tpe', PRICE = PRICES[T];
+  var NEEDS = { commandes: 'magasin', achats: 'magasin', bl: 'commandes', atelier: 'commandes', coc: 'commandes', f1: 'commandes', facturation: 'commandes' };
+  var ALL = Object.keys(PRICE);
+  var PLANS = [{ k: 'commerce', label: 'Gestion commerciale', price: { tpe: 39, pme: 79, ent: 109 }, on: ['magasin', 'commandes', 'bl', 'achats', 'facturation'] },
+    { k: 'equipe', label: 'Équipe', price: { tpe: 19, pme: 39, ent: 49 }, on: ['planning', 'competences', 'formations'] },
+    { k: 'magout', label: 'Magasin et outillage', price: { tpe: 29, pme: 55, ent: 79 }, on: ['magasin', 'outillage'] },
+    { k: 'maint', label: 'Atelier de maintenance', price: { tpe: 79, pme: 149, ent: 199 }, on: ['magasin', 'outillage', 'commandes', 'bl', 'atelier', 'f1', 'facturation'] },
+    { k: 'tout', label: 'Tout Azimys', price: { tpe: 119, pme: 229, ent: 299 }, on: ALL }];
+  var TOUT = PLANS[PLANS.length - 1];
+  /* The size of team picked (two switches, kept together): every price on the page follows. */
+  var sizes = document.querySelectorAll('.size button');
+  function setSize(t) {
+    T = t; PRICE = PRICES[T];
+    for (var i = 0; i < sizes.length; i++) sizes[i].setAttribute('aria-checked', String(sizes[i].getAttribute('data-t') === T));
+    var ps = document.querySelectorAll('[data-pr]');
+    for (var j = 0; j < ps.length; j++) ps[j].textContent = PRICE[ps[j].getAttribute('data-pr')] + ' €';
+    PLANS.forEach(function (p) {
+      var n = document.querySelector('[data-plan="' + p.k + '"]'); if (!n) return;
+      var carte = 0; p.on.forEach(function (k) { carte += PRICE[k]; });
+      n.querySelector('[data-pp]').textContent = p.price[T] + ' €';
+      n.querySelector('[data-ps]').textContent = carte + ' € à la carte : ' + (carte - p.price[T]) + ' € d\'économie par mois';
+    });
+  }
+  for (var z = 0; z < sizes.length; z++) sizes[z].addEventListener('click', function () { setSize(this.getAttribute('data-t')); update(''); });
+  /* Example buttons: the formulas (same names, same modules), plus Fabrication. */
+  var PROFILES = { fabrication: ['magasin', 'achats', 'commandes', 'bl', 'atelier', 'coc', 'facturation', 'qualite', 'competences', 'formations'] };
+  PLANS.forEach(function (p) { PROFILES[p.k] = p.on; });
+  var doms = document.getElementById('doms');
+  var boxes = doms.querySelectorAll('input[type="checkbox"]');
+  var chips = document.querySelectorAll('.profiles button');
+  var NAME = {};
+  for (var i = 0; i < boxes.length; i++) NAME[boxes[i].value] = boxes[i].nextElementSibling.firstChild.textContent.trim();
+  function box(k) { for (var i = 0; i < boxes.length; i++) if (boxes[i].value === k) return boxes[i]; }
+  function chosen() { var r = []; for (var i = 0; i < boxes.length; i++) if (boxes[i].checked) r.push(boxes[i].value); return r; }
+  function eur(n) { return n + ' €'; }
+  function update(msg) {
+    var s = chosen(), sum = 0;
+    s.forEach(function (k) { sum += PRICE[k]; });
+    for (var i = 0; i < boxes.length; i++) boxes[i].closest('li').classList.toggle('on', boxes[i].checked);
+    for (var c = 0; c < chips.length; c++) chips[c].setAttribute('aria-pressed', String(PROFILES[chips[c].getAttribute('data-p')].slice().sort().join() === s.slice().sort().join()));
+    document.getElementById('sel-msg').textContent = msg || '';
+    document.getElementById('sel-act').hidden = !s.length;
+    var out = document.getElementById('sel-sum');
+    if (!s.length) { out.innerHTML = '<b>Votre sélection</b> : cochez les modules qui vous intéressent.'; return; }
+    var best = { price: sum, plan: null };
+    PLANS.forEach(function (p) {
+      var price = p.price[T], more = false;
+      s.forEach(function (k) { if (p.on.indexOf(k) < 0) price += PRICE[k]; });
+      p.on.forEach(function (k) { if (s.indexOf(k) < 0) more = true; });
+      if (price < best.price) best = { price: price, plan: p, more: more };
+    });
+    out.innerHTML = '<b>Votre sélection</b> : ' + s.length + ' module' + (s.length > 1 ? 's' : '') + ', <strong>' + eur(best.price) + ' HT par mois</strong> pour ' + TL[T] +
+      (best.plan ? '<br>avec la formule ' + best.plan.label + (best.more ? ', qui en comprend davantage' : '') + ' (' + eur(sum) + ' à la carte)'
+        : best.price >= Math.round(TOUT.price[T] * 0.84) ? '<br>Pour ' + eur(TOUT.price[T] - best.price) + ' de plus, les 15 modules avec Tout Azimys.' : '');
+    var body = 'Bonjour,\n\nLes modules qui m\'intéressent : ' + s.map(function (k) { return NAME[k]; }).join(', ') + ' (' + eur(best.price) + ' HT par mois' +
+      (best.plan ? ', formule ' + best.plan.label : '') + ').\n\nNotre activité : \nTaille de l\'équipe : ' + TL[T] + '\nLogiciels actuels : \n';
+    document.getElementById('sel-mail').href = 'mailto:contact@azimys.com?subject=' + encodeURIComponent('Azimys : proposition') + '&body=' + encodeURIComponent(body);
+  }
+  doms.addEventListener('change', function (e) {
+    var b = e.target, added = [], removed = [];
+    if (b.checked) for (var k = NEEDS[b.value]; k; k = NEEDS[k]) { if (!box(k).checked) { box(k).checked = true; added.push(NAME[k]); } }
+    else (function drop(v) { ALL.forEach(function (k) { if (NEEDS[k] === v && box(k).checked) { box(k).checked = false; removed.push(NAME[k]); drop(k); } }); })(b.value);
+    update(added.length ? NAME[b.value] + ' demande ' + added.join(' et ') + (added.length > 1 ? ' : cochés aussi.' : ' : coché aussi.') : removed.length ? 'Décoché aussi, car il demande ' + NAME[b.value] + ' : ' + removed.join(', ') + '.' : '');
+  });
+  for (var c = 0; c < chips.length; c++) chips[c].addEventListener('click', function () {
+    var on = this.getAttribute('aria-pressed') === 'true' ? [] : PROFILES[this.getAttribute('data-p')];
+    for (var i = 0; i < boxes.length; i++) boxes[i].checked = on.indexOf(boxes[i].value) >= 0;
+    update('');
+  });
+  document.getElementById('sel-clear').addEventListener('click', function () { for (var i = 0; i < boxes.length; i++) boxes[i].checked = false; update(''); });
+  setSize('tpe');
+  update('');
+})();
+</script>
+  <section class="band dark landing-cta" aria-labelledby="ct">
+    <div class="wrap">
+      <div class="head" style="margin-bottom:0"><h2 id="ct">Essayez Azimys.</h2><p>La démo s'ouvre tout de suite, sans inscription, avec des données d'exemple. Pour un essai avec vos propres données, écrivez-nous : votre activité, vos agréments et les modules qui vous intéressent.</p>
+        <div class="cta"><a class="btn btn-main" href="demo.html">Essayer la démo</a><a class="btn" href="mailto:contact@azimys.com?subject=Azimys">Écrire à contact@azimys.com</a></div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><nav class="foot-cols" aria-label="Pages du site"><div><b>Modules</b><a href="logiciel-gestion-de-stock.html">Magasin et stock</a><a href="logiciel-achats-fournisseurs.html">Achats</a><a href="logiciel-devis-commandes.html">Devis et commandes</a><a href="logiciel-bon-de-livraison.html">Bons de livraison</a><a href="logiciel-facturation.html">Facturation</a><a href="logiciel-ordre-de-fabrication.html">Atelier : OF et DST</a><a href="logiciel-suivi-activite.html">Suivi d'activité</a><a href="logiciel-qualite-non-conformites.html">Qualité et SQDP</a><a href="coc-form1-bon-de-livraison.html">CoC et EASA Form 1</a><a href="planning-conges-competences.html">Planning et congés</a><a href="logiciel-matrice-competences.html">Matrice de compétences</a><a href="logiciel-suivi-formations.html">Formations et habilitations</a><a href="logiciel-suivi-etalonnage.html">Outillage étalonné</a><a href="logiciel-gestion-parc-automobile.html">Parc automobile</a></div><div><b>Solutions</b><a href="erp-simple-pme.html">ERP simple pour PME</a><a href="logiciel-gestion-commerciale.html">Gestion commerciale</a><a href="logiciel-tracabilite-lots.html">Traçabilité des lots</a><a href="logiciel-aeronautique-part-145.html">Aéronautique, Part 145 et 21G</a><a href="tarifs.html">Tarifs</a><a href="demo.html">Démo</a></div><div><b>Guides</b><a href="qu-est-ce-qu-un-erp.html">Qu'est-ce qu'un ERP ?</a><a href="prix-erp-pme.html">Combien coûte un ERP pour une PME ?</a><a href="passer-d-excel-a-un-logiciel-de-gestion.html">Passer d'Excel à un logiciel de gestion</a><a href="calcul-conges-payes.html">Comment calculer les congés payés ?</a><a href="comment-faire-une-matrice-de-competences.html">Comment faire une matrice de compétences ?</a><a href="suivi-etalonnage-instruments-de-mesure.html">Comment suivre l'étalonnage des instruments de mesure ?</a><a href="rappel-de-lot.html">Comment faire un rappel de lot ?</a><a href="mentions-obligatoires-facture.html">Quelles mentions mettre sur une facture ?</a><a href="traiter-une-non-conformite.html">Comment traiter une non-conformité ?</a><a href="suivi-entretien-vehicules-entreprise.html">Comment suivre l'entretien des véhicules de l'entreprise ?</a></div></nav><span>© 2026 Azimys. L'ERP modulable qui s'adapte à votre entreprise.</span><nav class="foot-links" aria-label="Informations légales"><a href="cgv.html">Conditions générales</a><a href="mentions-legales.html">Mentions légales</a><a href="mentions-legales.html#confidentialite">Confidentialité</a><a href="mailto:contact@azimys.com">contact@azimys.com</a></nav></div>
+</footer>
+<script>
+(function () {
+  var ds = Array.prototype.slice.call(document.querySelectorAll('details.sol'));
+  document.addEventListener('click', function (e) { ds.forEach(function (d) { if (d.open && !d.contains(e.target)) d.open = false; }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') ds.forEach(function (d) { if (d.open) { d.open = false; d.querySelector('summary').focus(); } }); });
+  ds.forEach(function (d) { d.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) d.open = false; }); });
+})();
+</script>
+
+</html>
