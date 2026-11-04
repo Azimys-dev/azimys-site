@@ -333,8 +333,10 @@
   .today-top span:first-child { display: flex; align-items: center; gap: .4rem; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }
   .today-top svg { width: 24px; height: 17px; }
   .today-sum { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.3rem, 2.5vw, 1.8rem); line-height: 1.25; margin-bottom: 1.1rem; max-width: 52ch; }
-  .today-sum u { color: var(--petrol); text-underline-offset: 4px; text-decoration-thickness: 2px; }
-  .today-sum u.w { color: var(--warn); } .today-sum u.x { color: var(--bad); }
+  .today-todo { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: .6rem; margin: -.4rem 0 1.1rem; }
+  .today-todo div { --t: var(--petrol); background: var(--petrol-soft); border: 1px solid var(--line); border-left: 5px solid var(--t); border-radius: 10px; padding: .6rem .75rem; font-size: .88rem; font-weight: 600; line-height: 1.25; }
+  .today-todo div.w { --t: var(--warn); background: var(--warn-soft); } .today-todo div.x { --t: var(--bad); background: var(--bad-soft); }
+  .today-todo b { display: block; font-family: var(--font-display); font-size: 1.8rem; line-height: 1; color: var(--t); margin-bottom: .15rem; }
   .today-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
   .tp { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .8rem .9rem .5rem; }
   .tp h3 { font-size: 1.2rem; margin-bottom: .35rem; }
@@ -602,7 +604,8 @@
       </div>
       <div class="today" aria-hidden="true">
         <div class="today-top"><span><svg><use href="#mark"/></svg>Accueil</span><span>Mercredi, 08:02</span></div>
-        <p class="today-sum">À traiter : <u>3 commandes à livrer</u> cette semaine, <u class="w">2 lots qui périment</u> ce mois-ci, <u class="x">1 non-conformité en retard</u> et le <u class="w">contrôle technique de l'Utilitaire 2</u> dans 18 jours.</p>
+        <p class="today-sum">À traiter</p>
+        <div class="today-todo"><div class="x"><b>1</b>non-conformité en retard</div><div class="w"><b>2</b>lots qui périment ce mois-ci</div><div class="w"><b>1</b>contrôle technique dans 18 jours</div><div><b>3</b>commandes à livrer cette semaine</div></div>
         <div class="today-grid">
           <div class="tp"><h3>Commandes</h3><p>En cours<b>12</b></p><p>À livrer cette semaine<b>3</b></p><p>À facturer<b>2</b></p></div>
           <div class="tp"><h3>Magasin</h3><p>Lots qui périment<b class="w">2</b></p><p>En quarantaine<b class="x">1</b></p><p>Sous le stock mini<b>4</b></p></div>

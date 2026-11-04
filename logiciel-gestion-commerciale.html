@@ -332,8 +332,10 @@
   .today-top span:first-child { display: flex; align-items: center; gap: .4rem; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }
   .today-top svg { width: 24px; height: 17px; }
   .today-sum { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.3rem, 2.5vw, 1.8rem); line-height: 1.25; margin-bottom: 1.1rem; max-width: 52ch; }
-  .today-sum u { color: var(--petrol); text-underline-offset: 4px; text-decoration-thickness: 2px; }
-  .today-sum u.w { color: var(--warn); } .today-sum u.x { color: var(--bad); }
+  .today-todo { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: .6rem; margin: -.4rem 0 1.1rem; }
+  .today-todo div { --t: var(--petrol); background: var(--petrol-soft); border: 1px solid var(--line); border-left: 5px solid var(--t); border-radius: 10px; padding: .6rem .75rem; font-size: .88rem; font-weight: 600; line-height: 1.25; }
+  .today-todo div.w { --t: var(--warn); background: var(--warn-soft); } .today-todo div.x { --t: var(--bad); background: var(--bad-soft); }
+  .today-todo b { display: block; font-family: var(--font-display); font-size: 1.8rem; line-height: 1; color: var(--t); margin-bottom: .15rem; }
   .today-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
   .tp { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .8rem .9rem .5rem; }
   .tp h3 { font-size: 1.2rem; margin-bottom: .35rem; }
@@ -623,7 +625,7 @@
 
       <div class="more">
         <div><h3>Import Excel</h3><p>Vos clients et vos articles s'importent depuis Excel, avec un aperçu avant l'import.</p></div>
-        <div><h3>Accueil « À traiter »</h3><p>Commandes en retard, livraisons à facturer, factures échues : tout ce qui attend, en une phrase.</p></div>
+        <div><h3>Accueil « À traiter »</h3><p>Commandes en retard, livraisons à facturer, factures échues : tout ce qui attend, d'un coup d'œil, une case par sujet.</p></div>
         <div><h3>Ordinateur et téléphone</h3><p>Rien à installer : Azimys s'ouvre dans le navigateur, au bureau comme en réserve.</p></div>
         <div><h3>Exports</h3><p>Commandes, livraisons, factures et stock en Excel, quand vous voulez.</p></div>
       </div>
