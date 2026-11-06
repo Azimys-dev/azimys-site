@@ -521,6 +521,8 @@
   .trace-step { display: grid; grid-template-columns: 1.4rem minmax(0, 1fr) auto; gap: .5rem; align-items: start; font-size: .93rem; }
   .trace-step::before { content: ""; width: 10px; height: 10px; border-radius: 50%; margin: .4rem 0 0 .2rem; background: var(--tone, var(--accent)); }
   .trace-step .btn { min-height: 34px; }
+  /* The dot is the ::before: the empty first span would push the text into the button's column. */
+  .trace-step > span:first-child:empty { display: none; }
   .mini .m-main .hab { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .25rem; }
   .mini .m-main .hab .pill { display: inline-flex; font-size: .76rem; }
   @media (min-width: 861px) { .jrow { grid-template-columns: 4rem 3.5rem 8.5rem minmax(0, 1fr); } }
