@@ -1263,7 +1263,7 @@ details.panel.cv-raw { padding: .8rem 1rem; }
 :root {
   --ok: #047857; --ok-v: #10b981; --ok-soft: rgba(16, 185, 129, .14);
   --warn: #c2410c; --warn-v: #f97316; --warn-soft: rgba(249, 115, 22, .15);
-  --bad: #c81e1e; --bad-v: #ef4444; --bad-soft: rgba(239, 68, 68, .13);
+  --bad: #c81e1e; --bad-v: #ee2a2a; --bad-b: #c81e1e; --bad-soft: rgba(238, 42, 42, .13);
   --ext: #4f46e5; --ext-v: #6366f1; --ext-soft: rgba(99, 102, 241, .13);
   --plan: #a21caf; --plan-v: #d946ef; --plan-soft: rgba(217, 70, 239, .13);
   --off: #5b6b7d; --off-v: #94a3b8; --off-soft: rgba(100, 116, 139, .14);
@@ -1273,7 +1273,7 @@ details.panel.cv-raw { padding: .8rem 1rem; }
   :root:not([data-theme="light"]) {
     --ok: #34d399; --ok-v: #10b981; --ok-soft: rgba(52, 211, 153, .16);
     --warn: #fb923c; --warn-v: #f97316; --warn-soft: rgba(251, 146, 60, .16);
-    --bad: #f87171; --bad-v: #ef4444; --bad-soft: rgba(248, 113, 113, .16);
+    --bad: #ff5f5f; --bad-v: #f03030; --bad-b: #d41c1c; --bad-soft: rgba(240, 48, 48, .17);
     --ext: #a5b4fc; --ext-v: #818cf8; --ext-soft: rgba(129, 140, 248, .18);
     --plan: #f0abfc; --plan-v: #e879f9; --plan-soft: rgba(232, 121, 249, .16);
     --off: #a3b1bf; --off-v: #94a3b8; --off-soft: rgba(148, 163, 184, .16);
@@ -1283,13 +1283,13 @@ details.panel.cv-raw { padding: .8rem 1rem; }
 :root[data-theme="dark"] {
   --ok: #34d399; --ok-v: #10b981; --ok-soft: rgba(52, 211, 153, .16);
   --warn: #fb923c; --warn-v: #f97316; --warn-soft: rgba(251, 146, 60, .16);
-  --bad: #f87171; --bad-v: #ef4444; --bad-soft: rgba(248, 113, 113, .16);
+  --bad: #ff5f5f; --bad-v: #f03030; --bad-b: #d41c1c; --bad-soft: rgba(240, 48, 48, .17);
   --ext: #a5b4fc; --ext-v: #818cf8; --ext-soft: rgba(129, 140, 248, .18);
   --plan: #f0abfc; --plan-v: #e879f9; --plan-soft: rgba(232, 121, 249, .16);
   --off: #a3b1bf; --off-v: #94a3b8; --off-soft: rgba(148, 163, 184, .16);
   --acc-v: #7fd0e2; --band-ink: #0b1418;
 }
-.tone-ok { --tone-v: var(--ok-v); } .tone-warn { --tone-v: var(--warn-v); } .tone-bad { --tone-v: var(--bad-v); }
+.tone-ok { --tone-v: var(--ok-v); } .tone-warn { --tone-v: var(--warn-v); } .tone-bad { --tone-v: var(--bad-v); --tone-b: var(--bad-b); --band-ink: #fff; }
 .tone-ext { --tone-v: var(--ext-v); } .tone-plan { --tone-v: var(--plan-v); } .tone-off { --tone-v: var(--off-v); } .tone-acc { --tone-v: var(--acc-v); }
 /* Pills: a transparent tint with a fine edge of the same colour. */
 .pill { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone-v, var(--tone)) 30%, transparent); }
@@ -1299,9 +1299,10 @@ details.panel.cv-raw { padding: .8rem 1rem; }
 .label, .todo-tile { border: 1px solid color-mix(in srgb, var(--tone-v, var(--tone)) 42%, transparent); border-radius: 18px; overflow: hidden;
   background: var(--glass-bg); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
   box-shadow: var(--glass-hi), 0 18px 36px -20px color-mix(in srgb, var(--tone-v, var(--tone)) 55%, transparent), 0 2px 6px -2px rgba(16, 40, 50, .12); }
-.label-band, .todo-tile .tt-band { background: linear-gradient(120deg, var(--tone) 0%, var(--tone-v, var(--tone)) 100%); color: var(--band-ink); }
+/* Red starts from a deep red (--bad-b), not from its light text shade, so it stays an intense red and never turns pink (Xavier). */
+.label-band, .todo-tile .tt-band { background: linear-gradient(120deg, var(--tone-b, var(--tone)) 0%, var(--tone-v, var(--tone)) 100%); color: var(--band-ink); }
 .label-band::before, .todo-tile .tt-band::before { background: var(--band-ink); box-shadow: 0 0 0 4px color-mix(in srgb, var(--band-ink) 28%, transparent); }
-.label-band.hatch { background: repeating-linear-gradient(135deg, var(--tone) 0 14px, color-mix(in srgb, var(--tone-v, var(--tone)) 85%, var(--tone)) 14px 24px); }
+.label-band.hatch { background: repeating-linear-gradient(135deg, var(--tone-b, var(--tone)) 0 14px, color-mix(in srgb, var(--tone-v, var(--tone)) 85%, var(--tone-b, var(--tone))) 14px 24px); }
 .label dt, .label dd { border-bottom-color: color-mix(in srgb, var(--line) 70%, transparent); }
 
 /* The background: soft lights that stay in place while the page scrolls; the glass blurs them. */
@@ -1382,7 +1383,7 @@ button.kpi:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--gla
    a band in its colour (red = urgent, orange = to plan, green = all good) with the number, the subject below. */
 .todo { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: .85rem; }
 .todo-tile { --tone: var(--warn); --tone-v: var(--warn-v); display: grid; grid-template-rows: auto 1fr; gap: 0; padding: 0; transition: transform .15s ease, box-shadow .15s ease; }
-.todo-tile.t-bad { --tone: var(--bad); --tone-v: var(--bad-v); }
+.todo-tile.t-bad { --tone: var(--bad); --tone-v: var(--bad-v); --tone-b: var(--bad-b); --band-ink: #fff; }
 .todo-tile.t-ok { --tone: var(--ok); --tone-v: var(--ok-v); cursor: default; }
 .todo-tile:hover { border-color: color-mix(in srgb, var(--tone-v) 70%, transparent); transform: translateY(-2px); }
 .todo-tile.t-ok:hover { transform: none; }
