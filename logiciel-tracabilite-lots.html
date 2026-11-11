@@ -33,9 +33,9 @@
     --petrol: #145a6e;
     --petrol-deep: #0d3f4e;
     --petrol-soft: #dcebef;
-    --ok: #2a7a46; --ok-soft: #e0f0e5;
-    --warn: #9a5b0b; --warn-soft: #fbedd6;
-    --bad: #b42318; --bad-soft: #fbe3df;
+    --ok: #059669; --ok-soft: #e0f0e5;
+    --warn: #c2410c; --warn-soft: #fbedd6;
+    --bad: #dc2626; --bad-soft: #fbe3df;
     --on-dark: #e8eff1;
     --on-dark-muted: #a9bcc3;
     --font-ui: "Barlow", "Segoe UI", system-ui, sans-serif;
@@ -400,7 +400,7 @@
   .pg .n { font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); justify-content: start; }
   .pg .c { background: var(--surface); border: 1px solid var(--line); }
   .pg .cp { background: var(--petrol-soft); border-color: transparent; color: var(--petrol); }
-  .pg .vm { background: #ece9f8; border-color: transparent; color: #4454a8; }
+  .pg .vm { background: #ece9f8; border-color: transparent; color: #4f46e5; }
   .pg .fo { background: var(--ok-soft); border-color: transparent; color: var(--ok); }
   .pg .ar { background: var(--bad-soft); border-color: transparent; color: var(--bad); }
   .pg .ask { background: repeating-linear-gradient(135deg, var(--warn-soft) 0 6px, #fff 6px 10px); border: 1px dashed var(--warn); color: var(--warn); }
@@ -525,6 +525,127 @@
   }
   @media (max-width: 640px) { .mods, .who, .price-sum { grid-template-columns: 1fr; } .sol-panel { grid-template-columns: 1fr; } }
   @media (max-width: 400px) { .top .wrap { gap: .5rem; } .logo b { font-size: 1.5rem; } .nav { gap: .6rem; } .nav .btn { padding-inline: .7rem; font-size: .92rem; } }
+</style>
+<style>
+  /* Glass theme of the site (11/11/2026, Xavier: « à l'image de ce que tu as fait » in the app): the same soft petrol lights
+     behind frosted cards, pill buttons, a floating header, and the same modern status colours as Azimys (green = good,
+     orange = soon, red = blocked), with bands that go from the deep shade to the vivid one. Light theme only, like before.
+     Loaded after the page's own styles, on every page of azimys.com (home, modules, guides, prices, legal pages). */
+  :root {
+    --paper: #e3ecef;
+    --line: rgba(20, 44, 54, .13);
+    --ok: #047857; --ok-v: #10b981; --ok-soft: rgba(16, 185, 129, .14);
+    --warn: #c2410c; --warn-v: #f97316; --warn-soft: rgba(249, 115, 22, .15);
+    --bad: #c81e1e; --bad-v: #ef4444; --bad-soft: rgba(239, 68, 68, .13);
+    --ext: #4f46e5; --ext-v: #6366f1; --ext-soft: rgba(99, 102, 241, .13);
+    --petrol-soft: rgba(20, 90, 110, .12);
+    --glass-bg: linear-gradient(150deg, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .4) 100%);
+    --glass-strong: rgba(255, 255, 255, .78);
+    --glass-line: rgba(255, 255, 255, .75);
+    --glass-edge: rgba(20, 44, 54, .06);
+    --glass-hi: inset 0 1px 0 rgba(255, 255, 255, .85), inset 0 0 0 1px rgba(255, 255, 255, .22);
+    --glass-shadow: 0 1px 2px rgba(16, 40, 50, .05), 0 14px 30px -14px rgba(16, 40, 50, .22), 0 34px 64px -34px rgba(16, 40, 50, .38);
+    --blur: blur(24px) saturate(180%);
+    --deep: linear-gradient(135deg, #0b2f3a 0%, #0f4352 55%, #145a6e 100%);
+    --todo: #c2410c; --todo-soft: rgba(249, 115, 22, .15);
+  }
+  body { background: var(--paper); }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(42vmax 42vmax at 4% -4%, rgba(20, 90, 110, .5), transparent 68%), radial-gradient(46vmax 46vmax at 102% 28%, rgba(70, 170, 196, .5), transparent 68%),
+      radial-gradient(38vmax 38vmax at 30% 104%, rgba(236, 166, 72, .32), transparent 68%), radial-gradient(30vmax 30vmax at 72% 86%, rgba(16, 74, 92, .32), transparent 70%),
+      radial-gradient(34vmax 34vmax at 50% 42%, rgba(120, 205, 192, .3), transparent 70%); }
+
+  /* Header: a floating frosted bar */
+  .top { background: none; border: 0; padding: 10px max(12px, 2vw) 0; pointer-events: none; }
+  .top .wrap { pointer-events: auto; padding-inline: 1.1rem; border-radius: 22px; background: rgba(255, 255, 255, .58); border: 1px solid var(--glass-line);
+    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
+  .sol-panel { background: var(--glass-strong); border: 1px solid var(--glass-line); border-radius: 20px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
+  .nav .sol-panel a:not(.btn) { border-radius: 10px; }
+
+  /* Buttons: pills */
+  .btn { border-radius: 999px; background: rgba(255, 255, 255, .62); border-color: var(--glass-line); box-shadow: var(--glass-hi), 0 4px 12px -8px rgba(16, 40, 50, .4); }
+  .btn:hover { border-color: rgba(20, 90, 110, .35); background: rgba(255, 255, 255, .85); }
+  .btn-main { background: var(--petrol); border-color: var(--petrol); color: #fff; box-shadow: 0 12px 24px -12px rgba(20, 90, 110, .9); }
+  .btn-main:hover { background: var(--petrol-deep); border-color: var(--petrol-deep); }
+  .size button, .profiles button { border-radius: 999px; background: rgba(255, 255, 255, .6); border-color: var(--glass-line); }
+  .size button[aria-checked="true"] { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+
+  /* Bands of the page: light ones let the lights through, dark ones are deep petrol glass */
+  .band.white { background: rgba(255, 255, 255, .34); border-block: 1px solid rgba(255, 255, 255, .6); }
+  .band.dark { background: var(--deep); }
+  .facts-band { background: rgba(255, 255, 255, .42); border-top: 1px solid rgba(255, 255, 255, .65); border-bottom: 1px solid rgba(255, 255, 255, .5); }
+
+  /* Cards: frosted glass, a light edge on top, layered shadows */
+  .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui, .sheet, dl.facts, .prose .tbl {
+    background: var(--glass-bg); border: 1px solid var(--glass-line); border-radius: 22px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
+  .ui { border-radius: 20px; }
+  .ui-row, .tp p, .ui-presets span { border-color: var(--line); }
+  .ui-row { background: rgba(255, 255, 255, .6); border-color: var(--glass-line); border-radius: 14px; box-shadow: var(--glass-hi); }
+  .tri .ui, .tp .ui { box-shadow: var(--glass-hi); }
+  .mod.base { background: linear-gradient(135deg, #145a6e 0%, #1b6f84 55%, #23839a 100%); border-color: transparent; }
+  .plan.hl { background: var(--glass-bg); box-shadow: inset 0 4px 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
+  .pilot { box-shadow: inset 4px 0 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
+  .carte-list li.base { background: rgba(255, 255, 255, .55); border-radius: 12px; }
+  .related a:hover, .gl a:hover, .mg:hover { border-color: rgba(20, 90, 110, .35); }
+  .dom label { border-radius: 12px; }
+  .dom label:hover { background: rgba(255, 255, 255, .55); }
+  .sel { background: rgba(12, 30, 36, .82); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid rgba(255, 255, 255, .1); border-radius: 20px; }
+  .card { background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .14); border-radius: 22px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); }
+  .prose .note { background: var(--petrol-soft); border-radius: 0 14px 14px 0; }
+  .faq details { border-color: var(--line); }
+  .pain { border-top-color: var(--bad-v); }
+  .toast { border-radius: 999px; }
+
+  /* Status labels, as in Azimys: band from the deep shade to the vivid one, frosted body, coloured edge and glow */
+  .t-ok { --tone: var(--ok); --tone-v: var(--ok-v); } .t-warn { --tone: var(--warn); --tone-v: var(--warn-v); } .t-bad { --tone: var(--bad); --tone-v: var(--bad-v); }
+  .t-acc { --tone: var(--petrol); --tone-v: #1b8aa5; } .t-off { --tone: #5b6b7d; --tone-v: #94a3b8; }
+  .tag { border: 1px solid color-mix(in srgb, var(--tone-v, var(--tone)) 42%, transparent); border-radius: 18px; background: var(--glass-bg); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
+    box-shadow: var(--glass-hi), 0 22px 40px -22px color-mix(in srgb, var(--tone-v, var(--tone)) 60%, transparent), 0 30px 50px -30px rgba(20, 32, 40, .45); }
+  .tag-band { background: linear-gradient(120deg, var(--tone) 0%, var(--tone-v, var(--tone)) 100%); }
+  /* The fanned labels of the hero overlap: a nearly opaque body so one does not show through the other. */
+  .stack .tag { background: linear-gradient(150deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .84) 100%); }
+  .tag-band::before { background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, .28); }
+  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad) 0 16px, var(--bad-v) 16px 26px); }
+  .tag dt, .tag dd { border-bottom-color: var(--line); }
+  .screen .tag, .statuses .tag { box-shadow: var(--glass-hi), 0 14px 28px -18px color-mix(in srgb, var(--tone-v, var(--tone)) 60%, transparent); }
+  .statuses .tag { border-color: color-mix(in srgb, var(--tone-v, var(--tone)) 50%, transparent); }
+  .qr-card { background: rgba(12, 30, 36, .82); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid rgba(255, 255, 255, .1); border-radius: 20px; }
+  .qr-card .qr { border-radius: 10px; }
+  .phone { border-radius: 38px; }
+  .screen { background: linear-gradient(160deg, #e9f1f3 0%, #dbe7eb 100%); }
+
+  /* Pills: a transparent tint with a fine edge */
+  .p-ok { --tone-v: var(--ok-v); } .p-warn { --tone-v: var(--warn-v); } .p-bad { --tone-v: var(--bad-v); } .p-acc { --tone-v: #1b8aa5; }
+  .pill { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone-v, var(--tone)) 30%, transparent); }
+  .pill::before { background: var(--tone-v, currentColor); }
+  .note-bad { background: var(--bad-soft); border-radius: 14px; }
+  .todo { border-radius: 999px; }
+
+  /* The home screen picture: the À traiter tiles as small labels, like the app */
+  .today-todo div { --t: var(--petrol); --tv: #1b8aa5; display: grid; padding: 0 .75rem .65rem; overflow: hidden; background: var(--glass-bg); border: 1px solid color-mix(in srgb, var(--tv) 42%, transparent); border-radius: 16px;
+    box-shadow: var(--glass-hi), 0 14px 26px -16px color-mix(in srgb, var(--tv) 55%, transparent); }
+  .today-todo div.w { --t: var(--warn); --tv: var(--warn-v); background: var(--glass-bg); } .today-todo div.x { --t: var(--bad); --tv: var(--bad-v); background: var(--glass-bg); }
+  .today-todo b { position: relative; margin: 0 -.75rem .5rem; padding: .4rem .75rem .45rem 1.85rem; background: linear-gradient(120deg, var(--t), var(--tv)); color: #fff; font-size: 1.6rem; }
+  .today-todo b::before { content: ""; position: absolute; left: .75rem; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .28); }
+  .today-todo b::after { content: "À suivre"; margin-left: .45rem; font-family: var(--font-ui); font-size: .74rem; font-weight: 700; vertical-align: .3rem; }
+  .today-todo div.w b::after { content: "À prévoir"; } .today-todo div.x b::after { content: "Urgent"; }
+  .tp p b.w { color: var(--warn); } .tp p b.x { color: var(--bad); } .tp p b.k { color: var(--ok); }
+
+  /* Planning picture */
+  .pg span { border-radius: 7px; }
+  .pg .c { background: rgba(255, 255, 255, .6); border-color: var(--glass-line); }
+  .pg .vm { background: var(--ext-soft); color: var(--ext); }
+  .pg .ask { background: repeating-linear-gradient(135deg, var(--warn-soft) 0 6px, rgba(255, 255, 255, .7) 6px 10px); border-color: var(--warn-v); }
+  .chips li { border-color: rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .06); }
+
+  /* Legal pages: their notes and boxes */
+  section { border-top-color: var(--line); }
+  footer { border-top-color: var(--line); }
+  @media (max-width: 640px) {
+    .top { padding: 8px 10px 0; }
+    .top .wrap { padding-inline: .8rem; border-radius: 18px; }
+    .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui { border-radius: 18px; }
+  }
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
