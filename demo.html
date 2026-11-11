@@ -1473,14 +1473,28 @@ button.kpi:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--gla
 .wk-item .wk-what span { font-size: .84rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .wk-more { font-size: .86rem; color: var(--muted); }
 
+/* Cells that stay in place while a table scrolls (the month and the total of the travel expenses, the titles and names of the
+   planning, the matrix and the trainings): an opaque ground, or the columns passing under them show through (Xavier, 11/11/2026). */
+:root { --solid-2: #eef3f5; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --solid-2: #1c262c; } }
+:root[data-theme="dark"] { --solid-2: #1c262c; }
+.vf-tab thead th:first-child, .vf-tab tfoot th, .vf-tab tfoot td { background: var(--solid-2); }
+.vf-tab tbody th { background: var(--surface); }
+.pgrid thead th, .pgrid thead .pn, .pgrid.mx tfoot td, .pgrid.mx tfoot th { background: var(--solid-2); }
+.pgrid .pn { background: var(--surface); }
+
 /* Phone and tablet. */
 @media (max-width: 1000px) { .home-top { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 860px) {
   :root { --blur: blur(14px) saturate(150%); }
-  .top { padding-top: .45rem; }
-  .top-inner { width: calc(100% - 16px); padding-inline: .75rem; min-height: 56px; border-radius: 18px; }
+  /* The header and the bottom bar float over the page: a stronger frost, and a soft fade of the background around them, so
+     what scrolls underneath never mixes with them (Xavier, 11/11/2026). */
+  .top { padding-top: .45rem; background: linear-gradient(to bottom, var(--bg) 0%, color-mix(in srgb, var(--bg) 82%, transparent) 55%, transparent 100%); }
+  .top-inner { width: calc(100% - 16px); padding-inline: .75rem; min-height: 56px; border-radius: 18px; background: var(--glass-strong); -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(24px) saturate(170%); }
+  body::after { content: ""; position: fixed; left: 0; right: 0; bottom: 0; z-index: 29; height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 22px); pointer-events: none;
+    background: linear-gradient(to top, var(--bg) 0%, color-mix(in srgb, var(--bg) 85%, transparent) 50%, transparent 100%); }
   .bottom { left: 8px; right: 8px; bottom: calc(env(safe-area-inset-bottom, 0px) + 8px); height: var(--nav-h); padding: 0 .3rem; border: 1px solid var(--glass-line); border-radius: 22px;
-    background: var(--glass-strong); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: 0 16px 36px -18px rgba(10, 30, 38, .55), 0 0 0 1px var(--glass-edge); }
+    background: var(--glass-strong); -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(24px) saturate(170%); box-shadow: 0 16px 36px -18px rgba(10, 30, 38, .55), 0 0 0 1px var(--glass-edge); }
   .bottom button { margin: 6px 2px; border-radius: 16px; }
   .bottom button[aria-current="page"] { background: var(--accent-soft); }
   main.wrap { padding-top: 1rem; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 2.5rem); }
