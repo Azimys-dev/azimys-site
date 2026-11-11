@@ -1473,6 +1473,20 @@ button.kpi:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--gla
 .wk-item .wk-what span { font-size: .84rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .wk-more { font-size: .86rem; color: var(--muted); }
 
+/* Lists between the phone and the wide screen (tablets, a phone in « desktop site », a narrow window): tighter columns so the
+   client or the designation keeps a readable width, and words break between words (Xavier, 11/11/2026: the client name was cut
+   letter by letter in a column far too narrow). */
+.c-des .des, .c-des .sub { overflow-wrap: break-word; }
+@media (min-width: 861px) and (max-width: 1240px) {
+  .row { gap: .7rem; padding-inline: .85rem; }
+  .row.r-fac { grid-template-columns: 6.8rem 8.2rem minmax(0, 1fr) 7.2rem 6.3rem 6.3rem; }
+  .row.r-fac .c-hide { display: none; }
+  .row.r-cmd { grid-template-columns: 8rem 7rem minmax(0, 1fr) 7rem 5rem 6.5rem; }
+  .row.r-doc { grid-template-columns: 5.5rem 8.5rem minmax(0, 1fr) 6.2rem 6.5rem 7.5rem; }
+  .row.r-art { grid-template-columns: 7.5rem 6.5rem minmax(0, 1fr) 5.2rem 5.2rem 5.5rem 6rem; }
+  .row.r-cli { grid-template-columns: 4.5rem minmax(0, 1fr) 5.5rem 7rem 9rem; }
+}
+
 /* Modules drawn inside one box (Suivi, Logistique, Véhicules, Sécurité): the same space between their sections as the other
    pages, so the glass cards never touch (Xavier, 11/11/2026). */
 .sv-body, .lg-body, .vh-body, .sc-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; align-content: start; }
