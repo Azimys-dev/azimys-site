@@ -1473,6 +1473,11 @@ button.kpi:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--gla
 .wk-item .wk-what span { font-size: .84rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .wk-more { font-size: .86rem; color: var(--muted); }
 
+/* Modules drawn inside one box (Suivi, Logistique, Véhicules, Sécurité): the same space between their sections as the other
+   pages, so the glass cards never touch (Xavier, 11/11/2026). */
+.sv-body, .lg-body, .vh-body, .sc-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; align-content: start; }
+.sv-body > *, .lg-body > *, .vh-body > *, .sc-body > * { margin-block: 0; }
+
 /* Cells that stay in place while a table scrolls (the month and the total of the travel expenses, the titles and names of the
    planning, the matrix and the trainings): an opaque ground, or the columns passing under them show through (Xavier, 11/11/2026). */
 :root { --solid-2: #eef3f5; }
