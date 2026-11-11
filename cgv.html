@@ -73,7 +73,7 @@
     --line: rgba(20, 44, 54, .13);
     --ok: #047857; --ok-v: #10b981; --ok-soft: rgba(16, 185, 129, .14);
     --warn: #c2410c; --warn-v: #f97316; --warn-soft: rgba(249, 115, 22, .15);
-    --bad: #c81e1e; --bad-v: #ee2a2a; --bad-soft: rgba(238, 42, 42, .13);
+    --bad: #d41c1c; --bad-v: #ee2a2a; --bad-b: #c81e1e; --bad-soft: rgba(238, 42, 42, .13);
     --ext: #4f46e5; --ext-v: #6366f1; --ext-soft: rgba(99, 102, 241, .13);
     --petrol-soft: rgba(20, 90, 110, .12);
     --glass-bg: linear-gradient(150deg, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .4) 100%);
@@ -134,15 +134,15 @@
   .toast { border-radius: 999px; }
 
   /* Status labels, as in Azimys: band from the deep shade to the vivid one, frosted body, coloured edge and glow */
-  .t-ok { --tone: var(--ok); --tone-v: var(--ok-v); } .t-warn { --tone: var(--warn); --tone-v: var(--warn-v); } .t-bad { --tone: var(--bad); --tone-v: var(--bad-v); }
+  .t-ok { --tone: var(--ok); --tone-v: var(--ok-v); } .t-warn { --tone: var(--warn); --tone-v: var(--warn-v); } .t-bad { --tone: var(--bad); --tone-v: var(--bad-v); --tone-b: var(--bad-b); }
   .t-acc { --tone: var(--petrol); --tone-v: #1b8aa5; } .t-off { --tone: #5b6b7d; --tone-v: #94a3b8; }
   .tag { border: 1px solid color-mix(in srgb, var(--tone-v, var(--tone)) 42%, transparent); border-radius: 18px; background: var(--glass-bg); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
     box-shadow: var(--glass-hi), 0 22px 40px -22px color-mix(in srgb, var(--tone-v, var(--tone)) 60%, transparent), 0 30px 50px -30px rgba(20, 32, 40, .45); }
-  .tag-band { background: linear-gradient(120deg, var(--tone) 0%, var(--tone-v, var(--tone)) 100%); }
+  .tag-band { background: linear-gradient(120deg, var(--tone-b, var(--tone)) 0%, var(--tone-v, var(--tone)) 100%); }
   /* The fanned labels of the hero overlap: a nearly opaque body so one does not show through the other. */
   .stack .tag { background: linear-gradient(150deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .84) 100%); }
   .tag-band::before { background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, .28); }
-  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad) 0 16px, var(--bad-v) 16px 26px); }
+  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad-b) 0 16px, var(--bad-v) 16px 26px); }
   .tag dt, .tag dd { border-bottom-color: var(--line); }
   .screen .tag, .statuses .tag { box-shadow: var(--glass-hi), 0 14px 28px -18px color-mix(in srgb, var(--tone-v, var(--tone)) 60%, transparent); }
   .statuses .tag { border-color: color-mix(in srgb, var(--tone-v, var(--tone)) 50%, transparent); }
