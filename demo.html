@@ -992,7 +992,8 @@
 .vf-tab tbody th, .vf-tab tfoot th, .vf-tab thead th:first-child { position: sticky; left: 0; z-index: 1; background: var(--surface); }
 .vf-tab thead th:first-child, .vf-tab tfoot th { background: var(--surface-2); }
 /* « À traiter » on the home page: one tile per thing to deal with, across the whole width; each opens what it counts. */
-.todo { display: grid; grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr)); gap: .75rem; margin: .3rem 0 .25rem; }
+#todo { display: grid; grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr)); gap: .75rem; margin: .3rem 0 .25rem; }
+#todo[hidden] { display: none; }
 .todo[hidden] { display: none; }
 .todo-tile { --t: var(--warn); --ts: var(--warn-soft); background: var(--ts); border: 1px solid var(--line); border-left: 5px solid var(--t); border-radius: 10px; padding: .7rem .85rem .75rem; display: grid; align-content: start; gap: .2rem; text-align: left; font: inherit; color: var(--ink); cursor: pointer; min-width: 0; }
 .todo-tile.t-bad { --t: var(--bad); --ts: var(--bad-soft); }
@@ -1001,7 +1002,7 @@
 .todo-tile small { color: var(--muted); font-size: .82rem; font-weight: 600; }
 .todo-tile:hover { border-color: var(--t); }
 .todo-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-@media (max-width: 560px) { .todo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; } .todo-tile { padding: .6rem .7rem .65rem; } .todo-tile b { font-size: 1.7rem; } .todo-tile span { font-size: .86rem; } }
+@media (max-width: 560px) { #todo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; } .todo-tile { padding: .6rem .7rem .65rem; } .todo-tile b { font-size: 1.7rem; } .todo-tile span { font-size: .86rem; } }
 /* The view bodies are grid items: without this, the sub-tabs on a phone widen the page by a few pixels. */
 .sv-body, .lg-body, .vh-body { min-width: 0; }
 /* A long state (« Chez … · n jours ouvrés, retour prévu le … ») wraps on a phone instead of passing the edge. */
@@ -1040,11 +1041,12 @@
 .sq-score { font-size: .85rem; color: var(--muted); } .sq-score b { color: var(--ink); font-size: 1.05rem; }
 .sq-ring { padding: .2rem 0; }
 .sq-what { margin: 0; font-size: .82rem; color: var(--muted); }
-.sq-list { display: grid; gap: 0; }
+.sq-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; min-width: 0; }
 .sq-item { display: flex; gap: .6rem; align-items: flex-start; width: 100%; padding: .55rem 0; border: 0; border-top: 1px solid var(--line); background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .sq-list .sq-item:first-child { border-top: 0; }
 .sq-item:hover .i-title { color: var(--accent); }
-.sq-item .item-main { display: grid; gap: .15rem; min-width: 0; }
+.sq-item { min-width: 0; }
+.sq-item .item-main { display: grid; gap: .15rem; min-width: 0; overflow-wrap: anywhere; }
 .sq-d { flex: none; min-width: 2.8rem; font-weight: 700; font-size: .9rem; color: var(--cat); }
 .sq-act { font-size: .84rem; padding-left: .55rem; border-left: 3px solid var(--warn); }
 .sq-act.done { border-color: var(--ok); } .sq-act.none { border-color: var(--line); color: var(--muted); font-style: italic; }
@@ -1381,7 +1383,7 @@ button.kpi:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--gla
 
 /* À traiter: each subject is an étiquette, like the labels of the fiches, of the scanned QR codes and of the site:
    a band in its colour (red = urgent, orange = to plan, green = all good) with the number, the subject below. */
-.todo { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: .85rem; }
+#todo { grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: .85rem; }
 .todo-tile { --tone: var(--warn); --tone-v: var(--warn-v); display: grid; grid-template-rows: auto 1fr; gap: 0; padding: 0; transition: transform .15s ease, box-shadow .15s ease; }
 .todo-tile.t-bad { --tone: var(--bad); --tone-v: var(--bad-v); --tone-b: var(--bad-b); --band-ink: #fff; }
 .todo-tile.t-ok { --tone: var(--ok); --tone-v: var(--ok-v); cursor: default; }
@@ -1568,7 +1570,7 @@ button.kpi:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--gla
   .view-head .actions .btn { flex: none; min-height: 42px; }
   .view-head .actions .btn-primary { order: -1; }
   .view-head > div:first-child { min-width: 0; }
-  .todo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; }
+  #todo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; }
   .todo-tile { border-radius: 16px; }
   .todo-tile .tt-band { padding: .4rem .65rem .45rem 1.75rem; gap: .4rem; }
   .todo-tile .tt-band::before { left: .65rem; width: 9px; height: 9px; margin-top: -4.5px; }
