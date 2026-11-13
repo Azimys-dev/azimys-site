@@ -96,7 +96,8 @@
   .top { background: none; border: 0; padding: 10px max(12px, 2vw) 0; pointer-events: none; }
   .top .wrap { pointer-events: auto; padding-inline: 1.1rem; border-radius: 22px; background: rgba(255, 255, 255, .58); border: 1px solid var(--glass-line);
     -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
-  .sol-panel { background: var(--glass-strong); border: 1px solid var(--glass-line); border-radius: 20px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
+  /* The menus of the header are opaque (13/11/2026, Xavier: the page's text showed through and made them hard to read). */
+  .sol-panel { background: #f9fbfc; border: 1px solid rgba(20, 44, 54, .12); border-radius: 20px; box-shadow: 0 1px 2px rgba(16, 40, 50, .06), 0 24px 48px -18px rgba(16, 40, 50, .34); }
   .nav .sol-panel a:not(.btn) { border-radius: 10px; }
 
   /* Buttons: pills */
