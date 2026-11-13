@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fabrication par lots, matières premières tracées, dates de durabilité, conditionnement, revendeurs et factures : la traçabilité des cosmétiques.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect x='1' y='1' width='32' height='32' rx='7' fill='%23145a6e'/%3E%3Ccircle cx='17' cy='17' r='10' fill='none' stroke='%23fff' stroke-width='1.6' opacity='.45'/%3E%3Cg transform='rotate(35 17 17)'%3E%3Cpath d='M17 6l4 11h-8z' fill='%23fff'/%3E%3Cpath d='M17 28l-4-11h8z' fill='%23f3f5f4' opacity='.8'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="canonical" href="https://azimys.com/logiciel-gestion-cosmetique-savonnerie.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Azimys">
+<meta property="og:title" content="Azimys pour les savonneries et les fabricants de cosmétiques">
+<meta property="og:description" content="Fabrication par lots, matières premières tracées, dates de durabilité, conditionnement, revendeurs et factures : la traçabilité des cosmétiques.">
+<meta property="og:url" content="https://azimys.com/logiciel-gestion-cosmetique-savonnerie.html">
+<meta property="og:image" content="https://azimys.com/assets/azimys-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:locale" content="fr_FR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Azimys", "item": "https://azimys.com/"}, {"@type": "ListItem", "position": 2, "name": "Cosmétiques et savonnerie", "item": "https://azimys.com/logiciel-gestion-cosmetique-savonnerie.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Azimys fait-il le dossier d'information produit ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Le DIP, l'évaluation de la sécurité et la notification restent dans vos documents réglementaires. Azimys garde la traçabilité des lots, des matières et des livraisons, qui servent à les tenir à jour."}}, {"@type": "Question", "name": "Peut-on fabriquer en petites séries ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Un OF peut faire 50 savons ou 2 000. La recette se règle une fois sur l'article, et chaque OF la reprend avec la quantité voulue."}}, {"@type": "Question", "name": "Est-ce long à mettre en place ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Vous importez vos articles et vos clients depuis vos fichiers Excel, vous cochez les modules qui vous servent, et vous travaillez dès le premier jour. Nous vous accompagnons au démarrage, et Azimys s'adapte à vos mots et à vos documents."}}, {"@type": "Question", "name": "Où sont mes données ?", "acceptedAnswer": {"@type": "Answer", "text": "Hébergées en France, avec double authentification, historique des connexions et sauvegardes automatiques. Vous exportez tout en Excel quand vous voulez : vos données restent à vous."}}]}</script>
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Logiciel de gestion pour savonnerie et cosmétiques · Azimys</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  /* Layout: single-column sales page on a cool workshop paper. One bold element: the fanned status labels in the hero.
+     Deliberately single light theme, every color set explicitly. */
+  :root {
+    --paper: #f3f5f4;
+    --surface: #ffffff;
+    --ink: #142028;
+    --muted: #55626b;
+    --line: #d5dcdf;
+    --petrol: #145a6e;
+    --petrol-deep: #0d3f4e;
+    --petrol-soft: #dcebef;
+    --ok: #059669; --ok-soft: #e0f0e5;
+    --warn: #c2410c; --warn-soft: #fbedd6;
+    --bad: #d41c1c; --bad-soft: #fde0e0;
+    --on-dark: #e8eff1;
+    --on-dark-muted: #a9bcc3;
+    --font-ui: "Barlow", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-ui); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.05; letter-spacing: .005em; text-wrap: balance; color: var(--ink); }
+  a { color: var(--petrol); }
+  :focus-visible { outline: 3px solid var(--petrol); outline-offset: 3px; }
+  .wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: 0 1.3rem; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 1rem/1 var(--font-ui); text-decoration: none; cursor: pointer; white-space: nowrap; }
+  .btn:hover { border-color: var(--ink); }
+  .btn-main { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .btn-main:hover { background: var(--petrol-deep); border-color: var(--petrol-deep); }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* Header */
+  .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(243, 245, 244, .96); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 66px; }
+  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
+  .logo svg { width: 34px; height: 24px; }
+  .logo b { font-family: var(--font-display); font-size: 1.75rem; line-height: 1; letter-spacing: .01em; }
+  .nav { display: flex; align-items: center; gap: 1.6rem; }
+  .nav a:not(.btn) { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .98rem; }
+  .nav a:not(.btn):hover { color: var(--petrol); }
+  .nav .btn { min-height: 42px; }
+
+  /* Product name, same pattern as in the apps: brand in ink, product word in petrol */
+  .wrap .eyebrow { display: flex; align-items: center; gap: .55rem; font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; line-height: 1; margin-bottom: 1rem; color: var(--ink); }
+  .wrap .eyebrow svg { width: 30px; height: 21px; flex: none; }
+  .wrap .eyebrow span { color: var(--petrol); font-weight: 600; }
+
+  /* Hero */
+  .hero { padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 6vw, 5rem); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.5rem); max-width: 17ch; margin-bottom: .7rem; }
+  .hero .kicker { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: clamp(1.25rem, 2.4vw, 1.7rem); color: var(--petrol); margin: 0 0 1.3rem; letter-spacing: .01em; }
+  .hero .lead { font-size: clamp(1.05rem, 1.6vw, 1.22rem); color: var(--muted); max-width: 54ch; margin-bottom: 2rem; }
+  .hero .lead b { color: var(--ink); font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .proof { margin-top: 1.5rem; font-size: .95rem; color: var(--muted); }
+  .proof a { font-weight: 600; }
+
+  .stack { position: relative; height: 540px; }
+  .tag { position: absolute; width: min(330px, 86%); background: var(--surface); border: 2px solid var(--tone); border-radius: 10px; overflow: hidden; box-shadow: 0 30px 50px -30px rgba(20, 32, 40, .55); }
+  .tag-band { position: relative; background: var(--tone); color: #fff; padding: .8rem 1rem .85rem 2.9rem; }
+  .tag-band::before { content: ""; position: absolute; left: 1rem; top: 50%; width: 15px; height: 15px; margin-top: -7.5px; border-radius: 50%; background: var(--surface); }
+  .tag-band b { display: block; font-family: var(--font-display); font-size: 1.65rem; line-height: 1.05; }
+  .tag-band span { display: block; font-size: .9rem; font-weight: 600; opacity: .92; }
+  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad) 0 16px, #8f1c13 16px 26px); }
+  .tag dl { display: grid; grid-template-columns: auto 1fr; padding: .3rem 1rem .55rem; font-size: .92rem; }
+  .tag dt, .tag dd { padding: .4rem 0; border-bottom: 1px dashed var(--line); }
+  .tag dt { color: var(--muted); padding-right: 1rem; }
+  .tag dd { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .tag dt:nth-last-child(2), .tag dd:last-child { border-bottom: 0; }
+  .t-ok { --tone: var(--ok); } .t-warn { --tone: var(--warn); } .t-bad { --tone: var(--bad); }
+  .tag.a { left: 0; top: 40px; transform: rotate(-5deg); z-index: 1; }
+  .tag.b { right: 0; top: 0; transform: rotate(4deg); z-index: 2; }
+  .tag.c { left: 12%; top: 190px; transform: rotate(-1.5deg); z-index: 3; }
+  .tag { animation: drop .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .tag.b { animation-delay: .12s; } .tag.c { animation-delay: .24s; }
+  @keyframes drop { from { opacity: 0; translate: 0 -18px; } to { opacity: 1; translate: 0 0; } }
+  .qr-card { position: absolute; right: 0; bottom: 0; z-index: 4; display: flex; gap: .8rem; align-items: center; width: 280px; padding: .75rem; background: var(--ink); color: var(--on-dark); border-radius: 10px; font-size: .88rem; line-height: 1.35; box-shadow: 0 30px 50px -30px rgba(20, 32, 40, .7); }
+  .qr-card .qr { width: 86px; height: 86px; flex: none; background: #fff; border-radius: 4px; padding: 3px; }
+  .qr-card .qr svg { width: 100%; height: 100%; display: block; }
+  .qr-card b { color: #fff; }
+
+  /* Modules: the base and the modules to add, one card each */
+  .mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .mod { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem 1.25rem 1.3rem; }
+  .mod h3 { font-size: 1.4rem; margin-bottom: .35rem; display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; }
+  .mod h3 small { font-family: var(--font-ui); font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .mod p { color: var(--muted); font-size: .97rem; }
+  .mod.base { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .mod.base h3, .mod.base h3 small { color: #fff; }
+  .mod.base p { color: rgba(255, 255, 255, .86); }
+
+  /* QR codes: a phone that has just scanned a label */
+  .scans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); }
+  .scan { margin: 0; display: flex; flex-direction: column; }
+  .scan .phone { flex: 1; display: flex; flex-direction: column; width: 100%; }
+  .scan .screen { flex: 1; }
+  .scan figcaption { margin-top: 1rem; text-align: center; }
+  .scan figcaption b { display: block; font-family: var(--font-display); font-size: 1.45rem; color: #fff; }
+  .scan figcaption span { color: var(--on-dark-muted); font-size: .95rem; }
+  .phone { max-width: 290px; margin-inline: auto; background: #0b1418; border: 1px solid #2c3f4b; border-radius: 34px; padding: 12px; box-shadow: 0 34px 60px -34px rgba(0, 0, 0, .8); }
+  .screen { background: var(--paper); color: var(--ink); border-radius: 24px; padding: 14px 12px 16px; min-height: 300px; }
+  .screen .bar { display: flex; align-items: center; justify-content: space-between; font-size: .78rem; color: var(--muted); margin-bottom: 12px; }
+  .screen .bar b { display: flex; align-items: center; gap: .35rem; font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); }
+  .screen .bar svg { width: 22px; height: 16px; }
+  .screen .tag { position: static; width: 100%; animation: none; box-shadow: none; }
+  .screen .tag-band b { font-size: 1.4rem; }
+  .screen .tag dl { font-size: .86rem; }
+  .t-acc { --tone: var(--petrol); } .t-off { --tone: #69737a; }
+  .legend-head { margin-top: clamp(3rem, 6vw, 4.5rem); max-width: 62ch; }
+  .legend-head h3 { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: .5rem; }
+  .legend-head p { color: var(--on-dark-muted); }
+  .statuses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; padding: 0; list-style: none; }
+  .statuses .tag { position: static; width: auto; animation: none; box-shadow: none; border-color: var(--tone); }
+  .statuses .tag-band { height: 100%; }
+  .scans-note { margin-top: clamp(2rem, 4vw, 2.75rem); color: var(--on-dark-muted); text-align: center; }
+
+  /* Sections */
+  section.band { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+  .band.white { background: var(--surface); border-block: 1px solid var(--line); }
+  .band.dark { background: var(--ink); color: var(--on-dark); }
+  .band.dark h2, .band.dark h3 { color: #fff; }
+  .head { max-width: 62ch; margin-bottom: clamp(2rem, 5vw, 3.25rem); }
+  .head h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: .9rem; }
+  .head p { color: var(--muted); font-size: 1.1rem; }
+  .head .cta { margin-top: 1.4rem; }
+  .band.dark .head p { color: var(--on-dark-muted); }
+
+  /* Problem */
+  .pains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+  .pain { border-top: 3px solid var(--bad); padding-top: 1.1rem; }
+  .pain h3 { font-size: 1.45rem; margin-bottom: .5rem; }
+  .pain p { color: var(--muted); }
+  .sheet { margin-top: 2.5rem; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  .sheet table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: .9rem; font-variant-numeric: tabular-nums; }
+  .sheet th, .sheet td { border: 1px solid #e3e8ea; padding: .4rem .6rem; text-align: left; white-space: nowrap; }
+  .sheet th { background: #eef2f3; color: var(--muted); font-weight: 600; }
+  .sheet td:first-child, .sheet th:first-child { background: #eef2f3; color: var(--muted); width: 2.5rem; text-align: center; }
+  .sheet .late { background: var(--bad-soft); color: var(--bad); font-weight: 700; }
+  .sheet-cap { font-size: .88rem; color: var(--muted); padding: .55rem .75rem; border-top: 1px solid var(--line); }
+
+  /* Features */
+  .feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+  .feature:first-of-type { border-top: 0; padding-top: 0; }
+  .feature:nth-of-type(even) .f-text { order: 2; }
+  .f-text h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: .75rem; }
+  .f-text p { color: var(--muted); margin-bottom: .75rem; max-width: 52ch; }
+  .f-text ul { display: grid; gap: .35rem; }
+  .f-text li { padding-left: 1.4rem; position: relative; }
+  .f-text li::before { content: ""; position: absolute; left: 0; top: .62em; width: .7rem; height: 2px; background: var(--petrol); }
+  .ui { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 1rem; display: grid; gap: .6rem; font-size: .93rem; }
+  .ui-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem .75rem; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .65rem .8rem; }
+  .ui-row.off { opacity: .8; }
+  .ui-row .sw { position: relative; width: 2.4rem; height: 1.4rem; border-radius: 999px; background: var(--line); }
+  .ui-row .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: calc(1.4rem - 6px); height: calc(1.4rem - 6px); border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
+  .ui-row .sw.on { background: var(--petrol); }
+  .ui-row .sw.on::after { transform: translateX(1rem); }
+  .ui-presets { display: flex; flex-wrap: wrap; gap: .4rem; font-size: .84rem; font-weight: 600; }
+  .ui-presets span { padding: .25rem .65rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--muted); }
+  .ui-presets span.on { border-color: var(--petrol); color: var(--petrol); background: var(--petrol-soft); }
+  .ui-row .why { grid-column: 1 / -1; color: var(--bad); font-weight: 600; font-size: .86rem; }
+  .ui-row .sub { grid-column: 1 / -1; color: var(--muted); font-size: .86rem; }
+  .r { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; margin-right: .4rem; font-variant-numeric: tabular-nums; }
+  .pill { display: inline-flex; align-items: center; gap: .4rem; padding: .15rem .6rem; border-radius: 999px; background: var(--tone-soft); color: var(--tone); font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .p-ok { --tone: var(--ok); --tone-soft: var(--ok-soft); } .p-warn { --tone: var(--warn); --tone-soft: var(--warn-soft); } .p-bad { --tone: var(--bad); --tone-soft: var(--bad-soft); } .p-acc { --tone: var(--petrol); --tone-soft: var(--petrol-soft); }
+  .note-bad { background: var(--bad-soft); border-radius: 8px; padding: .7rem .85rem; }
+  .note-bad b { color: var(--bad); }
+  .month { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+  .month:last-child { border-bottom: 0; }
+  .month b { font-family: var(--font-display); font-size: 1.12rem; }
+  .month span { color: var(--muted); font-size: .88rem; grid-column: 1; }
+  .month em { font-style: normal; font-weight: 700; grid-column: 2; grid-row: 1 / span 2; align-self: center; font-variant-numeric: tabular-nums; }
+  .ui-total { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-bottom: .5rem; border-bottom: 2px solid var(--ink); }
+  .ui-total strong { font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+  .more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem 2rem; margin-top: clamp(2rem, 4vw, 3rem); padding-top: 2rem; border-top: 1px solid var(--line); }
+  .more h3 { font-size: 1.3rem; margin-bottom: .4rem; }
+  .more p { color: var(--muted); font-size: .97rem; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; counter-reset: s; }
+  .step { counter-increment: s; }
+  .step::before { content: counter(s); display: block; font-family: var(--font-display); font-weight: 700; font-size: 3.4rem; line-height: 1; color: var(--petrol); margin-bottom: .6rem; }
+  .step h3 { font-size: 1.45rem; margin-bottom: .45rem; }
+  .step p { color: var(--muted); }
+
+  /* Compliance */
+  .comply { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .quote { border-left: 3px solid var(--petrol-soft); padding-left: 1.25rem; font-size: 1.15rem; color: var(--on-dark); }
+  .rules { width: 100%; border-collapse: collapse; margin-top: 1.75rem; font-size: .97rem; }
+  .rules th, .rules td { text-align: left; padding: .6rem .75rem .6rem 0; border-bottom: 1px solid #2c3f4b; vertical-align: top; }
+  .rules th { color: var(--on-dark-muted); font-weight: 600; font-size: .88rem; }
+  .rules td:first-child { color: #fff; font-weight: 600; width: 38%; }
+  .rules td { color: var(--on-dark); }
+  .checks { display: grid; gap: .7rem; }
+  .checks li { padding-left: 1.8rem; position: relative; color: var(--on-dark); }
+  .checks li::before { content: ""; position: absolute; left: 0; top: .35em; width: 1rem; height: .55rem; border-left: 2.5px solid #7fc9da; border-bottom: 2.5px solid #7fc9da; transform: rotate(-45deg); }
+  .checks .sep { padding: .6rem 0 0; color: var(--on-dark-muted); font-size: .88rem; font-weight: 600; }
+  .checks .sep::before { display: none; }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
+  .plan { grid-column: span 2; padding: 1.75rem 1.5rem; display: grid; gap: .9rem; align-content: start; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  .plan.wide { grid-column: span 3; }
+  .plan:first-child { border-left: 0; }
+  .plan.hl { background: #f7fbfc; box-shadow: inset 0 4px 0 var(--petrol); }
+  .plan h3 { font-size: 1.6rem; }
+  .plan .price { font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .plan .price small { font-family: var(--font-ui); font-size: .95rem; font-weight: 500; color: var(--muted); }
+  .plan p { color: var(--muted); font-size: .97rem; }
+  .plan ul { display: grid; gap: .4rem; font-size: .97rem; }
+  .plan li { padding-left: 1.4rem; position: relative; }
+  .plan li::before { content: ""; position: absolute; left: 0; top: .62em; width: .7rem; height: 2px; background: var(--petrol); }
+  .plan .btn { justify-self: start; margin-top: .25rem; }
+  .addon { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem 2rem; align-items: center; margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .addon .eyebrow.eyebrow { margin-bottom: .45rem; font-size: 1.45rem; }
+  .addon p { color: var(--muted); font-size: .97rem; max-width: 60ch; }
+  .addon .addon-price { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--ink); }
+  .addon .addon-price small { display: block; font-family: var(--font-ui); font-size: .9rem; font-weight: 500; color: var(--muted); }
+  .fine { margin-top: 1rem; font-size: .9rem; color: var(--muted); }
+  .pilot { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; margin-bottom: 1rem; padding: 1.2rem 1.5rem; background: #f7fbfc; border: 1px solid var(--line); border-radius: 12px; box-shadow: inset 4px 0 0 var(--petrol); }
+  .pilot p { color: var(--muted); max-width: 70ch; min-width: 0; }
+  .pilot b { color: var(--ink); }
+  .plan .badge { justify-self: start; margin-bottom: -.35rem; padding: .2rem .6rem; border-radius: 999px; background: var(--petrol); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .02em; }
+  .plan .save { margin-top: -.45rem; color: var(--petrol); font-size: .88rem; font-weight: 600; }
+  .carte { margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: grid; gap: 1rem; }
+  .carte-head { display: flex; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; flex-wrap: wrap; }
+  .carte-head h3 { font-size: 1.6rem; }
+  .carte-head p { color: var(--muted); font-size: .95rem; }
+  .carte-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; }
+  .carte-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--line); }
+  .carte-list li span { min-width: 0; }
+  .carte-list b { display: block; font-weight: 600; }
+  .carte-list small { display: block; color: var(--muted); font-size: .86rem; line-height: 1.35; }
+  .carte-list em { font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .carte-list li.base { grid-column: 1 / -1; background: #f7fbfc; margin-inline: -.75rem; padding-inline: .75rem; border-radius: 8px; border-top: 0; }
+
+  /* FAQ */
+  .faq { max-width: 820px; display: grid; }
+  .faq details { border-top: 1px solid var(--line); }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; padding: 1.05rem 2rem 1.05rem 0; position: relative; font-weight: 600; font-size: 1.08rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: ""; position: absolute; right: .3rem; top: 1.4rem; width: .6rem; height: .6rem; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(45deg); transition: transform .2s; }
+  .faq details[open] summary::after { transform: rotate(-135deg); top: 1.7rem; }
+  .faq details p { padding-bottom: 1.1rem; color: var(--muted); max-width: 68ch; }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .contact h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: .9rem; }
+  .contact p { color: var(--on-dark-muted); font-size: 1.1rem; max-width: 52ch; }
+  .card { background: #1d2c36; border: 1px solid #2c3f4b; border-radius: 12px; padding: 1.5rem; display: grid; gap: 1rem; }
+  .card label { font-size: .9rem; color: var(--on-dark-muted); }
+  .mail { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+  .mail code { font-family: var(--font-ui); font-size: 1.15rem; font-weight: 600; color: #fff; user-select: all; overflow-wrap: anywhere; }
+  .mail .todo { color: #f5c26b; font-style: italic; font-weight: 500; }
+  .card .btn { background: transparent; color: #fff; border-color: #4a6170; }
+  .card .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+
+  footer { padding-block: 2rem; font-size: .9rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 2rem; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+
+  .toast { position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); transform: translate(-50%, 16px); opacity: 0; pointer-events: none; z-index: 50; background: var(--ink); color: #fff; padding: .7rem 1rem; border-radius: 8px; font-weight: 600; transition: opacity .2s, transform .2s; max-width: calc(100% - 32px); }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 980px) {
+    .nav a:not(.btn) { display: none; }
+    .hero .wrap, .feature, .comply, .contact { grid-template-columns: 1fr; }
+    .feature:nth-of-type(even) .f-text { order: 0; }
+    .stack { height: 400px; max-width: 520px; width: 100%; margin-inline: auto; }
+    .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .scans { grid-template-columns: 1fr; gap: 2.5rem; }
+    .statuses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .plans { grid-template-columns: 1fr; }
+    .plan, .plan.wide { grid-column: auto; }
+    .plan:first-child { border-top: 0; }
+    .addon { grid-template-columns: 1fr; }
+    .addon .btn { justify-self: start; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .pains, .steps, .more, .mods, .statuses, .carte-list { grid-template-columns: 1fr; }
+    .stack { height: 380px; }
+    .tag { width: 82%; }
+    .tag.c { left: 6%; top: 175px; }
+    .qr-card { display: none; }
+    .cta .btn { flex: 1 1 auto; }
+    .rules { font-size: .9rem; }
+    .rules th, .rules td { padding-right: .5rem; }
+  }
+  /* Key facts under the hero */
+  .facts-band { border-top: 1px solid var(--line); background: var(--surface); }
+  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem 2rem; padding-block: 1.5rem; }
+  .facts b { display: block; font-family: var(--font-display); font-size: 1.55rem; line-height: 1.1; color: var(--petrol); }
+  .facts span { display: block; color: var(--muted); font-size: .95rem; line-height: 1.4; margin-top: .2rem; }
+
+  /* The home screen of the app, as a picture */
+  .today { margin-top: clamp(2rem, 5vw, 3rem); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: clamp(1rem, 2.5vw, 1.5rem); }
+  .today-top { display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .88rem; margin-bottom: .6rem; }
+  .today-top span:first-child { display: flex; align-items: center; gap: .4rem; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+  .today-top svg { width: 24px; height: 17px; }
+  .today-sum { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.3rem, 2.5vw, 1.8rem); line-height: 1.25; margin-bottom: 1.1rem; max-width: 52ch; }
+  .today-todo { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: .6rem; margin: -.4rem 0 1.1rem; }
+  .today-todo div { --t: var(--petrol); background: var(--petrol-soft); border: 1px solid var(--line); border-left: 5px solid var(--t); border-radius: 10px; padding: .6rem .75rem; font-size: .88rem; font-weight: 600; line-height: 1.25; }
+  .today-todo div.w { --t: var(--warn); background: var(--warn-soft); } .today-todo div.x { --t: var(--bad); background: var(--bad-soft); }
+  .today-todo b { display: block; font-family: var(--font-display); font-size: 1.8rem; line-height: 1; color: var(--t); margin-bottom: .15rem; }
+  .today-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
+  .tp { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .8rem .9rem .5rem; }
+  .tp h3 { font-size: 1.2rem; margin-bottom: .35rem; }
+  .tp p { display: flex; justify-content: space-between; align-items: baseline; gap: .75rem; padding: .35rem 0; border-top: 1px dashed var(--line); color: var(--muted); font-size: .9rem; line-height: 1.3; }
+  .tp p b { color: var(--petrol); font-size: 1.05rem; font-variant-numeric: tabular-nums; text-decoration: underline; text-underline-offset: 3px; }
+  .tp p b.w { color: var(--warn); } .tp p b.x { color: var(--bad); } .tp p b.k { color: var(--ok); }
+  .today-cap { margin-top: .8rem; font-size: .9rem; color: var(--muted); }
+
+  /* Modules by domain, with example combinations */
+  .size { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+  .size > span { font-weight: 600; color: var(--muted); margin-right: .25rem; }
+  .size button { min-height: 42px; padding: 0 1rem; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 .95rem/1 var(--font-ui); cursor: pointer; }
+  .size button:hover { border-color: var(--ink); }
+  .size button[aria-checked="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+  #tarifs .size { margin-bottom: 1.5rem; }
+  .profiles { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: 1.25rem; }
+  .profiles > span { font-weight: 600; color: var(--muted); margin-right: .25rem; }
+  .profiles button { min-height: 42px; padding: 0 1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 .95rem/1 var(--font-ui); cursor: pointer; }
+  .profiles button:hover { border-color: var(--ink); }
+  .profiles button[aria-pressed="true"] { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+  .doms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .dom { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.15rem 1.25rem 1.2rem; }
+  .dom h3 { display: flex; align-items: center; gap: .6rem; font-size: 1.45rem; margin-bottom: .55rem; }
+  .dom h3 svg { width: 28px; height: 28px; flex: none; fill: none; stroke: var(--petrol); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .dom ul { display: grid; gap: .25rem; }
+  .dom li { border-top: 1px solid var(--line); padding-top: .25rem; }
+  .dom label { position: relative; display: block; margin: 0 -.6rem; padding: .5rem .6rem .55rem; border-radius: 8px; cursor: pointer; transition: background .15s; }
+  .dom label:hover { background: var(--paper); }
+  .dom li.on label { background: var(--petrol-soft); }
+  .dom input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+  .dom label b { display: flex; align-items: center; gap: .55rem; font-weight: 600; }
+  .dom label b::before { content: ""; flex: none; width: 20px; height: 20px; border: 2px solid #9aa7ae; border-radius: 5px; background: #fff center / 13px no-repeat; }
+  .dom input:checked + b { color: var(--petrol); }
+  .dom input:checked + b::before { background-color: var(--petrol); border-color: var(--petrol); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.3l2.6 2.5L10 3.3' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+  .dom input:focus-visible + b::before { outline: 3px solid var(--petrol); outline-offset: 2px; }
+  .dom label b em { margin-left: auto; padding-left: .75rem; font-style: normal; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--ink); white-space: nowrap; }
+  .dom label span { display: block; padding-left: calc(20px + .55rem); color: var(--muted); font-size: .93rem; line-height: 1.45; }
+  .sel { position: sticky; bottom: 12px; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; flex-wrap: wrap; margin-top: 1rem; padding: .9rem 1.2rem; background: var(--ink); color: var(--on-dark); border-radius: 12px; box-shadow: 0 18px 40px -20px rgba(20, 32, 40, .6); }
+  .sel-text { min-width: 0; flex: 1 1 22rem; }
+  .sel-text p { font-size: 1.02rem; }
+  .sel-text b { color: #fff; }
+  .sel-text strong { font-family: var(--font-display); font-size: 1.5rem; color: #fff; white-space: nowrap; }
+  .sel-msg { margin-top: .15rem; color: var(--on-dark-muted); font-size: .9rem !important; }
+  .sel-msg:empty { display: none; }
+  .sel-act { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .sel-act[hidden] { display: none; }
+  .sel .btn { min-height: 44px; background: transparent; color: #fff; border-color: #4a6170; }
+  .sel .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+
+  .plans-head { display: flex; align-items: baseline; justify-content: space-between; gap: .25rem 1.5rem; flex-wrap: wrap; margin: 1.75rem 0 .9rem; }
+  .plans-head h3 { font-size: 1.6rem; }
+  .plans-head p { color: var(--muted); font-size: .95rem; }
+
+  /* QR section: what can carry a label */
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-top: clamp(2rem, 4vw, 2.75rem); }
+  .chips li { padding: .35rem .85rem; border: 1px solid #2c3f4b; border-radius: 999px; color: var(--on-dark); font-size: .93rem; font-weight: 600; }
+
+  /* Personnel: a week of the planning */
+  .pg { display: grid; grid-template-columns: 2.6rem repeat(5, minmax(0, 1fr)); gap: 4px; font-size: .8rem; font-weight: 700; text-align: center; }
+  .pg span { min-height: 2rem; display: grid; place-items: center; border-radius: 5px; }
+  .pg .h { color: var(--muted); font-weight: 600; min-height: 1.4rem; }
+  .pg .n { font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); justify-content: start; }
+  .pg .c { background: var(--surface); border: 1px solid var(--line); }
+  .pg .cp { background: var(--petrol-soft); border-color: transparent; color: var(--petrol); }
+  .pg .vm { background: #ece9f8; border-color: transparent; color: #4f46e5; }
+  .pg .fo { background: var(--ok-soft); border-color: transparent; color: var(--ok); }
+  .pg .ar { background: var(--bad-soft); border-color: transparent; color: var(--bad); }
+  .pg .ask { background: repeating-linear-gradient(135deg, var(--warn-soft) 0 6px, #fff 6px 10px); border: 1px dashed var(--warn); color: var(--warn); }
+
+  /* Quality: SQDP rings */
+  .rings { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; padding-top: .25rem; }
+  .rings div { display: grid; justify-items: center; text-align: center; gap: .1rem; }
+  .rings svg { width: 100%; max-width: 116px; height: auto; }
+  .rings b { font-family: var(--font-display); font-size: 1.05rem; }
+  .rings span { color: var(--muted); font-size: .8rem; }
+
+  /* Tools, vehicles, equipment */
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .tri { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.3rem 1.3rem 1.4rem; display: grid; gap: .85rem; align-content: start; }
+  .tri h3 { font-size: 1.55rem; }
+  .tri p { color: var(--muted); font-size: .97rem; }
+  .tri .ui { font-size: .9rem; padding: .7rem; }
+  .tri > a { font-weight: 600; }
+
+  @media (max-width: 980px) {
+    .facts, .today-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .doms, .trio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .facts { gap: 1rem 1.25rem; }
+    .facts b { font-size: 1.3rem; }
+    .today-grid, .doms, .trio { grid-template-columns: 1fr; }
+    .profiles button { flex: 1 1 auto; }
+    .sel { bottom: 8px; padding: .65rem .85rem; gap: .5rem; }
+    .sel-text p { font-size: .92rem; line-height: 1.35; }
+    .sel-text strong { font-size: 1.25rem; }
+    .sel-msg { font-size: .82rem !important; }
+    .sel-act { flex: 1 1 100%; flex-wrap: nowrap; }
+    .sel-act .btn { flex: 1 1 0; min-height: 40px; padding: 0 .5rem; font-size: .92rem; }
+    .sel-act .btn-main { flex-grow: 1.6; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<style>
+  .crumbs { font-size: .92rem; color: var(--muted); margin: 0 0 1.1rem; }
+  .crumbs a { color: var(--petrol); text-decoration: none; font-weight: 600; }
+  .crumbs a:hover { text-decoration: underline; }
+  .hero.landing h1 { font-size: clamp(2.2rem, 4.8vw, 3.7rem); max-width: 20ch; }
+  .hero.landing .ui { align-self: center; }
+  .hero.guide .wrap { display: block; }
+  .hero.guide h1 { font-size: clamp(2rem, 4.2vw, 3.2rem); max-width: 24ch; }
+  .hero.guide .lead { max-width: 68ch; }
+  .related { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .related a { display: block; padding: 1.2rem 1.3rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; color: var(--ink); text-decoration: none; }
+  .related a:hover { border-color: var(--petrol); }
+  .related h3 { font-size: 1.35rem; margin-bottom: .35rem; color: var(--petrol); }
+  .related p { color: var(--muted); font-size: .96rem; }
+  .nav a[aria-current] { color: var(--petrol); font-weight: 700; }
+  .landing-cta .cta { margin-top: 1.5rem; }
+  .landing-cta .btn:not(.btn-main) { background: transparent; color: #fff; border-color: #4a6170; }
+  .landing-cta .btn-main { background: #fff; color: var(--ink); border-color: #fff; }
+  .prose { max-width: 72ch; }
+  .prose h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 2.4rem 0 .8rem; }
+  .prose h2:first-child { margin-top: 0; }
+  .prose h3 { font-size: 1.3rem; margin: 1.6rem 0 .5rem; }
+  .prose p, .prose li { color: var(--ink); font-size: 1.06rem; line-height: 1.65; }
+  .prose p { margin: 0 0 1rem; }
+  .prose ul, .prose ol { margin: 0 0 1.2rem; padding-left: 1.3rem; }
+  .prose ul { list-style: disc; } .prose ol { list-style: decimal; }
+  .prose li { margin-bottom: .45rem; }
+  .prose a { color: var(--petrol); font-weight: 600; }
+  .prose .note { border-left: 4px solid var(--petrol); background: var(--petrol-soft); padding: .9rem 1.1rem; border-radius: 0 8px 8px 0; margin: 1.4rem 0; }
+  .prose table { width: 100%; border-collapse: collapse; margin: .4rem 0 1.4rem; font-size: .98rem; }
+  .prose th, .prose td { text-align: left; padding: .6rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .prose th { font-weight: 700; background: var(--surface); }
+  .prose .tbl { overflow-x: auto; }
+  .gl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .gl a { display: block; padding: 1.1rem 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); }
+  .gl a:hover { border-color: var(--petrol); }
+  .gl b { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--petrol); margin-bottom: .25rem; }
+  .gl span { color: var(--muted); font-size: .96rem; }
+  @media (max-width: 980px) { .related, .gl { grid-template-columns: 1fr; } }
+</style>
+<style>
+  .sol { position: relative; }
+  .sol > summary { list-style: none; cursor: pointer; color: var(--ink); font-weight: 600; font-size: .98rem; display: flex; align-items: center; gap: .4rem; min-height: 42px; user-select: none; }
+  .sol > summary::-webkit-details-marker { display: none; }
+  .sol > summary::after { content: ''; width: .42em; height: .42em; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+  .sol[open] > summary::after { transform: translateY(2px) rotate(225deg); }
+  .sol > summary:hover, .sol[open] > summary { color: var(--petrol); }
+  .sol-panel { position: absolute; top: calc(100% + .7rem); left: 50%; transform: translateX(-50%); width: min(860px, 94vw); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem 1rem; padding: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 18px 40px rgba(20, 32, 40, .16); z-index: 30; }
+  .sol-g p { margin: .2rem .6rem .3rem; font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .nav .sol-panel a:not(.btn) { display: block; padding: .42rem .6rem; border-radius: 7px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: .95rem; }
+  .nav .sol-panel a:not(.btn):hover, .nav .sol-panel a[aria-current] { background: var(--petrol-soft); color: var(--petrol); }
+  .sol-panel .sol-all { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: .6rem; margin-top: .2rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+  .nav .sol-panel .sol-all a { color: var(--petrol); }
+  .kit { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+  .kit-list { padding-bottom: .6rem; }
+  .kit-sum { position: sticky; top: 96px; display: grid; gap: .6rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .kit-sum p { margin: 0; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; }
+  .kit-sum strong { font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.2rem); line-height: 1; color: var(--petrol); }
+  .kit-sum span { color: var(--muted); margin-bottom: .4rem; }
+  .kit-sum .btn { width: 100%; }
+  .trades li:has(a) { padding: 0; }
+  .trades a { display: block; padding: .45rem .85rem; color: var(--ink); text-decoration: none; border-radius: 999px; }
+  .trades a:hover { color: var(--petrol); background: var(--petrol-soft); }
+  @media (max-width: 980px) { .kit { grid-template-columns: 1fr; } .kit-sum { position: static; } }
+  .sol-panel .sol-intro { grid-column: 1 / -1; margin: .1rem .6rem .5rem; color: var(--muted); font-size: .95rem; }
+  .nav .ss { display: none; }
+  @media (max-width: 560px) { .nav .sl { display: none; } .nav .ss { display: inline; } }
+  @media (max-width: 350px) { .top .logo b { display: none; } }
+  .mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .mg { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem 1.3rem .5rem; }
+  .mg h3 { display: flex; align-items: center; gap: .55rem; font-size: 1.35rem; margin-bottom: .5rem; }
+  .mg h3 svg { width: 24px; height: 24px; fill: none; stroke: var(--petrol); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .mg a { display: grid; grid-template-columns: 1fr auto; gap: .1rem .8rem; padding: .7rem 0; border-top: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .mg a b { color: var(--petrol); font-size: 1.02rem; }
+  .mg a em { font-style: normal; font-weight: 700; font-size: .88rem; color: var(--ink); white-space: nowrap; align-self: start; }
+  .mg a span { grid-column: 1 / -1; color: var(--muted); font-size: .92rem; line-height: 1.4; }
+  .mg a:hover b { text-decoration: underline; }
+  .who { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .who > div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.4rem 1.4rem 1.2rem; }
+  .who h3 { font-size: 1.5rem; margin-bottom: .2rem; }
+  .who .sz { color: var(--petrol); font-weight: 700; font-size: .95rem; margin-bottom: .7rem; }
+  .who p { color: var(--muted); }
+  .trades { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+  .trades li { padding: .45rem .85rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-weight: 600; font-size: .94rem; }
+  .price-sum { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: start; }
+  .foot-cols { display: grid; grid-template-columns: 1.6fr 1.6fr 1fr 1.4fr; gap: 1.5rem 2rem; width: 100%; padding-bottom: 1.2rem; margin-bottom: .4rem; border-bottom: 1px solid var(--line); }
+  .foot-cols b { display: block; color: var(--ink); font-weight: 700; margin-bottom: .45rem; }
+  .foot-cols div { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; align-content: start; }
+  .foot-cols div b { width: 100%; }
+  .foot-cols a { color: var(--muted); }
+  @media (max-width: 980px) {
+    .nav { gap: 1rem; }
+    .sol-panel { position: fixed; top: 66px; left: 8px; right: 8px; width: auto; transform: none; grid-template-columns: 1fr 1fr; max-height: calc(100vh - 82px); overflow-y: auto; }
+    .mods, .who, .price-sum { grid-template-columns: 1fr 1fr; }
+    .foot-cols { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) { .mods, .who, .price-sum { grid-template-columns: 1fr; } .sol-panel { grid-template-columns: 1fr; } }
+  @media (max-width: 400px) { .top .wrap { gap: .5rem; } .logo b { font-size: 1.5rem; } .nav { gap: .6rem; } .nav .btn { padding-inline: .7rem; font-size: .92rem; } }
+</style>
+<style>
+  /* Glass theme of the site (11/11/2026, Xavier: « à l'image de ce que tu as fait » in the app): the same soft petrol lights
+     behind frosted cards, pill buttons, a floating header, and the same modern status colours as Azimys (green = good,
+     orange = soon, red = blocked), with bands that go from the deep shade to the vivid one. Light theme only, like before.
+     Loaded after the page's own styles, on every page of azimys.com (home, modules, guides, prices, legal pages). */
+  :root {
+    --paper: #e3ecef;
+    --line: rgba(20, 44, 54, .13);
+    --ok: #047857; --ok-v: #10b981; --ok-soft: rgba(16, 185, 129, .14);
+    --warn: #c2410c; --warn-v: #f97316; --warn-soft: rgba(249, 115, 22, .15);
+    --bad: #d41c1c; --bad-v: #ee2a2a; --bad-b: #c81e1e; --bad-soft: rgba(238, 42, 42, .13);
+    --ext: #4f46e5; --ext-v: #6366f1; --ext-soft: rgba(99, 102, 241, .13);
+    --petrol-soft: rgba(20, 90, 110, .12);
+    --glass-bg: linear-gradient(150deg, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .4) 100%);
+    --glass-strong: rgba(255, 255, 255, .78);
+    --glass-line: rgba(255, 255, 255, .75);
+    --glass-edge: rgba(20, 44, 54, .06);
+    --glass-hi: inset 0 1px 0 rgba(255, 255, 255, .85), inset 0 0 0 1px rgba(255, 255, 255, .22);
+    --glass-shadow: 0 1px 2px rgba(16, 40, 50, .05), 0 14px 30px -14px rgba(16, 40, 50, .22), 0 34px 64px -34px rgba(16, 40, 50, .38);
+    --blur: blur(24px) saturate(180%);
+    --deep: linear-gradient(135deg, #0b2f3a 0%, #0f4352 55%, #145a6e 100%);
+    --todo: #c2410c; --todo-soft: rgba(249, 115, 22, .15);
+  }
+  body { background: var(--paper); }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(42vmax 42vmax at 4% -4%, rgba(20, 90, 110, .5), transparent 68%), radial-gradient(46vmax 46vmax at 102% 28%, rgba(70, 170, 196, .5), transparent 68%),
+      radial-gradient(38vmax 38vmax at 30% 104%, rgba(236, 166, 72, .32), transparent 68%), radial-gradient(30vmax 30vmax at 72% 86%, rgba(16, 74, 92, .32), transparent 70%),
+      radial-gradient(34vmax 34vmax at 50% 42%, rgba(120, 205, 192, .3), transparent 70%); }
+
+  /* Header: a floating frosted bar */
+  .top { background: none; border: 0; padding: 10px max(12px, 2vw) 0; pointer-events: none; }
+  .top .wrap { pointer-events: auto; padding-inline: 1.1rem; border-radius: 22px; background: rgba(255, 255, 255, .58); border: 1px solid var(--glass-line);
+    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
+  /* The menus of the header are opaque (13/11/2026, Xavier: the page's text showed through and made them hard to read). */
+  .sol-panel { background: #f9fbfc; border: 1px solid rgba(20, 44, 54, .12); border-radius: 20px; box-shadow: 0 1px 2px rgba(16, 40, 50, .06), 0 24px 48px -18px rgba(16, 40, 50, .34); }
+  .nav .sol-panel a:not(.btn) { border-radius: 10px; }
+
+  /* Buttons: pills */
+  .btn { border-radius: 999px; background: rgba(255, 255, 255, .62); border-color: var(--glass-line); box-shadow: var(--glass-hi), 0 4px 12px -8px rgba(16, 40, 50, .4); }
+  .btn:hover { border-color: rgba(20, 90, 110, .35); background: rgba(255, 255, 255, .85); }
+  .btn-main { background: var(--petrol); border-color: var(--petrol); color: #fff; box-shadow: 0 12px 24px -12px rgba(20, 90, 110, .9); }
+  .btn-main:hover { background: var(--petrol-deep); border-color: var(--petrol-deep); }
+  .size button, .profiles button { border-radius: 999px; background: rgba(255, 255, 255, .6); border-color: var(--glass-line); }
+  .size button[aria-checked="true"] { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+
+  /* Bands of the page: light ones let the lights through, dark ones are deep petrol glass */
+  .band.white { background: rgba(255, 255, 255, .34); border-block: 1px solid rgba(255, 255, 255, .6); }
+  .band.dark { background: var(--deep); }
+  .facts-band { background: rgba(255, 255, 255, .42); border-top: 1px solid rgba(255, 255, 255, .65); border-bottom: 1px solid rgba(255, 255, 255, .5); }
+
+  /* Cards: frosted glass, a light edge on top, layered shadows */
+  .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui, .sheet, dl.facts, .prose .tbl {
+    background: var(--glass-bg); border: 1px solid var(--glass-line); border-radius: 22px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
+  .ui { border-radius: 20px; }
+  .ui-row, .tp p, .ui-presets span { border-color: var(--line); }
+  .ui-row { background: rgba(255, 255, 255, .6); border-color: var(--glass-line); border-radius: 14px; box-shadow: var(--glass-hi); }
+  .tri .ui, .tp .ui { box-shadow: var(--glass-hi); }
+  .mod.base { background: linear-gradient(135deg, #145a6e 0%, #1b6f84 55%, #23839a 100%); border-color: transparent; }
+  .plan.hl { background: var(--glass-bg); box-shadow: inset 0 4px 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
+  .pilot { box-shadow: inset 4px 0 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
+  .carte-list li.base { background: rgba(255, 255, 255, .55); border-radius: 12px; }
+  .related a:hover, .gl a:hover, .mg:hover { border-color: rgba(20, 90, 110, .35); }
+  .dom label { border-radius: 12px; }
+  .dom label:hover { background: rgba(255, 255, 255, .55); }
+  .sel { background: rgba(12, 30, 36, .82); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid rgba(255, 255, 255, .1); border-radius: 20px; }
+  .card { background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .14); border-radius: 22px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); }
+  .prose .note { background: var(--petrol-soft); border-radius: 0 14px 14px 0; }
+  .faq details { border-color: var(--line); }
+  .pain { border-top-color: var(--bad-v); }
+  .toast { border-radius: 999px; }
+
+  /* Status labels, as in Azimys: band from the deep shade to the vivid one, frosted body, coloured edge and glow */
+  .t-ok { --tone: var(--ok); --tone-v: var(--ok-v); } .t-warn { --tone: var(--warn); --tone-v: var(--warn-v); } .t-bad { --tone: var(--bad); --tone-v: var(--bad-v); --tone-b: var(--bad-b); }
+  .t-acc { --tone: var(--petrol); --tone-v: #1b8aa5; } .t-off { --tone: #5b6b7d; --tone-v: #94a3b8; }
+  .tag { border: 1px solid color-mix(in srgb, var(--tone-v, var(--tone)) 42%, transparent); border-radius: 18px; background: var(--glass-bg); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
+    box-shadow: var(--glass-hi), 0 22px 40px -22px color-mix(in srgb, var(--tone-v, var(--tone)) 60%, transparent), 0 30px 50px -30px rgba(20, 32, 40, .45); }
+  .tag-band { background: linear-gradient(120deg, var(--tone-b, var(--tone)) 0%, var(--tone-v, var(--tone)) 100%); }
+  /* The fanned labels of the hero overlap: a nearly opaque body so one does not show through the other. */
+  .stack .tag { background: linear-gradient(150deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .84) 100%); }
+  .tag-band::before { background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, .28); }
+  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad-b) 0 16px, var(--bad-v) 16px 26px); }
+  .tag dt, .tag dd { border-bottom-color: var(--line); }
+  .screen .tag, .statuses .tag { box-shadow: var(--glass-hi), 0 14px 28px -18px color-mix(in srgb, var(--tone-v, var(--tone)) 60%, transparent); }
+  .statuses .tag { border-color: color-mix(in srgb, var(--tone-v, var(--tone)) 50%, transparent); }
+  .qr-card { background: rgba(12, 30, 36, .82); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid rgba(255, 255, 255, .1); border-radius: 20px; }
+  .qr-card .qr { border-radius: 10px; }
+  .phone { border-radius: 38px; }
+  .screen { background: linear-gradient(160deg, #e9f1f3 0%, #dbe7eb 100%); }
+
+  /* Pills: a transparent tint with a fine edge */
+  .p-ok { --tone-v: var(--ok-v); } .p-warn { --tone-v: var(--warn-v); } .p-bad { --tone-v: var(--bad-v); } .p-acc { --tone-v: #1b8aa5; }
+  .pill { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone-v, var(--tone)) 30%, transparent); }
+  .pill::before { background: var(--tone-v, currentColor); }
+  .note-bad { background: var(--bad-soft); border-radius: 14px; }
+  .todo { border-radius: 999px; }
+
+  /* The home screen picture: the À traiter tiles as small labels, like the app */
+  .today-todo div { --t: var(--petrol); --tv: #1b8aa5; display: grid; padding: 0 .75rem .65rem; overflow: hidden; background: var(--glass-bg); border: 1px solid color-mix(in srgb, var(--tv) 42%, transparent); border-radius: 16px;
+    box-shadow: var(--glass-hi), 0 14px 26px -16px color-mix(in srgb, var(--tv) 55%, transparent); }
+  .today-todo div.w { --t: var(--warn); --tv: var(--warn-v); background: var(--glass-bg); } .today-todo div.x { --t: var(--bad); --tv: var(--bad-v); background: var(--glass-bg); }
+  .today-todo b { position: relative; margin: 0 -.75rem .5rem; padding: .4rem .75rem .45rem 1.85rem; background: linear-gradient(120deg, var(--t), var(--tv)); color: #fff; font-size: 1.6rem; }
+  .today-todo b::before { content: ""; position: absolute; left: .75rem; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .28); }
+  .today-todo b::after { content: "À suivre"; margin-left: .45rem; font-family: var(--font-ui); font-size: .74rem; font-weight: 700; vertical-align: .3rem; }
+  .today-todo div.w b::after { content: "À prévoir"; } .today-todo div.x b::after { content: "Urgent"; }
+  .tp p b.w { color: var(--warn); } .tp p b.x { color: var(--bad); } .tp p b.k { color: var(--ok); }
+
+  /* Planning picture */
+  .pg span { border-radius: 7px; }
+  .pg .c { background: rgba(255, 255, 255, .6); border-color: var(--glass-line); }
+  .pg .vm { background: var(--ext-soft); color: var(--ext); }
+  .pg .ask { background: repeating-linear-gradient(135deg, var(--warn-soft) 0 6px, rgba(255, 255, 255, .7) 6px 10px); border-color: var(--warn-v); }
+  .chips li { border-color: rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .06); }
+
+  /* Legal pages: their notes and boxes */
+  section { border-top-color: var(--line); }
+  footer { border-top-color: var(--line); }
+  @media (max-width: 640px) {
+    .top { padding: 8px 10px 0; }
+    .top .wrap { padding-inline: .8rem; border-radius: 18px; }
+    .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui { border-radius: 18px; }
+  }
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 34 24">
+      <rect x="1" y="1" width="32" height="22" rx="4" fill="#145a6e"/>
+      <circle cx="17" cy="12" r="7.6" fill="none" stroke="#fff" stroke-width="1.3" opacity=".45"/>
+      <g transform="rotate(35 17 12)"><path d="M17 3.6l3.1 8.4h-6.2z" fill="#fff"/><path d="M17 20.4l-3.1-8.4h6.2z" fill="#f3f5f4" opacity=".8"/></g>
+    </symbol>
+  </defs>
+</svg>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Azimys, accueil"><svg aria-hidden="true"><use href="#mark"/></svg><b>Azimys</b></a>
+    <nav class="nav" aria-label="Pages"><details class="sol"><summary>Modules</summary><div class="sol-panel"><div class="sol-g"><p>Stock et achats</p><a href="logiciel-gestion-de-stock.html">Magasin et stock</a><a href="logiciel-achats-fournisseurs.html">Achats</a></div><div class="sol-g"><p>Ventes et facturation</p><a href="logiciel-devis-commandes.html">Devis et commandes</a><a href="logiciel-bon-de-livraison.html">Bons de livraison</a><a href="logiciel-facturation.html">Facturation</a></div><div class="sol-g"><p>Production et atelier</p><a href="logiciel-ordre-de-fabrication.html">Atelier : OF et DST</a><a href="logiciel-suivi-activite.html">Suivi d'activité</a></div><div class="sol-g"><p>Qualité et certificats</p><a href="logiciel-qualite-non-conformites.html">Qualité et SQDP</a><a href="coc-form1-bon-de-livraison.html">CoC et EASA Form 1</a></div><div class="sol-g"><p>Personnel</p><a href="planning-conges-competences.html">Planning et congés</a><a href="logiciel-matrice-competences.html">Matrice de compétences</a><a href="logiciel-suivi-formations.html">Formations et habilitations</a></div><div class="sol-g"><p>Moyens</p><a href="logiciel-suivi-etalonnage.html">Outillage étalonné</a><a href="logiciel-gestion-parc-automobile.html">Parc automobile</a></div><div class="sol-g"><p>Solutions</p><a href="erp-simple-pme.html">ERP simple pour PME</a><a href="logiciel-gestion-commerciale.html">Gestion commerciale</a><a href="logiciel-tracabilite-lots.html">Traçabilité des lots</a><a href="logiciel-aeronautique-part-145.html">Aéronautique, Part 145 et 21G</a></div><div class="sol-all"><a href="./#modules">Tous les modules</a><a href="tarifs.html">Tarifs</a><a href="guides.html">Guides</a></div></div></details><details class="sol sol-met"><summary><span class="sl">Votre métier</span><span class="ss">Métier</span></summary><div class="sol-panel"><p class="sol-intro">Chaque métier a sa page : ce qu'Azimys lui apporte, ses modules, son prix, et sa démo avec une entreprise fictive du métier.</p><div class="sol-g"><p>Industrie</p><a href="logiciel-aeronautique-part-145.html">Atelier aéronautique</a><a href="logiciel-gestion-usinage.html">Usinage et mécanique</a><a href="logiciel-maintenance-industrielle.html">Maintenance industrielle</a><a href="logiciel-gestion-cosmetique-savonnerie.html" aria-current="page">Cosmétiques et savonnerie</a></div><div class="sol-g"><p>Artisanat et bâtiment</p><a href="logiciel-gestion-menuiserie.html">Menuiserie</a><a href="logiciel-gestion-plomberie-chauffage.html">Plomberie, chauffage, électricité</a><a href="logiciel-gestion-garage.html">Garage automobile</a></div><div class="sol-g"><p>Commerce</p><a href="logiciel-gestion-epicerie.html">Épicerie et commerce alimentaire</a><a href="logiciel-gestion-cave-a-vin.html">Cave et épicerie fine</a><a href="logiciel-gestion-boutique-vetements.html">Boutique de vêtements</a></div><div class="sol-g"><p>Alimentation</p><a href="logiciel-gestion-boulangerie.html">Boulangerie-pâtisserie</a><a href="logiciel-gestion-restaurant-traiteur.html">Restaurant et traiteur</a><a href="logiciel-gestion-brasserie-artisanale.html">Brasserie artisanale</a></div><div class="sol-g"><p>Services</p><a href="logiciel-gestion-ambulance.html">Ambulances</a><a href="logiciel-gestion-entreprise-nettoyage.html">Nettoyage et propreté</a></div></div></details><a href="guides.html">Guides</a><a href="tarifs.html">Tarifs</a><a class="btn btn-main" href="demo.html"><span class="sl">Essayer la démo</span><span class="ss">Démo</span></a></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero landing" aria-labelledby="h1">
+    <div class="wrap">
+      <div>
+        <p class="crumbs"><a href="./">Azimys</a> › Cosmétiques et savonnerie</p>
+        <h1 id="h1">Le logiciel des savonneries et des fabricants de cosmétiques.</h1>
+        <p class="kicker">Chaque lot fabriqué, chaque matière tracée.</p>
+        <p class="lead">Le règlement européen sur les cosmétiques demande de savoir, pour chaque lot vendu, ce qui est entré dedans. Azimys tient <b>les matières premières par lot, la fabrication, les dates de durabilité et les livraisons aux revendeurs</b>, sans tableur ni cahier.</p>
+        <div class="cta">
+          <a class="btn btn-main" href="demo.html#activite:cosmetique">Voir la démo : savonnerie</a>
+          <a class="btn" href="#fonctions">Ce qu'Azimys fait pour vous</a>
+        </div>
+        <p class="proof">Pour les savonneries artisanales, les fabricants de cosmétiques naturels et les laboratoires de petite série.</p>
+      </div>
+      <div class="ui" aria-hidden="true">
+          <div class="ui-row"><span><span class="r">OF-26-0013</span>300 savons à la lavande</span><span class="pill p-acc">En cure</span><span class="sub">Opération 3 sur 6 : démoulage fait</span></div>
+          <div class="ui-row"><span><span class="r">HV-OLI</span>Huile d&#x27;olive vierge, lot L260714-011</span><span class="pill p-ok">13 kg</span><span class="sub">À utiliser avant mars 2028</span></div>
+          <div class="ui-row"><span><span class="r">SAV-KAR</span>Savon au karité, lot OF-26-0012</span><span class="pill p-ok">224 en stock</span></div>
+          <div class="ui-row"><span><span class="r">CC-26-0047</span>Hôtel des Exemples, 120 savons</span><span class="pill p-acc">À livrer</span><span class="sub">Dans dix jours</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white" aria-labelledby="pb">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="pb">Un lot, c&#x27;est une recette, des matières et une date.</h2>
+        <p>Quand un revendeur pose une question sur un lot, la réponse doit être immédiate.</p>
+      </div>
+      <div class="pains"><div class="pain"><h3>La matière du lot oubliée</h3><p>Quelle huile essentielle est entrée dans le lot de juin ? Le cahier de fabrication ne le dit pas clairement.</p></div><div class="pain"><h3>La date qui se perd</h3><p>Les dates de durabilité sont écrites à la main sur les étiquettes, pas dans le stock.</p></div><div class="pain"><h3>Le revendeur sans réponse</h3><p>Un client signale un problème : à quels revendeurs ce lot a-t-il été livré ?</p></div></div>
+    </div>
+  </section>
+
+  <section class="band" id="fonctions" aria-labelledby="fn">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#mark"/></svg>Azimys pour <span>une savonnerie</span></p>
+        <h2 id="fn">De la pesée à la livraison au revendeur.</h2>
+        <p>Matières reçues par lot, fabrication par ordre de fabrication avec sa gamme, produits finis par lot avec leur date, livraisons et factures.</p>
+      </div>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Chaque lot fabriqué par un ordre de fabrication.</h3>
+          <p>L&#x27;OF reprend la recette (nomenclature) et les étapes (gamme) : pesée, saponification et moulage, démoulage, cure, contrôle, mise en étui. Les matières sortent de leurs lots, et le lot fabriqué porte le numéro de l&#x27;OF et sa date de durabilité.</p>
+          <ul><li>Recette et étapes reprises à chaque OF</li><li>Matières sorties lot par lot</li><li>Lot fini daté, prêt à étiqueter</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-row"><span><span class="r">10</span>Pesée des matières</span><span class="pill p-ok">MP, 0,5 h</span></div>
+          <div class="ui-row"><span><span class="r">20</span>Saponification et moulage</span><span class="pill p-ok">MP, 2 h</span></div>
+          <div class="ui-row"><span><span class="r">40</span>Cure de quatre semaines</span><span class="pill p-acc">En cours</span></div>
+          <div class="ui-row"><span><span class="r">50</span>Contrôle du pH et de l&#x27;aspect</span></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Les matières premières suivies par lot.</h3>
+          <p>Huiles, beurres, soude, huiles essentielles, étuis : chaque réception crée un lot avec son fournisseur et sa date limite. Les lots qui approchent de leur date apparaissent avant de poser problème.</p>
+          <ul><li>Dates limites des matières</li><li>Stock minimum et commandes fournisseurs</li><li>Quarantaine d&#x27;un lot douteux</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-row"><span><span class="r">HE-LAV</span>Huile essentielle de lavande fine</span><span class="pill p-ok">0,8 kg</span></div>
+          <div class="ui-row"><span><span class="r">BV-KAR</span>Beurre de karité brut</span><span class="pill p-warn">3 kg</span><span class="sub">Sous le minimum : commande en cours</span></div>
+          <div class="ui-row"><span><span class="r">NAOH</span>Soude en perles</span><span class="pill p-ok">11,4 kg</span></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="f-text">
+          <h3>Un rappel de lot en quelques minutes.</h3>
+          <p>Pour un lot de savon, Azimys montre les matières qui sont entrées dedans et les revendeurs qui l&#x27;ont reçu, avec leurs bons de livraison. Dans l&#x27;autre sens, pour un lot de matière, tous les lots fabriqués qui l&#x27;ont utilisé.</p>
+          <ul><li>Du revendeur à la matière, et retour</li><li>Bons de livraison avec les lots livrés</li><li>Export pour vos dossiers</li></ul>
+        </div>
+        <div class="ui" aria-hidden="true">
+          <div class="ui-row"><span><span class="r">OF-26-0011</span>Savon à la lavande, 300 pièces</span><span class="pill p-ok">Tracé</span><span class="sub">Huile d&#x27;olive L260714-011, lavande L260714-031</span></div>
+          <div class="ui-row"><span><span class="r">BL-26-0043</span>Boutique bio Démo</span><span class="pill p-ok">60 savons</span></div>
+          <div class="ui-row"><span><span class="r">BL-26-0040</span>Pharmacie des Exemples</span><span class="pill p-ok">48 savons</span></div>
+        </div>
+      </article>
+
+      <div class="more"><div><h3>Revendeurs</h3><p>Commandes des boutiques, livraisons partielles, factures et échéances.</p></div><div><h3>Devis</h3><p>Coffrets de fin d&#x27;année, commandes personnalisées, devis accepté en commande.</p></div><div><h3>Formations</h3><p>Bonnes pratiques de fabrication, manipulation des produits chimiques : dates et alertes.</p></div><div><h3>Équipe</h3><p>Planning, congés et matrice de compétences du laboratoire.</p></div></div>
+    </div>
+  </section>
+
+  <section class="band white" id="modules-metier" aria-labelledby="md">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="md">Les modules pour une savonnerie.</h2>
+        <p>Ceux de l'entreprise de la démo, pour commencer. Vous en ajoutez ou en retirez quand vous voulez, sans rien perdre.</p>
+      </div>
+      <div class="kit">
+        <div class="mg kit-list"><a href="logiciel-gestion-de-stock.html"><b>Magasin et stock</b><em>19 €</em><span>Matières premières et produits finis par lot, dates de durabilité.</span></a><a href="logiciel-devis-commandes.html"><b>Devis et commandes</b><em>15 €</em><span>Commandes des revendeurs, devis des coffrets.</span></a><a href="logiciel-bon-de-livraison.html"><b>Bons de livraison</b><em>5 €</em><span>Livraisons avec les lots livrés, pour la traçabilité.</span></a><a href="logiciel-achats-fournisseurs.html"><b>Achats</b><em>9 €</em><span>Commandes de matières et d&#x27;étuis, réceptions par lot.</span></a><a href="logiciel-ordre-de-fabrication.html"><b>Atelier : OF et DST</b><em>19 €</em><span>OF avec recette et étapes, matières sorties de leurs lots.</span></a><a href="logiciel-facturation.html"><b>Facturation</b><em>9 €</em><span>Factures aux revendeurs, échéances.</span></a><a href="planning-conges-competences.html"><b>Planning et congés</b><em>9 €</em><span>Congés et absences du laboratoire.</span></a><a href="logiciel-matrice-competences.html"><b>Matrice de compétences</b><em>5 €</em><span>Formulation, saponification, contrôle, conditionnement.</span></a><a href="logiciel-suivi-formations.html"><b>Formations et habilitations</b><em>9 €</em><span>Bonnes pratiques de fabrication, produits chimiques.</span></a></div>
+        <div class="kit-sum">
+          <p>Votre Azimys</p>
+          <strong>81 € HT</strong>
+          <span>par mois, de 1 à 3 utilisateurs, avec la formule Gestion commerciale (99 € à la carte).</span>
+          <a class="btn btn-main" href="demo.html#activite:cosmetique">Voir la démo : savonnerie</a>
+          <a class="btn" href="tarifs.html">Composer sur la page Tarifs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" aria-labelledby="cf">
+    <div class="wrap comply">
+      <div class="head" style="margin-bottom:0">
+        <h2 id="cf">Ce que demande le règlement cosmétique.</h2>
+        <p>Le règlement (CE) n° 1223/2009 demande de fabriquer selon les bonnes pratiques de fabrication (norme ISO 22716) et de porter un numéro de lot sur chaque produit. Azimys tient la traçabilité de chaque lot ; le dossier d&#x27;information produit et l&#x27;évaluation de la sécurité restent dans vos documents réglementaires.</p>
+      </div>
+      <ul class="checks"><li>Numéro de lot sur chaque fabrication</li><li>Matières tracées par lot fournisseur</li><li>Dates de durabilité suivies</li><li>Étapes de fabrication signées</li><li>Contrôles notés sur l&#x27;OF</li><li>Livraisons aux revendeurs par lot</li><li>Formations du personnel datées</li><li>Rappel de lot en quelques minutes</li></ul>
+    </div>
+  </section>
+
+  <section class="band white" aria-labelledby="qs">
+    <div class="wrap">
+      <div class="head"><h2 id="qs">Questions fréquentes.</h2></div>
+      <div class="faq"><details><summary>Azimys fait-il le dossier d&#x27;information produit ?</summary><p>Non. Le DIP, l&#x27;évaluation de la sécurité et la notification restent dans vos documents réglementaires. Azimys garde la traçabilité des lots, des matières et des livraisons, qui servent à les tenir à jour.</p></details><details><summary>Peut-on fabriquer en petites séries ?</summary><p>Oui. Un OF peut faire 50 savons ou 2 000. La recette se règle une fois sur l&#x27;article, et chaque OF la reprend avec la quantité voulue.</p></details><details><summary>Est-ce long à mettre en place ?</summary><p>Non. Vous importez vos articles et vos clients depuis vos fichiers Excel, vous cochez les modules qui vous servent, et vous travaillez dès le premier jour. Nous vous accompagnons au démarrage, et Azimys s&#x27;adapte à vos mots et à vos documents.</p></details><details><summary>Où sont mes données ?</summary><p>Hébergées en France, avec double authentification, historique des connexions et sauvegardes automatiques. Vous exportez tout en Excel quand vous voulez : vos données restent à vous.</p></details></div>
+    </div>
+  </section>
+  <section class="band" aria-labelledby="rel">
+    <div class="wrap">
+      <div class="head"><h2 id="rel">Azimys pour d'autres métiers.</h2><p>La même base, réglée pour chaque métier. Le vôtre n'y est pas ? Azimys s'adapte : <a href="mailto:contact@azimys.com?subject=Azimys pour mon métier">parlons-en</a>.</p></div>
+      <div class="related"><a href="logiciel-gestion-menuiserie.html"><h3>Menuiserie</h3><p>Devis, meubles fabriqués par OF, stock de bois, pose.</p></a><a href="logiciel-gestion-plomberie-chauffage.html"><h3>Plomberie, chauffage, électricité</h3><p>Devis, chantiers, dépôt et camions, habilitations.</p></a><a href="logiciel-gestion-garage.html"><h3>Garage automobile</h3><p>Réparations des véhicules clients, pièces, devis, factures.</p></a><a href="logiciel-gestion-epicerie.html"><h3>Épicerie et commerce alimentaire</h3><p>Produits frais et dates limites, vrac, livraisons.</p></a><a href="logiciel-gestion-cave-a-vin.html"><h3>Cave et épicerie fine</h3><p>Stock par millésime et par lot, coffrets, clients pros.</p></a><a href="logiciel-gestion-boutique-vetements.html"><h3>Boutique de vêtements</h3><p>Stock par taille, collections, tenues brodées pour les entreprises.</p></a></div>
+    </div>
+  </section>
+  <section class="band dark landing-cta" aria-labelledby="ct">
+    <div class="wrap">
+      <div class="head" style="margin-bottom:0"><h2 id="ct">Essayez Azimys pour votre métier.</h2><p>La démo s'ouvre tout de suite, sans inscription, avec des données d'exemple. Pour un essai avec vos propres données, écrivez-nous : votre activité, vos agréments et les modules qui vous intéressent.</p>
+        <div class="cta"><a class="btn btn-main" href="demo.html#activite:cosmetique">Essayer la démo</a><a class="btn" href="mailto:contact@azimys.com?subject=Azimys">Écrire à contact@azimys.com</a></div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><nav class="foot-cols" aria-label="Pages du site"><div><b>Modules</b><a href="logiciel-gestion-de-stock.html">Magasin et stock</a><a href="logiciel-achats-fournisseurs.html">Achats</a><a href="logiciel-devis-commandes.html">Devis et commandes</a><a href="logiciel-bon-de-livraison.html">Bons de livraison</a><a href="logiciel-facturation.html">Facturation</a><a href="logiciel-ordre-de-fabrication.html">Atelier : OF et DST</a><a href="logiciel-suivi-activite.html">Suivi d'activité</a><a href="logiciel-qualite-non-conformites.html">Qualité et SQDP</a><a href="coc-form1-bon-de-livraison.html">CoC et EASA Form 1</a><a href="planning-conges-competences.html">Planning et congés</a><a href="logiciel-matrice-competences.html">Matrice de compétences</a><a href="logiciel-suivi-formations.html">Formations et habilitations</a><a href="logiciel-suivi-etalonnage.html">Outillage étalonné</a><a href="logiciel-gestion-parc-automobile.html">Parc automobile</a></div><div><b>Métiers</b><a href="logiciel-gestion-usinage.html">Usinage et mécanique</a><a href="logiciel-maintenance-industrielle.html">Maintenance industrielle</a><a href="logiciel-gestion-cosmetique-savonnerie.html">Cosmétiques et savonnerie</a><a href="logiciel-gestion-menuiserie.html">Menuiserie</a><a href="logiciel-gestion-plomberie-chauffage.html">Plomberie, chauffage, électricité</a><a href="logiciel-gestion-garage.html">Garage automobile</a><a href="logiciel-gestion-epicerie.html">Épicerie et commerce alimentaire</a><a href="logiciel-gestion-cave-a-vin.html">Cave et épicerie fine</a><a href="logiciel-gestion-boutique-vetements.html">Boutique de vêtements</a><a href="logiciel-gestion-boulangerie.html">Boulangerie-pâtisserie</a><a href="logiciel-gestion-restaurant-traiteur.html">Restaurant et traiteur</a><a href="logiciel-gestion-brasserie-artisanale.html">Brasserie artisanale</a><a href="logiciel-gestion-ambulance.html">Ambulances</a><a href="logiciel-gestion-entreprise-nettoyage.html">Nettoyage et propreté</a></div><div><b>Solutions</b><a href="erp-simple-pme.html">ERP simple pour PME</a><a href="logiciel-gestion-commerciale.html">Gestion commerciale</a><a href="logiciel-tracabilite-lots.html">Traçabilité des lots</a><a href="logiciel-aeronautique-part-145.html">Aéronautique, Part 145 et 21G</a><a href="tarifs.html">Tarifs</a><a href="demo.html">Démo</a></div><div><b>Guides</b><a href="qu-est-ce-qu-un-erp.html">Qu'est-ce qu'un ERP ?</a><a href="prix-erp-pme.html">Combien coûte un ERP pour une PME ?</a><a href="passer-d-excel-a-un-logiciel-de-gestion.html">Passer d'Excel à un logiciel de gestion</a><a href="calcul-conges-payes.html">Comment calculer les congés payés ?</a><a href="comment-faire-une-matrice-de-competences.html">Comment faire une matrice de compétences ?</a><a href="suivi-etalonnage-instruments-de-mesure.html">Comment suivre l'étalonnage des instruments de mesure ?</a><a href="rappel-de-lot.html">Comment faire un rappel de lot ?</a><a href="mentions-obligatoires-facture.html">Quelles mentions mettre sur une facture ?</a><a href="traiter-une-non-conformite.html">Comment traiter une non-conformité ?</a><a href="suivi-entretien-vehicules-entreprise.html">Comment suivre l'entretien des véhicules de l'entreprise ?</a></div></nav><span>© 2026 Azimys, marque déposée. L'ERP modulable qui s'adapte à votre entreprise.</span><nav class="foot-links" aria-label="Informations légales"><a href="cgv.html">Conditions générales</a><a href="mentions-legales.html">Mentions légales</a><a href="mentions-legales.html#confidentialite">Confidentialité</a><a href="mailto:contact@azimys.com">contact@azimys.com</a></nav></div>
+</footer>
+<script>
+(function () {
+  var ds = Array.prototype.slice.call(document.querySelectorAll('details.sol'));
+  document.addEventListener('click', function (e) { ds.forEach(function (d) { if (d.open && !d.contains(e.target)) d.open = false; }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') ds.forEach(function (d) { if (d.open) { d.open = false; d.querySelector('summary').focus(); } }); });
+  ds.forEach(function (d) { d.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) d.open = false; }); });
+})();
+</script>
+
+</html>
