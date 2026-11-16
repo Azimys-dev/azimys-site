@@ -663,6 +663,28 @@
     .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui { border-radius: 18px; }
   }
 </style>
+<style>
+  .lead { gap: .8rem; align-content: start; }
+  .lead h3 { font-size: 1.5rem; color: #fff; margin: 0; }
+  .lead .lf2 { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+  .lead label { display: grid; gap: .3rem; font-size: .9rem; font-weight: 600; color: var(--on-dark); }
+  .lead label b { font-weight: 600; }
+  .lead label i { font-style: normal; font-weight: 400; color: var(--on-dark-muted); }
+  .contact > div > .card { margin-top: 1.6rem; }
+  .lead input, .lead select, .lead textarea { width: 100%; box-sizing: border-box; min-height: 46px; padding: .55rem .75rem; border: 1px solid rgba(255, 255, 255, .24); border-radius: 12px; background: rgba(255, 255, 255, .09); color: #fff; font: 500 1rem/1.35 var(--font-ui); }
+  .lead textarea { resize: vertical; min-height: 84px; }
+  .lead input::placeholder, .lead textarea::placeholder { color: var(--on-dark-muted); }
+  .lead select option, .lead select optgroup { color: var(--ink); background: #fff; }
+  .lead input:focus-visible, .lead select:focus-visible, .lead textarea:focus-visible { outline: 3px solid #7cc6da; outline-offset: 1px; border-color: transparent; }
+  .lead .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .lead .lead-err { margin: 0; color: #ffb4b4; font-weight: 600; min-height: 0; }
+  .lead .lead-err:empty { display: none; }
+  .lead .btn { justify-self: start; }
+  .lead .lead-note { margin: 0; font-size: .85rem; color: var(--on-dark-muted); }
+  .lead a { color: #cfe8ef; }
+  .lead.sent p { color: var(--on-dark); margin: 0; }
+  @media (max-width: 560px) { .lead .lf2 { grid-template-columns: 1fr; } .lead .btn { justify-self: stretch; } }
+</style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="mark" viewBox="0 0 34 24">
@@ -804,10 +826,21 @@
       <div class="related"><a href="logiciel-gestion-garage.html"><h3>Garage automobile</h3><p>Réparations des véhicules clients, pièces, devis, factures.</p></a><a href="logiciel-gestion-epicerie.html"><h3>Épicerie et commerce alimentaire</h3><p>Produits frais et dates limites, vrac, livraisons.</p></a><a href="logiciel-gestion-cave-a-vin.html"><h3>Cave et épicerie fine</h3><p>Stock par millésime et par lot, coffrets, clients pros.</p></a><a href="logiciel-gestion-boutique-vetements.html"><h3>Boutique de vêtements</h3><p>Stock par taille, collections, tenues brodées pour les entreprises.</p></a><a href="logiciel-gestion-boulangerie.html"><h3>Boulangerie-pâtisserie</h3><p>Matières et dates limites, commandes des entreprises.</p></a><a href="logiciel-gestion-restaurant-traiteur.html"><h3>Restaurant et traiteur</h3><p>Produits frais, fournisseurs, traiteur, planning.</p></a></div>
     </div>
   </section>
-  <section class="band dark landing-cta" aria-labelledby="ct">
-    <div class="wrap">
-      <div class="head" style="margin-bottom:0"><h2 id="ct">Essayez Azimys pour votre métier.</h2><p>La démo s'ouvre tout de suite, sans inscription, avec des données d'exemple. Pour un essai avec vos propres données, écrivez-nous : votre activité, vos agréments et les modules qui vous intéressent.</p>
+  <section class="band dark landing-cta" id="contact" aria-labelledby="ct">
+    <div class="wrap contact">
+      <div><h2 id="ct">Essayez Azimys pour votre métier.</h2><p>La démo s'ouvre tout de suite, sans inscription, avec des données d'exemple. Pour une présentation de 15 minutes en visio, ou un essai avec vos propres données, laissez vos coordonnées : nous vous répondons au plus vite.</p>
         <div class="cta"><a class="btn btn-main" href="demo.html#activite:batiment">Essayer la démo</a><a class="btn" href="mailto:contact@azimys.com?subject=Azimys">Écrire à contact@azimys.com</a></div></div>
+      <form class="card lead" id="lead" novalidate data-demo="demo.html#activite:batiment">
+        <h3>Demander une démo</h3>
+        <div class="lf2"><label>Nom et prénom<input name="nom" autocomplete="name" maxlength="120" required></label><label>Entreprise<input name="societe" autocomplete="organization" maxlength="160"></label></div>
+        <div class="lf2"><label>E-mail<input name="email" type="email" autocomplete="email" maxlength="200" required></label><label><b>Téléphone <i>(facultatif)</i></b><input name="tel" type="tel" autocomplete="tel" maxlength="30"></label></div>
+        <div class="lf2"><label>Votre activité<select name="metier"><option value="">Choisir…</option><optgroup label="Industrie"><option>Atelier aéronautique</option><option>Usinage et mécanique</option><option>Maintenance industrielle</option><option>Cosmétiques et savonnerie</option></optgroup><optgroup label="Artisanat et bâtiment"><option>Menuiserie</option><option selected>Plomberie, chauffage, électricité</option><option>Garage automobile</option></optgroup><optgroup label="Commerce"><option>Épicerie et commerce alimentaire</option><option>Cave et épicerie fine</option><option>Boutique de vêtements</option></optgroup><optgroup label="Alimentation"><option>Boulangerie-pâtisserie</option><option>Restaurant et traiteur</option><option>Brasserie artisanale</option></optgroup><optgroup label="Services"><option>Ambulances</option><option>Nettoyage et propreté</option></optgroup><option>Autre activité</option></select></label><label>Votre demande<select name="besoin"><option value="visio">Démo en visio, 15 min</option><option value="essai">Un essai avec mes données</option><option value="question">Une question</option></select></label></div>
+        <label><b>Message <i>(facultatif)</i></b><textarea name="message" rows="3" maxlength="3000" placeholder="Vos besoins, vos logiciels actuels, la taille de l'équipe…"></textarea></label>
+        <label class="hp" aria-hidden="true">Ne pas remplir<input name="site" tabindex="-1" autocomplete="off"></label>
+        <p class="lead-err" role="alert"></p>
+        <button class="btn btn-main" type="submit">Envoyer ma demande</button>
+        <p class="lead-note">Vos coordonnées servent seulement à vous répondre : ni revendues, ni cédées. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
+      </form>
     </div>
   </section>
 </main>
@@ -821,6 +854,46 @@
   document.addEventListener('click', function (e) { ds.forEach(function (d) { if (d.open && !d.contains(e.target)) d.open = false; }); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') ds.forEach(function (d) { if (d.open) { d.open = false; d.querySelector('summary').focus(); } }); });
   ds.forEach(function (d) { d.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('a')) d.open = false; }); });
+})();
+</script>
+<script>
+(function () {
+  var f = document.getElementById('lead'); if (!f) return;
+  var API = /(^|\.)azimys\.com$/.test(location.hostname) ? 'https://app.azimys.com' : window.AZ_API, t0 = Date.now();
+  var esc = function (x) { return String(x).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var el = f.elements, err = f.querySelector('.lead-err'), btn = f.querySelector('[type=submit]'), v = function (n) { return el[n].value.trim(); };
+    err.textContent = '';
+    if (!v('nom')) { err.textContent = 'Indiquez votre nom.'; el.nom.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) { err.textContent = 'Indiquez une adresse e-mail valide.'; el.email.focus(); return; }
+    var d = { nom: v('nom'), societe: v('societe'), email: v('email'), tel: v('tel'), metier: v('metier'), besoin: v('besoin'), message: v('message'), site: v('site'), page: location.pathname, t: Date.now() - t0 };
+    if (!API) {
+      var want = el.besoin.options[el.besoin.selectedIndex].text;
+      location.href = 'mailto:contact@azimys.com?subject=' + encodeURIComponent('Demande de démo Azimys') + '&body=' + encodeURIComponent([d.nom, d.societe, d.tel, d.metier, want, '', d.message].filter(function (x, i) { return x || i === 5; }).join('\n'));
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Envoi…';
+    fetch(API + '/api/site/demande', { method: 'POST', credentials: 'omit', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(d) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error(j.error || ''); }); })
+      .then(function () {
+        f.classList.add('sent');
+        f.innerHTML = '<h3>Merci, votre demande est bien arrivée.</h3><p>Nous vous répondons au plus vite à <b>' + esc(d.email) + '</b>.</p><p>En attendant, la démo est ouverte, sans inscription : <a href="' + esc(f.getAttribute('data-demo')) + '">essayer Azimys</a>.</p>';
+      })
+      .catch(function (x) {
+        err.textContent = (x && x.message && !/fetch|network|load failed/i.test(x.message) ? x.message : 'L\u2019envoi n\u2019a pas abouti.') + ' Vous pouvez aussi écrire à contact@azimys.com.';
+        btn.disabled = false; btn.textContent = 'Envoyer ma demande';
+      });
+  });
+})();
+</script>
+<script>
+(function () {
+  var API = /(^|\.)azimys\.com$/.test(location.hostname) ? 'https://app.azimys.com' : window.AZ_API;
+  if (!API || (navigator.webdriver && !window.AZ_API)) return;
+  var r = '', s = '';
+  try { r = document.referrer ? new URL(document.referrer).hostname : ''; s = new URLSearchParams(location.search).get('utm_source') || ''; } catch (e) {}
+  try { fetch(API + '/api/site/vue', { method: 'POST', mode: 'no-cors', credentials: 'omit', keepalive: true, headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ p: location.pathname + location.hash, r: r, s: s }) }).catch(function () {}); } catch (e) {}
 })();
 </script>
 

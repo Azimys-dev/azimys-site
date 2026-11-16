@@ -227,7 +227,7 @@
   <section aria-labelledby="hebergement">
     <h2 id="hebergement">Hébergement</h2>
     <p>Le site est hébergé par GitHub, Inc., avec son service GitHub Pages : 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis (github.com).</p>
-    <p>Le logiciel Azimys utilisé par les ateliers clients, et leurs données, ne sont pas hébergés sur ce site. Ils sont hébergés séparément, en France.</p>
+    <p>Le logiciel Azimys utilisé par les entreprises clientes, leurs données, le formulaire de demande de démo et le compteur de visites de ce site sont hébergés séparément, en France, par Scalingo SAS : 13 rue Jacques Peirotes, 67000 Strasbourg, France (scalingo.com).</p>
   </section>
 
   <section aria-labelledby="propriete">
@@ -246,9 +246,11 @@
   <section id="confidentialite" aria-labelledby="conf">
     <h2 id="conf">Confidentialité et données personnelles</h2>
     <ul>
-      <li><b>Aucun cookie, aucune statistique.</b> Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité.</li>
-      <li><b>Aucun service tiers.</b> Les polices, les scripts et les bibliothèques de la démonstration sont servis par le site lui-même : votre navigateur ne contacte aucun autre service.</li>
-      <li><b>Journaux de l'hébergeur.</b> GitHub peut conserver des journaux techniques (adresse IP, date, page demandée) pour assurer la sécurité de son service.</li>
+      <li><b>Aucun cookie.</b> Ce site ne dépose aucun cookie, n'enregistre rien sur votre appareil pour vous suivre et n'utilise aucun outil de publicité.</li>
+      <li><b>Mesure d'audience sans cookie.</b> Pour savoir quelles pages sont lues, chaque page ouverte ajoute un au compteur du jour, avec le nom de la page, le site d'où vous arrivez (par exemple un moteur de recherche) et le type d'appareil (téléphone ou ordinateur). Ni votre adresse IP, ni aucun identifiant ne sont enregistrés : ces chiffres ne permettent pas de savoir qui a visité le site. Ils sont conservés 25 mois sur le serveur d'Azimys, en France.</li>
+      <li><b>Aucun service tiers.</b> Les polices, les scripts et les bibliothèques de la démonstration sont servis par le site lui-même. Votre navigateur ne contacte que le serveur d'Azimys (app.azimys.com), pour ce compteur et pour le formulaire de demande de démo.</li>
+      <li><b>Journaux des hébergeurs.</b> GitHub (le site) et Scalingo (le serveur d'Azimys) peuvent conserver des journaux techniques (adresse IP, date, page demandée) pour assurer la sécurité de leur service.</li>
+      <li><b>Formulaire de demande de démo.</b> Votre nom, votre entreprise, vos coordonnées, votre activité et votre message sont enregistrés sur le serveur d'Azimys, en France, et transmis par e-mail à contact@azimys.com. Ils servent uniquement à vous répondre et à préparer la présentation ou l'essai que vous demandez. Ils ne sont ni vendus ni cédés, et sont conservés trois ans au plus après notre dernier échange.</li>
       <li><b>Si vous nous écrivez.</b> Votre nom, vos coordonnées et votre message servent uniquement à vous répondre et à suivre notre échange. Ils ne sont ni vendus ni cédés, et sont conservés trois ans au plus après notre dernier échange. La messagerie est hébergée par OVHcloud.</li>
       <li><b>Vos droits.</b> Vous pouvez accéder à vos données, les faire rectifier ou effacer, en limiter l'usage ou vous y opposer en écrivant à <a href="mailto:contact@azimys.com">contact@azimys.com</a>. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</li>
     </ul>
@@ -256,11 +258,20 @@
     <p>Les données que les ateliers clients saisissent dans Azimys sont traitées pour leur compte, selon le contrat conclu avec chacun d'eux. Elles ne sont jamais stockées sur ce site.</p>
   </section>
 
-  <p class="small" style="margin-top:2.5rem">Mise à jour : 28 octobre 2026.</p>
+  <p class="small" style="margin-top:2.5rem">Mise à jour : 16 novembre 2026.</p>
 </main>
 
 <footer>
   <div class="wrap"><span>© 2026 Azimys, marque déposée. L'ERP modulable qui s'adapte à votre entreprise.</span><nav aria-label="Liens"><a href="index.html">Accueil</a><a href="cgv.html">Conditions générales</a><a href="mailto:contact@azimys.com">contact@azimys.com</a></nav></div>
 </footer>
+<script>
+(function () {
+  var API = /(^|\.)azimys\.com$/.test(location.hostname) ? 'https://app.azimys.com' : window.AZ_API;
+  if (!API || (navigator.webdriver && !window.AZ_API)) return;
+  var r = '', s = '';
+  try { r = document.referrer ? new URL(document.referrer).hostname : ''; s = new URLSearchParams(location.search).get('utm_source') || ''; } catch (e) {}
+  try { fetch(API + '/api/site/vue', { method: 'POST', mode: 'no-cors', credentials: 'omit', keepalive: true, headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ p: location.pathname + location.hash, r: r, s: s }) }).catch(function () {}); } catch (e) {}
+})();
+</script>
 
 </html>

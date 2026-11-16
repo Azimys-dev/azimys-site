@@ -11,6 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Azimys">
 <script>"serviceWorker"in navigator&&location.protocol==="https:"&&addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
+<script>(function(){var e=/(^|\.)azimys\.com$/.test(location.hostname)?"https://app.azimys.com":window.AZ_API;if(!(!e||navigator.webdriver&&!window.AZ_API)){var t="",a="";try{t=document.referrer?new URL(document.referrer).hostname:"",a=new URLSearchParams(location.search).get("utm_source")||""}catch{}try{fetch(e+"/api/site/vue",{method:"POST",mode:"no-cors",credentials:"omit",keepalive:!0,headers:{"Content-Type":"text/plain"},body:JSON.stringify({p:location.pathname+location.hash,r:t,s:a})}).catch(function(){})}catch{}}})();</script>
 <style>body{margin:0}[hidden]{display:none!important}</style>
 <title>Démo gratuite d'Azimys · ERP d'atelier, sans inscription</title>
 <link rel="stylesheet" href="fonts/fonts.css">
