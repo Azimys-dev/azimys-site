@@ -1636,6 +1636,15 @@ button.kpi:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--gla
 }
 @media (prefers-reduced-motion: reduce) { .todo-tile, .ring .r-fg { transition: none; } .todo-tile:hover { transform: none; } }
 @media print { body::before { display: none; } }
+
+/* Open lists of every field (17/11/2026, Xavier: only the option under the mouse could be read). The browser draws the open
+   list with the field's own colours, and a glass field is almost transparent: in dark mode the list came out white under
+   light text. Each option gets an opaque ground and the full ink, in both themes. */
+:root { --opt-bg: #ffffff; --opt-ink: #172026; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --opt-bg: #1c262c; --opt-ink: #e3e9ec; } }
+:root[data-theme="dark"] { --opt-bg: #1c262c; --opt-ink: #e3e9ec; }
+select option, select optgroup { background-color: var(--opt-bg); color: var(--opt-ink); }
+select optgroup { font-weight: 700; }
 </style>
 
 <header class="top">
