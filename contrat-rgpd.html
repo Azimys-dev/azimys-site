@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Contrat de sous-traitance des données personnelles (RGPD, article 28) du logiciel Azimys : données traitées, hébergement en France, sécurité, fin du contrat.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect x='1' y='1' width='32' height='32' rx='7' fill='%23145a6e'/%3E%3Ccircle cx='17' cy='17' r='10' fill='none' stroke='%23fff' stroke-width='1.6' opacity='.45'/%3E%3Cg transform='rotate(35 17 17)'%3E%3Cpath d='M17 6l4 11h-8z' fill='%23fff'/%3E%3Cpath d='M17 28l-4-11h8z' fill='%23f3f5f4' opacity='.8'/%3E%3C/g%3E%3C/svg%3E">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+<title>Contrat de sous-traitance des données personnelles · Azimys</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  /* Layout: the legal page of the sales site, same paper, ink and petrol. A single reading column. */
+  :root {
+    --paper: #f3f5f4;
+    --surface: #ffffff;
+    --ink: #142028;
+    --muted: #55626b;
+    --line: #d5dcdf;
+    --petrol: #145a6e;
+    --todo: #c2410c;
+    --todo-soft: #fbedd6;
+    --font-ui: "Barlow", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Barlow Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: 84px; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-ui); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, p, ul, dl, dd { margin: 0; }
+  h1, h2 { font-family: var(--font-display); font-weight: 700; line-height: 1.05; letter-spacing: .005em; text-wrap: balance; }
+  a { color: var(--petrol); }
+  :focus-visible { outline: 3px solid var(--petrol); outline-offset: 3px; }
+  .wrap { width: 100%; max-width: 820px; margin-inline: auto; padding-inline: max(16px, 4vw); }
+
+  .top { position: sticky; top: 0; z-index: 10; background: rgba(243, 245, 244, .96); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 66px; max-width: 1180px; }
+  .logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
+  .logo svg { width: 34px; height: 24px; }
+  .logo b { font-family: var(--font-display); font-size: 1.75rem; line-height: 1; letter-spacing: .01em; }
+  .back { font-weight: 600; text-decoration: none; }
+  .back:hover { text-decoration: underline; }
+
+  main { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); margin-bottom: .6rem; }
+  .lead { color: var(--muted); font-size: 1.1rem; }
+  section { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  h2 { font-size: 1.75rem; margin-bottom: .9rem; }
+  section p + p, section p + ul, section ul + p { margin-top: .8rem; }
+  section ul { padding-left: 1.2rem; display: grid; gap: .55rem; }
+  section li::marker { color: var(--petrol); }
+  .facts { display: grid; grid-template-columns: minmax(9rem, max-content) minmax(0, 1fr); gap: .5rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .facts dt { color: var(--muted); }
+  .facts dd { font-weight: 600; overflow-wrap: anywhere; }
+  .todo { display: inline-block; padding: 0 .4rem; border-radius: 4px; background: var(--todo-soft); color: var(--todo); font-weight: 600; }
+  .small { color: var(--muted); font-size: .92rem; }
+
+  footer { padding-block: 2rem; border-top: 1px solid var(--line); font-size: .9rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 2rem; max-width: 1180px; }
+  footer nav { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
+
+  @media (max-width: 560px) {
+    .facts { grid-template-columns: 1fr; gap: .1rem; }
+    .facts dd { margin-bottom: .55rem; }
+  }
+  table { width: 100%; border-collapse: collapse; margin: .9rem 0 1rem; font-size: .98rem; }
+  th, td { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; color: var(--muted); }
+  td:first-child { font-weight: 600; width: 32%; }
+  @media (max-width: 560px) { th, td { padding: .5rem .4rem; } td:first-child { width: 38%; } }
+</style>
+<style>
+  /* Glass theme of the site (11/11/2026, Xavier: « à l'image de ce que tu as fait » in the app): the same soft petrol lights
+     behind frosted cards, pill buttons, a floating header, and the same modern status colours as Azimys (green = good,
+     orange = soon, red = blocked), with bands that go from the deep shade to the vivid one. Light theme only, like before.
+     Loaded after the page's own styles, on every page of azimys.com (home, modules, guides, prices, legal pages). */
+  :root {
+    --paper: #e3ecef;
+    --line: rgba(20, 44, 54, .13);
+    --ok: #047857; --ok-v: #10b981; --ok-soft: rgba(16, 185, 129, .14);
+    --warn: #c2410c; --warn-v: #f97316; --warn-soft: rgba(249, 115, 22, .15);
+    --bad: #d41c1c; --bad-v: #ee2a2a; --bad-b: #c81e1e; --bad-soft: rgba(238, 42, 42, .13);
+    --ext: #4f46e5; --ext-v: #6366f1; --ext-soft: rgba(99, 102, 241, .13);
+    --petrol-soft: rgba(20, 90, 110, .12);
+    --glass-bg: linear-gradient(150deg, rgba(255, 255, 255, .7) 0%, rgba(255, 255, 255, .4) 100%);
+    --glass-strong: rgba(255, 255, 255, .78);
+    --glass-line: rgba(255, 255, 255, .75);
+    --glass-edge: rgba(20, 44, 54, .06);
+    --glass-hi: inset 0 1px 0 rgba(255, 255, 255, .85), inset 0 0 0 1px rgba(255, 255, 255, .22);
+    --glass-shadow: 0 1px 2px rgba(16, 40, 50, .05), 0 14px 30px -14px rgba(16, 40, 50, .22), 0 34px 64px -34px rgba(16, 40, 50, .38);
+    --blur: blur(24px) saturate(180%);
+    --deep: linear-gradient(135deg, #0b2f3a 0%, #0f4352 55%, #145a6e 100%);
+    --todo: #c2410c; --todo-soft: rgba(249, 115, 22, .15);
+  }
+  body { background: var(--paper); }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(42vmax 42vmax at 4% -4%, rgba(20, 90, 110, .5), transparent 68%), radial-gradient(46vmax 46vmax at 102% 28%, rgba(70, 170, 196, .5), transparent 68%),
+      radial-gradient(38vmax 38vmax at 30% 104%, rgba(236, 166, 72, .32), transparent 68%), radial-gradient(30vmax 30vmax at 72% 86%, rgba(16, 74, 92, .32), transparent 70%),
+      radial-gradient(34vmax 34vmax at 50% 42%, rgba(120, 205, 192, .3), transparent 70%); }
+
+  /* Header: a floating frosted bar */
+  .top { background: none; border: 0; padding: 10px max(12px, 2vw) 0; pointer-events: none; }
+  .top .wrap { pointer-events: auto; padding-inline: 1.1rem; border-radius: 22px; background: rgba(255, 255, 255, .58); border: 1px solid var(--glass-line);
+    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
+  /* The menus of the header are opaque (13/11/2026, Xavier: the page's text showed through and made them hard to read). */
+  .sol-panel { background: #f9fbfc; border: 1px solid rgba(20, 44, 54, .12); border-radius: 20px; box-shadow: 0 1px 2px rgba(16, 40, 50, .06), 0 24px 48px -18px rgba(16, 40, 50, .34); }
+  .nav .sol-panel a:not(.btn) { border-radius: 10px; }
+
+  /* Buttons: pills */
+  .btn { border-radius: 999px; background: rgba(255, 255, 255, .62); border-color: var(--glass-line); box-shadow: var(--glass-hi), 0 4px 12px -8px rgba(16, 40, 50, .4); }
+  .btn:hover { border-color: rgba(20, 90, 110, .35); background: rgba(255, 255, 255, .85); }
+  .btn-main { background: var(--petrol); border-color: var(--petrol); color: #fff; box-shadow: 0 12px 24px -12px rgba(20, 90, 110, .9); }
+  .btn-main:hover { background: var(--petrol-deep); border-color: var(--petrol-deep); }
+  .size button, .profiles button { border-radius: 999px; background: rgba(255, 255, 255, .6); border-color: var(--glass-line); }
+  .size button[aria-checked="true"] { background: var(--petrol); border-color: var(--petrol); color: #fff; }
+
+  /* Bands of the page: light ones let the lights through, dark ones are deep petrol glass */
+  .band.white { background: rgba(255, 255, 255, .34); border-block: 1px solid rgba(255, 255, 255, .6); }
+  .band.dark { background: var(--deep); }
+  .facts-band { background: rgba(255, 255, 255, .42); border-top: 1px solid rgba(255, 255, 255, .65); border-bottom: 1px solid rgba(255, 255, 255, .5); }
+
+  /* Cards: frosted glass, a light edge on top, layered shadows */
+  .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui, .sheet, dl.facts, .prose .tbl {
+    background: var(--glass-bg); border: 1px solid var(--glass-line); border-radius: 22px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
+  .ui { border-radius: 20px; }
+  .ui-row, .tp p, .ui-presets span { border-color: var(--line); }
+  .ui-row { background: rgba(255, 255, 255, .6); border-color: var(--glass-line); border-radius: 14px; box-shadow: var(--glass-hi); }
+  .tri .ui, .tp .ui { box-shadow: var(--glass-hi); }
+  .mod.base { background: linear-gradient(135deg, #145a6e 0%, #1b6f84 55%, #23839a 100%); border-color: transparent; }
+  .plan.hl { background: var(--glass-bg); box-shadow: inset 0 4px 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
+  .pilot { box-shadow: inset 4px 0 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
+  .carte-list li.base { background: rgba(255, 255, 255, .55); border-radius: 12px; }
+  .related a:hover, .gl a:hover, .mg:hover { border-color: rgba(20, 90, 110, .35); }
+  .dom label { border-radius: 12px; }
+  .dom label:hover { background: rgba(255, 255, 255, .55); }
+  .sel { background: rgba(12, 30, 36, .82); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid rgba(255, 255, 255, .1); border-radius: 20px; }
+  .card { background: rgba(255, 255, 255, .07); border-color: rgba(255, 255, 255, .14); border-radius: 22px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); }
+  .prose .note { background: var(--petrol-soft); border-radius: 0 14px 14px 0; }
+  .faq details { border-color: var(--line); }
+  .pain { border-top-color: var(--bad-v); }
+  .toast { border-radius: 999px; }
+
+  /* Status labels, as in Azimys: band from the deep shade to the vivid one, frosted body, coloured edge and glow */
+  .t-ok { --tone: var(--ok); --tone-v: var(--ok-v); } .t-warn { --tone: var(--warn); --tone-v: var(--warn-v); } .t-bad { --tone: var(--bad); --tone-v: var(--bad-v); --tone-b: var(--bad-b); }
+  .t-acc { --tone: var(--petrol); --tone-v: #1b8aa5; } .t-off { --tone: #5b6b7d; --tone-v: #94a3b8; }
+  .tag { border: 1px solid color-mix(in srgb, var(--tone-v, var(--tone)) 42%, transparent); border-radius: 18px; background: var(--glass-bg); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
+    box-shadow: var(--glass-hi), 0 22px 40px -22px color-mix(in srgb, var(--tone-v, var(--tone)) 60%, transparent), 0 30px 50px -30px rgba(20, 32, 40, .45); }
+  .tag-band { background: linear-gradient(120deg, var(--tone-b, var(--tone)) 0%, var(--tone-v, var(--tone)) 100%); }
+  /* The fanned labels of the hero overlap: a nearly opaque body so one does not show through the other. */
+  .stack .tag { background: linear-gradient(150deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .84) 100%); }
+  .tag-band::before { background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, .28); }
+  .tag-band.hatch { background: repeating-linear-gradient(135deg, var(--bad-b) 0 16px, var(--bad-v) 16px 26px); }
+  .tag dt, .tag dd { border-bottom-color: var(--line); }
+  .screen .tag, .statuses .tag { box-shadow: var(--glass-hi), 0 14px 28px -18px color-mix(in srgb, var(--tone-v, var(--tone)) 60%, transparent); }
+  .statuses .tag { border-color: color-mix(in srgb, var(--tone-v, var(--tone)) 50%, transparent); }
+  .qr-card { background: rgba(12, 30, 36, .82); -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); border: 1px solid rgba(255, 255, 255, .1); border-radius: 20px; }
+  .qr-card .qr { border-radius: 10px; }
+  .phone { border-radius: 38px; }
+  .screen { background: linear-gradient(160deg, #e9f1f3 0%, #dbe7eb 100%); }
+
+  /* Pills: a transparent tint with a fine edge */
+  .p-ok { --tone-v: var(--ok-v); } .p-warn { --tone-v: var(--warn-v); } .p-bad { --tone-v: var(--bad-v); } .p-acc { --tone-v: #1b8aa5; }
+  .pill { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone-v, var(--tone)) 30%, transparent); }
+  .pill::before { background: var(--tone-v, currentColor); }
+  .note-bad { background: var(--bad-soft); border-radius: 14px; }
+  .todo { border-radius: 999px; }
+
+  /* The home screen picture: the À traiter tiles as small labels, like the app */
+  .today-todo div { --t: var(--petrol); --tv: #1b8aa5; display: grid; padding: 0 .75rem .65rem; overflow: hidden; background: var(--glass-bg); border: 1px solid color-mix(in srgb, var(--tv) 42%, transparent); border-radius: 16px;
+    box-shadow: var(--glass-hi), 0 14px 26px -16px color-mix(in srgb, var(--tv) 55%, transparent); }
+  .today-todo div.w { --t: var(--warn); --tv: var(--warn-v); background: var(--glass-bg); } .today-todo div.x { --t: var(--bad); --tv: var(--bad-v); background: var(--glass-bg); }
+  .today-todo b { position: relative; margin: 0 -.75rem .5rem; padding: .4rem .75rem .45rem 1.85rem; background: linear-gradient(120deg, var(--t), var(--tv)); color: #fff; font-size: 1.6rem; }
+  .today-todo b::before { content: ""; position: absolute; left: .75rem; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .28); }
+  .today-todo b::after { content: "À suivre"; margin-left: .45rem; font-family: var(--font-ui); font-size: .74rem; font-weight: 700; vertical-align: .3rem; }
+  .today-todo div.w b::after { content: "À prévoir"; } .today-todo div.x b::after { content: "Urgent"; }
+  .tp p b.w { color: var(--warn); } .tp p b.x { color: var(--bad); } .tp p b.k { color: var(--ok); }
+
+  /* Planning picture */
+  .pg span { border-radius: 7px; }
+  .pg .c { background: rgba(255, 255, 255, .6); border-color: var(--glass-line); }
+  .pg .vm { background: var(--ext-soft); color: var(--ext); }
+  .pg .ask { background: repeating-linear-gradient(135deg, var(--warn-soft) 0 6px, rgba(255, 255, 255, .7) 6px 10px); border-color: var(--warn-v); }
+  .chips li { border-color: rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .06); }
+
+  /* Legal pages: their notes and boxes */
+  section { border-top-color: var(--line); }
+  footer { border-top-color: var(--line); }
+  @media (max-width: 640px) {
+    .top { padding: 8px 10px 0; }
+    .top .wrap { padding-inline: .8rem; border-radius: 18px; }
+    .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui { border-radius: 18px; }
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 34 24">
+      <rect x="1" y="1" width="32" height="22" rx="4" fill="#145a6e"/>
+      <circle cx="17" cy="12" r="7.6" fill="none" stroke="#fff" stroke-width="1.3" opacity=".45"/>
+      <g transform="rotate(35 17 12)"><path d="M17 3.6l3.1 8.4h-6.2z" fill="#fff"/><path d="M17 20.4l-3.1-8.4h6.2z" fill="#f3f5f4" opacity=".8"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Azimys, accueil du site">
+      <svg aria-hidden="true"><use href="#mark"/></svg>
+      <b>Azimys</b>
+    </a>
+    <a class="back" href="index.html">Retour au site</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Contrat de sous-traitance des données personnelles</h1>
+  <p class="small" style="margin:.6rem 0 1.6rem">Version du 18 novembre 2026. Ce contrat fait partie de l'abonnement au logiciel Azimys, avec les <a href="cgv.html">conditions générales d'abonnement</a>. Il est accepté en ligne par l'administrateur de l'entreprise, au nom de l'entreprise, ou signé sur papier à sa demande.</p>
+
+  <section aria-labelledby="a1"><h2 id="a1">1. Parties et objet</h2>
+    <p>Ce contrat fixe les conditions dans lesquelles Azimys traite des données personnelles pour le compte de l'entreprise cliente, conformément à l'article 28 du règlement (UE) 2016/679 (RGPD).</p>
+    <table><thead><tr><th scope="col">Rôle</th><th scope="col">Partie</th></tr></thead><tbody>
+      <tr><td>Responsable de traitement</td><td>L'entreprise cliente, au nom de laquelle l'administrateur accepte ce contrat dans Azimys ou le signe</td></tr>
+      <tr><td>Sous-traitant</td><td>Xavier SOL-DURIO, entrepreneur individuel, nom commercial Azimys, 50 avenue des Champs-Élysées, 75008 Paris, SIREN 879 466 290, <a href="mailto:contact@azimys.com">contact@azimys.com</a> (ci-après « Azimys »)</td></tr>
+    </tbody></table>
+    <p>Il s'applique pendant toute l'utilisation d'Azimys par l'entreprise et complète les conditions générales d'abonnement. En cas de contradiction sur la protection des données, ce contrat prévaut.</p>
+  </section>
+
+  <section aria-labelledby="a2"><h2 id="a2">2. Description du traitement</h2>
+    <table><thead><tr><th scope="col">Élément</th><th scope="col">Détail</th></tr></thead><tbody>
+      <tr><td>Finalité</td><td>Fournir le logiciel Azimys en ligne : comptes des utilisateurs, enregistrement et traçabilité des opérations de l'entreprise, sécurité des accès</td></tr>
+      <tr><td>Opérations</td><td>Hébergement, conservation, consultation, sauvegarde, export et suppression des données, sur instruction de l'entreprise</td></tr>
+      <tr><td>Personnes concernées</td><td>Salariés et intervenants de l'entreprise qui ont un compte ou dont le nom est saisi (visa, habilitation, formation, absence selon les modules) ; contacts des clients et des fournisseurs de l'entreprise</td></tr>
+      <tr><td>Données</td><td>Nom, adresse e-mail, visa, rôle ; auteur et date des opérations ; historique des connexions (date, adresse IP, navigateur) ; coordonnées professionnelles des contacts (nom, fonction, e-mail, téléphone) ; selon les modules : habilitations, compétences, formations, absences</td></tr>
+      <tr><td>Données sensibles</td><td>Aucune. L'entreprise s'engage à ne pas en saisir (santé, données bancaires de personnes, numéros d'identité). Un arrêt maladie est saisi sans motif médical</td></tr>
+      <tr><td>Durée</td><td>La durée d'utilisation d'Azimys ; historique des connexions conservé 12 mois</td></tr>
+    </tbody></table>
+  </section>
+
+  <section aria-labelledby="a3"><h2 id="a3">3. Obligations du sous-traitant</h2>
+    <p>Azimys s'engage à :</p>
+    <ol>
+      <li>traiter les données uniquement pour la finalité ci-dessus et sur instruction documentée de l'entreprise ; l'utilisation d'Azimys et ses réglages valent instructions. Si une instruction lui paraît contraire au RGPD, il en informe l'entreprise ;</li>
+      <li>ne pas utiliser les données pour son propre compte, ne pas les vendre ni les communiquer à des tiers, sauf obligation légale ;</li>
+      <li>garantir la confidentialité des données : seul l'éditeur peut y accéder pour l'exploitation du service, et uniquement quand c'est nécessaire (assistance demandée, incident, export) ;</li>
+      <li>mettre en œuvre les mesures de sécurité décrites à l'article 5 ;</li>
+      <li>aider l'entreprise à répondre aux demandes des personnes concernées et à tenir ses propres obligations (analyse d'impact, registre des traitements), dans la mesure de ses moyens ;</li>
+      <li>tenir à la disposition de l'entreprise les informations nécessaires pour démontrer le respect de ces obligations.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="a4"><h2 id="a4">4. Sous-traitants ultérieurs et lieu des données</h2>
+    <p>L'entreprise autorise le recours aux sous-traitants ultérieurs ci-dessous ; les données restent en France.</p>
+    <table><thead><tr><th scope="col">Sous-traitant ultérieur</th><th scope="col">Rôle et lieu des données</th></tr></thead><tbody>
+      <tr><td>Scalingo SAS (France), certifié ISO 27001</td><td>Hébergement de l'application et de la base de données, sauvegardes quotidiennes ; France (centres de données 3DS Outscale, Paris)</td></tr>
+      <tr><td>OVHcloud SAS (France)</td><td>Copie mensuelle chiffrée de la base (AES-256), gardée 12 mois ; messagerie ; France (Paris, répliqué sur 3 centres de données)</td></tr>
+    </tbody></table>
+    <p>Azimys a imposé à Scalingo et à OVHcloud des obligations de protection équivalentes à celles de ce contrat, par leurs accords de traitement des données. Il informe l'entreprise par e-mail, au moins 30 jours à l'avance, de tout changement de sous-traitant ultérieur ou de lieu ; l'entreprise peut s'y opposer et résilier sans frais.</p>
+    <p><b>Facture électronique.</b> Si l'entreprise relie elle-même Azimys à la plateforme agréée Super PDP pour envoyer et recevoir ses factures électroniques, Azimys transmet les factures à cette plateforme sur son instruction. Super PDP agit alors dans le cadre du compte et du contrat que l'entreprise a ouverts chez elle.</p>
+  </section>
+
+  <section aria-labelledby="a5"><h2 id="a5">5. Sécurité, violation de données, droits des personnes</h2>
+    <p><b>Sécurité.</b> Azimys applique les mesures décrites dans sa fiche sécurité, fournie sur demande, notamment : connexions chiffrées (HTTPS), comptes nominatifs et rôles, mots de passe stockés sous forme d'empreinte, double authentification, données cloisonnées par entreprise, historique des connexions, sauvegardes quotidiennes et copie mensuelle chiffrée. Il prévient l'entreprise avant toute modification qui réduirait ce niveau de sécurité.</p>
+    <p><b>Violation de données.</b> Azimys notifie à l'entreprise toute violation de données personnelles sans délai, au plus tard 24 heures après en avoir eu connaissance, par e-mail à son administrateur : nature de la violation, catégories et nombre approximatif de personnes et de données concernées, conséquences probables, mesures prises ou proposées. L'entreprise reste chargée de la notification à la CNIL et aux personnes.</p>
+    <p><b>Droits des personnes.</b> L'administrateur de l'entreprise peut lui-même consulter, corriger, exporter et désactiver les comptes. Si une personne s'adresse directement à Azimys, celui-ci transmet sa demande à l'entreprise sous 5 jours ouvrés et ne répond pas à sa place.</p>
+  </section>
+
+  <section aria-labelledby="a6"><h2 id="a6">6. Fin du contrat, contrôle, acceptation</h2>
+    <p><b>Fin du contrat.</b> À la fin de l'utilisation d'Azimys, Azimys remet à l'entreprise, si elle le demande, l'export complet de ses données, puis supprime définitivement ses comptes et ses données dans un délai de 30 jours. Les sauvegardes s'effacent à la fin de leur durée de conservation : 7 jours chez Scalingo, 12 mois pour la copie mensuelle chiffrée chez OVHcloud. Il confirme la suppression par écrit.</p>
+    <p><b>Contrôle.</b> L'entreprise peut demander les documents qui démontrent le respect de ce contrat, et procéder à un audit sur pièces une fois par an, ou après une violation de données, en prévenant 30 jours à l'avance.</p>
+    <p><b>Acceptation.</b> Ce contrat est accepté en ligne par l'administrateur de l'entreprise, au nom de l'entreprise, à sa première connexion et à chaque nouvelle version, en même temps que les conditions générales ; Azimys garde la date, la version et le nom de la personne qui l'a accepté. Une version signée sur papier peut être établie à la demande de l'entreprise.</p>
+    <p><b>Droit applicable.</b> Droit français.</p>
+  </section>
+
+  <p class="small" style="margin-top:2.5rem">Pour toute question sur ce contrat : <a href="mailto:contact@azimys.com">contact@azimys.com</a>.</p>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Azimys, marque déposée. L'ERP modulable qui s'adapte à votre entreprise.</span><nav aria-label="Liens"><a href="index.html">Accueil</a><a href="cgv.html">Conditions générales</a><a href="contrat-rgpd.html">Contrat RGPD</a><a href="mailto:contact@azimys.com">contact@azimys.com</a></nav></div>
+</footer>
+<script>
+(function () {
+  var API = /(^|\.)azimys\.com$/.test(location.hostname) ? 'https://app.azimys.com' : window.AZ_API;
+  if (!API || (navigator.webdriver && !window.AZ_API)) return;
+  var r = '', s = '';
+  try { r = document.referrer ? new URL(document.referrer).hostname : ''; s = new URLSearchParams(location.search).get('utm_source') || ''; } catch (e) {}
+  try { fetch(API + '/api/site/vue', { method: 'POST', mode: 'no-cors', credentials: 'omit', keepalive: true, headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ p: location.pathname + location.hash, r: r, s: s }) }).catch(function () {}); } catch (e) {}
+})();
+</script>
+
+</html>
