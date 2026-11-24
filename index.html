@@ -248,9 +248,6 @@
   .addon .addon-price { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--ink); }
   .addon .addon-price small { display: block; font-family: var(--font-ui); font-size: .9rem; font-weight: 500; color: var(--muted); }
   .fine { margin-top: 1rem; font-size: .9rem; color: var(--muted); }
-  .pilot { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; margin-bottom: 1rem; padding: 1.2rem 1.5rem; background: #f7fbfc; border: 1px solid var(--line); border-radius: 12px; box-shadow: inset 4px 0 0 var(--petrol); }
-  .pilot p { color: var(--muted); max-width: 70ch; min-width: 0; }
-  .pilot b { color: var(--ink); }
   .plan .badge { justify-self: start; margin-bottom: -.35rem; padding: .2rem .6rem; border-radius: 999px; background: var(--petrol); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .02em; }
   .plan .save { margin-top: -.45rem; color: var(--petrol); font-size: .88rem; font-weight: 600; }
   .carte { margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: grid; gap: 1rem; }
@@ -637,7 +634,7 @@
   .facts-band { background: rgba(255, 255, 255, .42); border-top: 1px solid rgba(255, 255, 255, .65); border-bottom: 1px solid rgba(255, 255, 255, .5); }
 
   /* Cards: frosted glass, a light edge on top, layered shadows */
-  .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui, .sheet, dl.facts, .prose .tbl {
+  .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .today, .ui, .sheet, dl.facts, .prose .tbl {
     background: var(--glass-bg); border: 1px solid var(--glass-line); border-radius: 22px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
   .ui { border-radius: 20px; }
   .ui-row, .tp p, .ui-presets span { border-color: var(--line); }
@@ -645,7 +642,6 @@
   .tri .ui, .tp .ui { box-shadow: var(--glass-hi); }
   .mod.base { background: linear-gradient(135deg, #145a6e 0%, #1b6f84 55%, #23839a 100%); border-color: transparent; }
   .plan.hl { background: var(--glass-bg); box-shadow: inset 0 4px 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
-  .pilot { box-shadow: inset 4px 0 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
   .carte-list li.base { background: rgba(255, 255, 255, .55); border-radius: 12px; }
   .related a:hover, .gl a:hover, .mg:hover { border-color: rgba(20, 90, 110, .35); }
   .dom label { border-radius: 12px; }
@@ -705,7 +701,7 @@
   @media (max-width: 640px) {
     .top { padding: 8px 10px 0; }
     .top .wrap { padding-inline: .8rem; border-radius: 18px; }
-    .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui { border-radius: 18px; }
+    .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .today, .ui { border-radius: 18px; }
   }
 </style>
 
@@ -740,7 +736,7 @@
           <a class="btn btn-main" href="demo.html" target="_blank" rel="noopener">Essayer la démo gratuite</a>
           <a class="btn" href="#modules">Découvrir les modules</a>
         </div>
-        <p class="proof">Démo sans inscription, rien à installer, sans engagement. <a href="tarifs.html">Entreprise pilote : trois mois offerts.</a></p>
+        <p class="proof">Démo sans inscription, rien à installer, sans engagement.</p>
       </div>
       <div class="stack" aria-label="Exemples de fiches affichées par Azimys">
         <div class="tag b t-warn" aria-hidden="true">
@@ -864,7 +860,7 @@
       <div class="doors">
         <a href="comment-ca-marche.html"><h3>Comment ça marche</h3><p>Rien à installer, vos fichiers Excel repris, vos mots et vos documents : opérationnel en une journée.</p><span>Découvrir</span></a>
         <a href="pret-pour-un-audit.html"><h3>Prêt pour un audit</h3><p>Traçabilité des lots, outillage étalonné, travaux visés, formations : tout est enregistré.</p><span>Découvrir</span></a>
-        <a href="tarifs.html"><h3>Tarifs</h3><p>Un prix par module, selon la taille de votre équipe. Trois mois offerts aux entreprises pilotes.</p><span>Voir les tarifs</span></a>
+        <a href="tarifs.html"><h3>Tarifs</h3><p>Un prix par module, selon la taille de votre équipe, sans engagement.</p><span>Voir les tarifs</span></a>
         <a href="questions-frequentes.html"><h3>Questions fréquentes</h3><p>Vos données, le prix, la reprise de vos fichiers, l'engagement : les réponses.</p><span>Lire les réponses</span></a>
         <a href="guides.html"><h3>Guides pratiques</h3><p>Congés payés, mentions des factures, rappel de lot, non-conformités : ce qu'en dit la règle.</p><span>Lire les guides</span></a>
         <a href="demo.html"><h3>La démo</h3><p>Azimys rempli comme une vraie entreprise de votre métier. Sans inscription, rien à installer.</p><span>Essayer</span></a>
@@ -876,7 +872,7 @@
     <div class="wrap contact">
       <div>
         <h2 id="ct">Parlons de votre entreprise.</h2>
-        <p>Laissez vos coordonnées : nous vous proposons une présentation de 15 minutes en visio, ou un essai avec vos propres données. Trois mois offerts si vous devenez entreprise pilote.</p>
+        <p>Laissez vos coordonnées : nous vous proposons une présentation de 15 minutes en visio, ou un essai avec vos propres données.</p>
         <div class="card">
           <label for="mail">Vous préférez écrire ? Notre adresse :</label>
           <div class="mail" id="mail"><code id="mail-addr">contact@azimys.com</code></div>

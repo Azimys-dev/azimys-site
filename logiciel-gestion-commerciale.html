@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:locale" content="fr_FR">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Azimys", "item": "https://azimys.com/"}, {"@type": "ListItem", "position": 2, "name": "Gestion commerciale", "item": "https://azimys.com/logiciel-gestion-commerciale.html"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Peut-on prendre seulement la facturation ?", "acceptedAnswer": {"@type": "Answer", "text": "La facturation part des commandes, et les commandes du magasin : ces modules vont ensemble. Pour un besoin plus simple, chaque module se prend aussi à la carte, avec son propre prix."}}, {"@type": "Question", "name": "Les factures partent-elles toutes seules chez le client ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Azimys prépare la facture, que vous imprimez ou enregistrez en PDF pour l'envoyer vous-même. Rien ne part sans vous."}}, {"@type": "Question", "name": "Et pour une micro-entreprise sans TVA ?", "acceptedAnswer": {"@type": "Answer", "text": "Cochez la franchise en base de TVA dans les réglages : les devis, commandes et factures portent alors la mention « TVA non applicable, article 293 B du CGI »."}}, {"@type": "Question", "name": "Peut-on reprendre nos clients et nos articles ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, depuis vos fichiers Excel, avec un aperçu avant l'import. Les entreprises pilotes ont trois mois offerts et une aide pour la reprise."}}, {"@type": "Question", "name": "Faut-il installer quelque chose ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Azimys s'ouvre dans le navigateur, sur ordinateur, tablette et téléphone."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Peut-on prendre seulement la facturation ?", "acceptedAnswer": {"@type": "Answer", "text": "La facturation part des commandes, et les commandes du magasin : ces modules vont ensemble. Pour un besoin plus simple, chaque module se prend aussi à la carte, avec son propre prix."}}, {"@type": "Question", "name": "Les factures partent-elles toutes seules chez le client ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Azimys prépare la facture, que vous imprimez ou enregistrez en PDF pour l'envoyer vous-même. Rien ne part sans vous."}}, {"@type": "Question", "name": "Et pour une micro-entreprise sans TVA ?", "acceptedAnswer": {"@type": "Answer", "text": "Cochez la franchise en base de TVA dans les réglages : les devis, commandes et factures portent alors la mention « TVA non applicable, article 293 B du CGI »."}}, {"@type": "Question", "name": "Peut-on reprendre nos clients et nos articles ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, depuis vos fichiers Excel, avec un aperçu avant l'import. Nous vous aidons pour la reprise."}}, {"@type": "Question", "name": "Faut-il installer quelque chose ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. Azimys s'ouvre dans le navigateur, sur ordinateur, tablette et téléphone."}}]}</script>
 <style>body{margin:0}[hidden]{display:none!important}</style>
 <title>Logiciel de gestion commerciale pour TPE et PME · Azimys</title>
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -248,9 +248,6 @@
   .addon .addon-price { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; color: var(--ink); }
   .addon .addon-price small { display: block; font-family: var(--font-ui); font-size: .9rem; font-weight: 500; color: var(--muted); }
   .fine { margin-top: 1rem; font-size: .9rem; color: var(--muted); }
-  .pilot { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; margin-bottom: 1rem; padding: 1.2rem 1.5rem; background: #f7fbfc; border: 1px solid var(--line); border-radius: 12px; box-shadow: inset 4px 0 0 var(--petrol); }
-  .pilot p { color: var(--muted); max-width: 70ch; min-width: 0; }
-  .pilot b { color: var(--ink); }
   .plan .badge { justify-self: start; margin-bottom: -.35rem; padding: .2rem .6rem; border-radius: 999px; background: var(--petrol); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .02em; }
   .plan .save { margin-top: -.45rem; color: var(--petrol); font-size: .88rem; font-weight: 600; }
   .carte { margin-top: 1rem; padding: 1.4rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: grid; gap: 1rem; }
@@ -615,7 +612,7 @@
   .facts-band { background: rgba(255, 255, 255, .42); border-top: 1px solid rgba(255, 255, 255, .65); border-bottom: 1px solid rgba(255, 255, 255, .5); }
 
   /* Cards: frosted glass, a light edge on top, layered shadows */
-  .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui, .sheet, dl.facts, .prose .tbl {
+  .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .today, .ui, .sheet, dl.facts, .prose .tbl {
     background: var(--glass-bg); border: 1px solid var(--glass-line); border-radius: 22px; -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur); box-shadow: var(--glass-hi), var(--glass-shadow); }
   .ui { border-radius: 20px; }
   .ui-row, .tp p, .ui-presets span { border-color: var(--line); }
@@ -623,7 +620,6 @@
   .tri .ui, .tp .ui { box-shadow: var(--glass-hi); }
   .mod.base { background: linear-gradient(135deg, #145a6e 0%, #1b6f84 55%, #23839a 100%); border-color: transparent; }
   .plan.hl { background: var(--glass-bg); box-shadow: inset 0 4px 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
-  .pilot { box-shadow: inset 4px 0 0 var(--petrol), var(--glass-hi), var(--glass-shadow); }
   .carte-list li.base { background: rgba(255, 255, 255, .55); border-radius: 12px; }
   .related a:hover, .gl a:hover, .mg:hover { border-color: rgba(20, 90, 110, .35); }
   .dom label { border-radius: 12px; }
@@ -683,7 +679,7 @@
   @media (max-width: 640px) {
     .top { padding: 8px 10px 0; }
     .top .wrap { padding-inline: .8rem; border-radius: 18px; }
-    .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .pilot, .today, .ui { border-radius: 18px; }
+    .mod, .dom, .tri, .plan, .addon, .carte, .mg, .related a, .gl a, .tp, .today, .ui { border-radius: 18px; }
   }
 </style>
 <style>
@@ -849,7 +845,7 @@
         <details><summary>Peut-on prendre seulement la facturation ?</summary><p>La facturation part des commandes, et les commandes du magasin : ces modules vont ensemble. Pour un besoin plus simple, chaque module se prend aussi à la carte, avec son propre prix.</p></details>
         <details><summary>Les factures partent-elles toutes seules chez le client ?</summary><p>Non. Azimys prépare la facture, que vous imprimez ou enregistrez en PDF pour l'envoyer vous-même. Rien ne part sans vous.</p></details>
         <details><summary>Et pour une micro-entreprise sans TVA ?</summary><p>Cochez la franchise en base de TVA dans les réglages : les devis, commandes et factures portent alors la mention « TVA non applicable, article 293 B du CGI ».</p></details>
-        <details><summary>Peut-on reprendre nos clients et nos articles ?</summary><p>Oui, depuis vos fichiers Excel, avec un aperçu avant l'import. Les entreprises pilotes ont trois mois offerts et une aide pour la reprise.</p></details>
+        <details><summary>Peut-on reprendre nos clients et nos articles ?</summary><p>Oui, depuis vos fichiers Excel, avec un aperçu avant l'import. Nous vous aidons pour la reprise.</p></details>
         <details><summary>Faut-il installer quelque chose ?</summary><p>Non. Azimys s'ouvre dans le navigateur, sur ordinateur, tablette et téléphone.</p></details>
       </div>
     </div>
