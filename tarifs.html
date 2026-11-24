@@ -969,6 +969,9 @@
   });
   document.getElementById('sel-clear').addEventListener('click', function () { for (var i = 0; i < boxes.length; i++) boxes[i].checked = false; update(''); });
   setSize('tpe');
+  /* Arriving from the home page with a size of team already picked (?equipe=pme). */
+  var eq = (location.search.match(/[?&]equipe=(tpe|pme|ent)\b/) || [])[1];
+  if (eq) setSize(eq);
   update('');
 })();
 </script>
