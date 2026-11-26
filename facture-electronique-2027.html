@@ -484,15 +484,19 @@
   /* Free resources: templates, tools (26/11/2026) */
   .dl { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1rem; margin-top: 1.5rem; }
   .dl small { color: var(--muted); }
+  .dl-alt { margin: .9rem 0 0; color: var(--muted); font-size: .95rem; }
+  .dl-alt a { color: var(--petrol); font-weight: 600; }
+  .dl.try { margin: 1.4rem 0 .4rem; }
+  .dl.try .btn-main { color: #fff; text-decoration: none; }
   .ml { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
   .ml > div { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
   .ml a { text-decoration: none; }
   .ml .ml-t { display: block; padding: 1.1rem 1.25rem .8rem; color: var(--ink); flex: 1; }
   .ml .ml-t b { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--petrol); margin-bottom: .25rem; }
   .ml .ml-t span { color: var(--muted); font-size: .95rem; }
-  .ml .ml-dl { padding: .7rem 1.25rem; border-top: 1px solid var(--line); font-weight: 700; color: var(--petrol); }
-  .ml .ml-dl::before { content: '↓ '; }
-  .ml a:hover b, .ml .ml-dl:hover { text-decoration: underline; }
+  .ml .ml-try { margin: 0 1.25rem; justify-content: center; }
+  .ml .ml-dl { padding: .55rem 1.25rem .9rem; font-size: .9rem; font-weight: 600; color: var(--muted); text-align: center; }
+  .ml .ml-t:hover b, .ml .ml-dl:hover { text-decoration: underline; }
   .xl { overflow-x: auto; margin: .6rem 0 1.6rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
   .xl table { border-collapse: collapse; width: 100%; min-width: 560px; margin: 0; font-size: .9rem; }
   .xl th { background: #145a6e; color: #fff; padding: .5rem .6rem; text-align: left; font-weight: 700; white-space: nowrap; border: 0; }
@@ -781,7 +785,7 @@
       <p class="crumbs"><a href="./">Azimys</a> › <a href="guides.html">Guides</a> › Facture électronique 2027</p>
       <h1 id="h1">Facture électronique : ce qui change en 2027 pour les TPE et les PME.</h1>
       <p class="lead">Depuis le 1er septembre 2026, toutes les entreprises doivent pouvoir recevoir des factures électroniques. Au <b>1er septembre 2027</b>, les PME, les TPE et les micro-entreprises devront aussi en émettre, par une plateforme agréée. Voici ce qu'il faut savoir, et un test en dix questions pour savoir où vous en êtes.</p>
-      <div class="dl"><a class="btn btn-main" href="#test">Faire le test</a><a class="btn" href="logiciel-facturation.html">La facturation dans Azimys</a></div>
+      <div class="dl"><a class="btn btn-main" href="#test">Faire le test</a><a class="btn" href="demo.html#activite:menuiserie/facturation">Essayer la facturation dans Azimys</a></div>
     </div>
   </section>
 
@@ -851,6 +855,7 @@
       <article class="prose">
         <h2>Avec Azimys</h2>
         <p>Le module <a href="logiciel-facturation.html">Facturation</a> d'Azimys produit chaque facture et chaque avoir au format structuré européen (CII, norme EN 16931), avec les nouvelles mentions françaises : SIREN du client, nature de l'opération, option pour la TVA d'après les débits. Il vous avertit avant l'émission quand il manque le SIREN d'un client. Relié une fois à une plateforme agréée, il envoie la facture depuis sa fiche, affiche où elle en est chez le client, et peut aussi recevoir les factures de vos fournisseurs. Jusqu'à 500 factures envoyées ou reçues par mois sont comprises dans l'abonnement.</p>
+        <div class="dl try"><a class="btn btn-main" href="demo.html#activite:menuiserie/facturation">Essayez gratuitement dans Azimys</a><small>La démo s'ouvre sur les factures d'une entreprise fictive, sans inscription.</small></div>
         <p class="note">Ce guide résume les règles générales publiées par l'administration. Votre expert-comptable reste la référence pour votre situation, et impots.gouv.fr publie la liste à jour des plateformes agréées.</p>
       </article>
     </div>

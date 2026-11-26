@@ -484,15 +484,19 @@
   /* Free resources: templates, tools (26/11/2026) */
   .dl { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1rem; margin-top: 1.5rem; }
   .dl small { color: var(--muted); }
+  .dl-alt { margin: .9rem 0 0; color: var(--muted); font-size: .95rem; }
+  .dl-alt a { color: var(--petrol); font-weight: 600; }
+  .dl.try { margin: 1.4rem 0 .4rem; }
+  .dl.try .btn-main { color: #fff; text-decoration: none; }
   .ml { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
   .ml > div { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
   .ml a { text-decoration: none; }
   .ml .ml-t { display: block; padding: 1.1rem 1.25rem .8rem; color: var(--ink); flex: 1; }
   .ml .ml-t b { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--petrol); margin-bottom: .25rem; }
   .ml .ml-t span { color: var(--muted); font-size: .95rem; }
-  .ml .ml-dl { padding: .7rem 1.25rem; border-top: 1px solid var(--line); font-weight: 700; color: var(--petrol); }
-  .ml .ml-dl::before { content: '↓ '; }
-  .ml a:hover b, .ml .ml-dl:hover { text-decoration: underline; }
+  .ml .ml-try { margin: 0 1.25rem; justify-content: center; }
+  .ml .ml-dl { padding: .55rem 1.25rem .9rem; font-size: .9rem; font-weight: 600; color: var(--muted); text-align: center; }
+  .ml .ml-t:hover b, .ml .ml-dl:hover { text-decoration: underline; }
   .xl { overflow-x: auto; margin: .6rem 0 1.6rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
   .xl table { border-collapse: collapse; width: 100%; min-width: 560px; margin: 0; font-size: .9rem; }
   .xl th { background: #145a6e; color: #fff; padding: .5rem .6rem; text-align: left; font-weight: 700; white-space: nowrap; border: 0; }
@@ -782,10 +786,10 @@
       <h1 id="h1">Modèle Excel de matrice de compétences, gratuit.</h1>
       <p class="lead">Le niveau de chaque personne sur chaque savoir-faire, de 0 à 4, en couleur. Le modèle compte les personnes autonomes par compétence, signale en rouge les compétences fragiles et calcule la polyvalence de chacun.</p>
       <div class="dl">
-        <a class="btn btn-main" href="modeles/modele-excel-matrice-competences.xlsx" download>Télécharger le modèle (.xlsx)</a>
-        <a class="btn" href="comment-faire-une-matrice-de-competences.html">Le guide de la matrice</a>
-        <small>Gratuit, sans inscription. Fonctionne avec Excel et LibreOffice.</small>
+        <a class="btn btn-main" href="demo.html#activite:usinage/competences">Essayez gratuitement dans Azimys</a>
+        <small>Le même suivi, sans fichier à tenir : la démo s'ouvre sur la matrice de compétences d'une entreprise fictive, sans inscription.</small>
       </div>
+      <p class="dl-alt">Ou <a href="modeles/modele-excel-matrice-competences.xlsx" download>téléchargez le modèle Excel gratuit (.xlsx)</a>, pour Excel et LibreOffice.</p>
     </div>
   </section>
 
@@ -821,7 +825,8 @@
         </ol>
         <p>Toute la méthode est dans le guide <a href="comment-faire-une-matrice-de-competences.html">Comment faire une matrice de compétences ?</a></p>
         <h2>Avec Azimys</h2>
-        <p>Dans Azimys, la <a href="logiciel-matrice-competences.html">matrice de compétences</a> est reliée aux <a href="logiciel-suivi-formations.html">formations</a> et à leurs dates de validité : un niveau se change d'un clic, les compétences fragiles remontent dans la synthèse Qualité, et l'historique est prêt pour l'audit. La matrice coûte 5 € TTC par mois pour une équipe de 1 à 3 personnes. <a href="demo.html">Essayez-la dans la démo</a>.</p>
+        <p>Dans Azimys, la <a href="logiciel-matrice-competences.html">matrice de compétences</a> est reliée aux <a href="logiciel-suivi-formations.html">formations</a> et à leurs dates de validité : un niveau se change d'un clic, les compétences fragiles remontent dans la synthèse Qualité, et l'historique est prêt pour l'audit. La matrice coûte 5 € TTC par mois pour une équipe de 1 à 3 personnes. <a href="demo.html#activite:usinage/competences">Essayez-la dans la démo</a>.</p>
+        <div class="dl try"><a class="btn btn-main" href="demo.html#activite:usinage/competences">Essayez gratuitement dans Azimys</a><small>La démo s'ouvre sur la matrice de compétences d'une entreprise fictive, sans inscription.</small></div>
       </article>
     </div>
   </section>

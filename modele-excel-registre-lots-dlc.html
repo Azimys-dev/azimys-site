@@ -484,15 +484,19 @@
   /* Free resources: templates, tools (26/11/2026) */
   .dl { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1rem; margin-top: 1.5rem; }
   .dl small { color: var(--muted); }
+  .dl-alt { margin: .9rem 0 0; color: var(--muted); font-size: .95rem; }
+  .dl-alt a { color: var(--petrol); font-weight: 600; }
+  .dl.try { margin: 1.4rem 0 .4rem; }
+  .dl.try .btn-main { color: #fff; text-decoration: none; }
   .ml { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
   .ml > div { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
   .ml a { text-decoration: none; }
   .ml .ml-t { display: block; padding: 1.1rem 1.25rem .8rem; color: var(--ink); flex: 1; }
   .ml .ml-t b { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--petrol); margin-bottom: .25rem; }
   .ml .ml-t span { color: var(--muted); font-size: .95rem; }
-  .ml .ml-dl { padding: .7rem 1.25rem; border-top: 1px solid var(--line); font-weight: 700; color: var(--petrol); }
-  .ml .ml-dl::before { content: '↓ '; }
-  .ml a:hover b, .ml .ml-dl:hover { text-decoration: underline; }
+  .ml .ml-try { margin: 0 1.25rem; justify-content: center; }
+  .ml .ml-dl { padding: .55rem 1.25rem .9rem; font-size: .9rem; font-weight: 600; color: var(--muted); text-align: center; }
+  .ml .ml-t:hover b, .ml .ml-dl:hover { text-decoration: underline; }
   .xl { overflow-x: auto; margin: .6rem 0 1.6rem; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
   .xl table { border-collapse: collapse; width: 100%; min-width: 560px; margin: 0; font-size: .9rem; }
   .xl th { background: #145a6e; color: #fff; padding: .5rem .6rem; text-align: left; font-weight: 700; white-space: nowrap; border: 0; }
@@ -782,10 +786,10 @@
       <h1 id="h1">Modèle Excel de traçabilité des lots et des DLC, gratuit.</h1>
       <p class="lead">Ce qui est entré, avec son fournisseur, son n° de lot et sa date limite ; ce qui est sorti, et chez qui ; ce qui reste par lot. Les dates limites qui approchent passent en orange, les dépassées en rouge, et en cas de rappel, vous retrouvez les clients livrés.</p>
       <div class="dl">
-        <a class="btn btn-main" href="modeles/modele-excel-registre-lots-dlc.xlsx" download>Télécharger le modèle (.xlsx)</a>
-        <a class="btn" href="logiciel-tracabilite-lots.html">La traçabilité dans Azimys</a>
-        <small>Gratuit, sans inscription. Fonctionne avec Excel et LibreOffice.</small>
+        <a class="btn btn-main" href="demo.html#activite:alimentaire/magasin">Essayez gratuitement dans Azimys</a>
+        <small>Le même suivi, sans fichier à tenir : la démo s'ouvre sur le stock, avec ses lots et leurs dates limites d'une entreprise fictive, sans inscription.</small>
       </div>
+      <p class="dl-alt">Ou <a href="modeles/modele-excel-registre-lots-dlc.xlsx" download>téléchargez le modèle Excel gratuit (.xlsx)</a>, pour Excel et LibreOffice.</p>
     </div>
   </section>
 
@@ -823,7 +827,8 @@
         <h2>Quand le fichier ne suffit plus</h2>
         <p>La traçabilité sur Excel tient tant que chaque sortie est bien saisie, avec le bon n° de lot. Une ligne oubliée, une faute de frappe dans un n° de lot, et le rappel devient incomplet. C'est le point faible du fichier.</p>
         <h2>Avec Azimys</h2>
-        <p>Dans le <a href="logiciel-gestion-de-stock.html">Magasin</a> d'Azimys, chaque lot a son étiquette QR, les livraisons prennent d'elles-mêmes les lots qui périment d'abord, et un rappel donne en un clic la liste des clients livrés, avec les quantités et les bons de livraison. Le Magasin coûte 19 € TTC par mois pour une équipe de 1 à 3 personnes. <a href="demo.html">Essayez-le dans la démo</a>.</p>
+        <p>Dans le <a href="logiciel-gestion-de-stock.html">Magasin</a> d'Azimys, chaque lot a son étiquette QR, les livraisons prennent d'elles-mêmes les lots qui périment d'abord, et un rappel donne en un clic la liste des clients livrés, avec les quantités et les bons de livraison. Le Magasin coûte 19 € TTC par mois pour une équipe de 1 à 3 personnes. <a href="demo.html#activite:alimentaire/magasin">Essayez-le dans la démo</a>.</p>
+        <div class="dl try"><a class="btn btn-main" href="demo.html#activite:alimentaire/magasin">Essayez gratuitement dans Azimys</a><small>La démo s'ouvre sur le stock, avec ses lots et leurs dates limites d'une entreprise fictive, sans inscription.</small></div>
       </article>
     </div>
   </section>
