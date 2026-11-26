@@ -222,6 +222,7 @@
   .rules th { color: var(--on-dark-muted); font-weight: 600; font-size: .88rem; }
   .rules td:first-child { color: #fff; font-weight: 600; width: 38%; }
   .rules td { color: var(--on-dark); }
+  .rules a { color: #a8dce8; }
   .checks { display: grid; gap: .7rem; }
   .checks li { padding-left: 1.8rem; position: relative; color: var(--on-dark); }
   .checks li::before { content: ""; position: absolute; left: 0; top: .35em; width: 1rem; height: .55rem; border-left: 2.5px solid #7fc9da; border-bottom: 2.5px solid #7fc9da; transform: rotate(-45deg); }
@@ -513,11 +514,12 @@
   .res span { display: block; font-weight: 700; font-size: .82rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
   .res big { display: block; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.05; color: var(--petrol); margin: .2rem 0; }
   .res small { color: var(--ink); font-size: .95rem; }
-  .res ol { margin: .4rem 0 0; padding-left: 1.2rem; } .res li { margin-bottom: .3rem; }
+  .res ol { margin: .4rem 0 0; padding-left: 1.2rem; list-style: decimal; } .res li { margin-bottom: .3rem; }
   .st { display: inline-block; padding: .1rem .55rem; border-radius: 999px; color: #fff; }
   .st.ok { background: #1f9d55; } .st.warn { background: #e8730c; } .st.bad { background: #d41c1c; }
-  .checks label { display: flex; align-items: flex-start; gap: .7rem; font-weight: 500; line-height: 1.45; }
-  .checks input[type=checkbox] { width: 22px; height: 22px; min-height: 0; flex: none; margin-top: .1rem; accent-color: var(--petrol); }
+  .quiz { display: grid; gap: .7rem; }
+  .quiz label { display: flex; align-items: flex-start; gap: .7rem; font-weight: 500; line-height: 1.45; }
+  .quiz input[type=checkbox] { width: 22px; height: 22px; min-height: 0; flex: none; margin-top: .1rem; accent-color: var(--petrol); }
   @media (max-width: 980px) { .ml { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 640px) { .ml, .tool .row2, .res .two { grid-template-columns: 1fr; } .tool { padding: 1rem; } }
 </style>
@@ -736,26 +738,26 @@
   }
 </style>
 <style>
-  .lead { gap: .8rem; align-content: start; }
-  .lead h3 { font-size: 1.5rem; color: #fff; margin: 0; }
-  .lead .lf2 { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-  .lead label { display: grid; gap: .3rem; font-size: .9rem; font-weight: 600; color: var(--on-dark); }
-  .lead label b { font-weight: 600; }
-  .lead label i { font-style: normal; font-weight: 400; color: var(--on-dark-muted); }
+  form.lead { gap: .8rem; align-content: start; }
+  form.lead h3 { font-size: 1.5rem; color: #fff; margin: 0; }
+  form.lead .lf2 { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+  form.lead label { display: grid; gap: .3rem; font-size: .9rem; font-weight: 600; color: var(--on-dark); }
+  form.lead label b { font-weight: 600; }
+  form.lead label i { font-style: normal; font-weight: 400; color: var(--on-dark-muted); }
   .contact > div > .card { margin-top: 1.6rem; }
-  .lead input, .lead select, .lead textarea { width: 100%; box-sizing: border-box; min-height: 46px; padding: .55rem .75rem; border: 1px solid rgba(255, 255, 255, .24); border-radius: 12px; background: rgba(255, 255, 255, .09); color: #fff; font: 500 1rem/1.35 var(--font-ui); }
-  .lead textarea { resize: vertical; min-height: 84px; }
-  .lead input::placeholder, .lead textarea::placeholder { color: var(--on-dark-muted); }
-  .lead select option, .lead select optgroup { color: var(--ink); background: #fff; }
-  .lead input:focus-visible, .lead select:focus-visible, .lead textarea:focus-visible { outline: 3px solid #7cc6da; outline-offset: 1px; border-color: transparent; }
-  .lead .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-  .lead .lead-err { margin: 0; color: #ffb4b4; font-weight: 600; min-height: 0; }
-  .lead .lead-err:empty { display: none; }
-  .lead .btn { justify-self: start; }
-  .lead .lead-note { margin: 0; font-size: .85rem; color: var(--on-dark-muted); }
-  .lead a { color: #cfe8ef; }
-  .lead.sent p { color: var(--on-dark); margin: 0; }
-  @media (max-width: 560px) { .lead .lf2 { grid-template-columns: 1fr; } .lead .btn { justify-self: stretch; } }
+  form.lead input, form.lead select, form.lead textarea { width: 100%; box-sizing: border-box; min-height: 46px; padding: .55rem .75rem; border: 1px solid rgba(255, 255, 255, .24); border-radius: 12px; background: rgba(255, 255, 255, .09); color: #fff; font: 500 1rem/1.35 var(--font-ui); }
+  form.lead textarea { resize: vertical; min-height: 84px; }
+  form.lead input::placeholder, form.lead textarea::placeholder { color: var(--on-dark-muted); }
+  form.lead select option, form.lead select optgroup { color: var(--ink); background: #fff; }
+  form.lead input:focus-visible, form.lead select:focus-visible, form.lead textarea:focus-visible { outline: 3px solid #7cc6da; outline-offset: 1px; border-color: transparent; }
+  form.lead .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  form.lead .lead-err { margin: 0; color: #ffb4b4; font-weight: 600; min-height: 0; }
+  form.lead .lead-err:empty { display: none; }
+  form.lead .btn { justify-self: start; }
+  form.lead .lead-note { margin: 0; font-size: .85rem; color: var(--on-dark-muted); }
+  form.lead a { color: #cfe8ef; }
+  form.lead.sent p { color: var(--on-dark); margin: 0; }
+  @media (max-width: 560px) { form.lead .lf2 { grid-template-columns: 1fr; } form.lead .btn { justify-self: stretch; } }
 </style>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
